@@ -55,7 +55,7 @@ namespace Football
                     imgSmoothed = imgSmoothed.PyrDown().PyrUp();
                     imgSmoothed._SmoothGaussian(3);
                     imgSmoothed = imgSmoothed.Convert<Gray, byte>();
-                    //pictureBox3.Image = imgSmoothed.Bitmap;
+                    pictureBox3.Image = imgSmoothed.Bitmap;
 
                     imgCircles = imgInput.CopyBlank();
                     imgLines = imgInput.CopyBlank();
@@ -313,16 +313,17 @@ namespace Football
             int highRed = Convert.ToInt32(label4.Text); 
 
 
-            if (imgInput == null) return;
-            //Image<Gray, Byte> imgRange = new Image<Bgr, byte>(imgInput.Width, imgInput.Height, new Bgr(0,0,0)); 
+            //if (imgInput == null) return;
+            Image<Gray, Byte> imgRange = new Image<Gray, byte>(imgInput.Width, imgInput.Height); 
 
             //Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
-            Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+             imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
 
             imgRange.SmoothGaussian(9);
 
-            pictureBox2.Image = imgRange.Bitmap;
+            pictureBox3.Image = imgRange.Bitmap;
 
         }
+
     }
 }
