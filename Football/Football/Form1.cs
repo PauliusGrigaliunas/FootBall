@@ -21,7 +21,7 @@ namespace Football
     public partial class Form1 : Form
     {
         VideoCapture capture;
-        Image<Bgr, byte> imgInput = null;
+        Image<Bgr, byte> imgInput;
         Image<Gray, byte> imgGray;
         Image<Ycc, byte> imgYcc;
         Image<Gray, byte> imgSmoothed;
@@ -41,7 +41,7 @@ namespace Football
             InitializeComponent();
         }
 
-        private void takeAPicture(Image<Bgr, byte> imgInput )
+        private void takeAPicture()
         {
             try
             {
@@ -84,12 +84,12 @@ namespace Football
             }
 
         }
-//Picture
+        //Picture
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            takeAPicture( imgInput );
+            takeAPicture();
         }
-//layers
+        //layers
         private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (imgInput == null)
@@ -129,7 +129,7 @@ namespace Football
         {
 
         }
-//Camera
+        //Camera
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (capture == null)
@@ -171,7 +171,7 @@ namespace Football
                 capture.Pause();
             }
         }
-// Video
+        // Video
         private void startToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (capture == null)
@@ -239,7 +239,7 @@ namespace Football
             imgYcc = imgInput.Convert<Ycc, byte>();
             pictureBox2.Image = imgYcc.Bitmap;
         }
-        
+
         //coordinates
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -256,7 +256,7 @@ namespace Football
             trackBar.LargeChange = 5;       // when clicked on a side of a slider move by X
             trackBar.SmallChange = 1;       // move using keyboard arrows
 
-             return trackBar.Value.ToString();
+            return trackBar.Value.ToString();
 
         }
         // colors:
@@ -310,20 +310,20 @@ namespace Football
             int lowGreen = Convert.ToInt32(label2.Text);
             int highGreen = Convert.ToInt32(label5.Text);
             int lowRed = Convert.ToInt32(label1.Text);
-            int highRed = Convert.ToInt32(label4.Text); 
+            int highRed = Convert.ToInt32(label4.Text);
 
 
-            //if (imgInput == null) return;
-            Image<Gray, Byte> imgRange = new Image<Gray, byte>(imgInput.Width, imgInput.Height); 
+            if (imgInput == null) {MessageBox.Show("Kazkas"); return;             
+            }
+            //Image<Gray, Byte> imgRange = new Image<Bgr, byte>(imgInput.Width, imgInput.Height, new Bgr(0,0,0)); 
 
             //Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
-             imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
+            Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
 
             imgRange.SmoothGaussian(9);
 
             pictureBox3.Image = imgRange.Bitmap;
 
         }
-
     }
 }
