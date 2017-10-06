@@ -35,6 +35,13 @@ namespace Football
         int maxRadius = 400;
         CircleF[] circles;
         Gray grayThresLinkings = new Gray(60);
+        Mat mat;
+        int lowBlue;
+        int highBlue;
+        int lowGreen;
+        int highGreen;
+        int lowRed;
+        int highRed;
 
         public Form1()
         {
@@ -191,7 +198,7 @@ namespace Football
         {
             try
             {
-                Mat mat = new Mat();
+                mat = new Mat();
                 capture.Retrieve(mat);
                 pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
                 Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
@@ -305,24 +312,48 @@ namespace Football
         //ColorFilter
         private void redToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int lowBlue = Convert.ToInt32(label3.Text);
-            int highBlue = Convert.ToInt32(label6.Text);
-            int lowGreen = Convert.ToInt32(label2.Text);
-            int highGreen = Convert.ToInt32(label5.Text);
-            int lowRed = Convert.ToInt32(label1.Text);
-            int highRed = Convert.ToInt32(label4.Text);
+            lowBlue = Convert.ToInt32(label3.Text);
+            highBlue = Convert.ToInt32(label6.Text);
+            lowGreen = Convert.ToInt32(label2.Text);
+            highGreen = Convert.ToInt32(label5.Text);
+            lowRed = Convert.ToInt32(label1.Text);
+            highRed = Convert.ToInt32(label4.Text);
 
 
-            if (imgInput == null) {MessageBox.Show("Kazkas"); return;             
+            if (imgInput != null)
+            {
+                Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                imgRange.SmoothGaussian(9);
+
+                pictureBox3.Image = imgRange.Bitmap;
             }
-            //Image<Gray, Byte> imgRange = new Image<Bgr, byte>(imgInput.Width, imgInput.Height, new Bgr(0,0,0)); 
+            else if (capture != null)
+            {
+                capture.ImageGrabbed += Capture_ImageGrabbed2;
 
-            //Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
-            Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
 
-            imgRange.SmoothGaussian(9);
+            }
 
-            pictureBox3.Image = imgRange.Bitmap;
+            else return;
+        }
+
+        private void Capture_ImageGrabbed2(object sender, EventArgs e)
+        {
+            try
+            {
+                //Mat mat2 = new Mat();
+                //capture.Retrieve(mat2);
+                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                imgRange.SmoothGaussian(9);
+
+                pictureBox3.Image = imgRange.Bitmap;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
 
         }
     }
