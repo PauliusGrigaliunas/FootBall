@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 using Emgu;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -48,323 +49,351 @@ namespace Football
             InitializeComponent();
         }
 
-        private void takeAPicture()
+
+       /* private void Modei()
         {
-            try
+
+            using (Image<Hsv, byte> hsv = imgInput.Convert<Hsv, byte>())
             {
-                OpenFileDialog ofd = new OpenFileDialog();
-                if (ofd.ShowDialog() == DialogResult.OK)
+                // 2. Obtain the 3 channels (hue, saturation and value) that compose the HSV image
+                Image<Gray, byte>[] channels = hsv.Split();
+
+                try
                 {
-                    //searching for cirxle shapes
-                    imgInput = new Image<Bgr, byte>(ofd.FileName);
-                    pictureBox1.Image = imgInput.Bitmap;
-                    imgSmoothed = imgInput.InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
-                    imgSmoothed = imgSmoothed.PyrDown().PyrUp();
-                    imgSmoothed._SmoothGaussian(3);
-                    imgSmoothed = imgSmoothed.Convert<Gray, byte>();
-                    pictureBox3.Image = imgSmoothed.Bitmap;
+                    // 3. Remove all pixels from the hue channel that are not in the range [40, 60]
+                    CvInvoke.cvInRangeS(channels[0], new Gray(40).MCvScalar, new Gray(60).MCvScalar, channels[0]);
 
-                    imgCircles = imgInput.CopyBlank();
-                    imgLines = imgInput.CopyBlank();
 
-                    minDistanceBtwCircles = imgSmoothed.Height / 4;
-                    circles = imgSmoothed.HoughCircles(cannyThreshold, grayCircle, lAccumRes, minDistanceBtwCircles, minRadius, maxRadius)[0];
+                    // 4. Display the result
+                    pictureBox1.Image = channels[0];
+                }
+                finally
+                {
+                    channels[1].Dispose();
+                    channels[2].Dispose();
+                }
+            }
 
-                    foreach (CircleF circle in circles)
+        }*/
+
+
+                private void takeAPicture()
+                {
+                    try
                     {
-                        imgCircles.Draw(circle, new Bgr(Color.Red), 2);
+                        OpenFileDialog ofd = new OpenFileDialog();
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            //searching for cirxle shapes
+                            imgInput = new Image<Bgr, byte>(ofd.FileName);
+                            pictureBox1.Image = imgInput.Bitmap;
+                            imgSmoothed = imgInput.InRange(new Bgr(40, 45, 140), new Bgr(62, 110, 255));
+                            imgSmoothed = imgSmoothed.PyrDown().PyrUp();
+                            imgSmoothed._SmoothGaussian(3);
+                            imgSmoothed = imgSmoothed.Convert<Gray, byte>();
+                            pictureBox3.Image = imgSmoothed.Bitmap;
+
+                            imgCircles = imgInput.CopyBlank();
+                            imgLines = imgInput.CopyBlank();
+
+                            minDistanceBtwCircles = imgSmoothed.Height / 4;
+                            circles = imgSmoothed.HoughCircles(cannyThreshold, grayCircle, lAccumRes, minDistanceBtwCircles, minRadius, maxRadius)[0];
+
+                            foreach (CircleF circle in circles)
+                            {
+                                imgCircles.Draw(circle, new Bgr(Color.Red), 20);
+                            }
+                            pictureBox2.Image = imgCircles.Bitmap;
+                        }
                     }
-                    pictureBox2.Image = imgCircles.Bitmap;
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Are you sure you want to close?", "System message", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                this.Close();
-            }
-
-        }
-        //Picture
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            takeAPicture();
-        }
-        //layers
-        private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (imgInput == null)
-            {
-                return;
-            }
-            Image<Gray, byte> imgCanny = new Image<Gray, byte>(imgInput.Width, imgInput.Height, new Gray(0));
-            imgCanny = imgInput.Canny(50, 20);
-            pictureBox2.Image = imgCanny.Bitmap;
-        }
-
-        private void sobelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (imgInput == null)
-            {
-                return;
-            }
-            Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
-            Image<Gray, float> imgSobel = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
-            imgSobel = imgGray.Sobel(1, 1, 3);
-            pictureBox2.Image = imgSobel.Bitmap;
-        }
-
-        private void laplasianToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (imgInput == null)
-            {
-                return;
-            }
-            Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
-            Image<Gray, float> imgLaplasian = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
-            imgLaplasian = imgGray.Laplace(3);
-            pictureBox2.Image = imgLaplasian.Bitmap;
-        }
-
-        private void videoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-        //Camera
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (capture == null)
-            {
-                capture = new Emgu.CV.VideoCapture(0);
-            }
-            capture.ImageGrabbed += Capture_ImageGrabbed;
-            capture.Start();
-        }
-
-        private void Capture_ImageGrabbed(object sender, EventArgs e)
-        {
-            try
-            {
-                Mat mat = new Mat();
-                capture.Retrieve(mat);
-                pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (capture != null)
-            {
-                capture.Stop();
-                capture = null;
-            }
-        }
-
-        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (capture != null)
-            {
-                capture.Pause();
-            }
-        }
-        // Video
-        private void startToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (capture == null)
-            {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Filter = "Video Files |*.mp4";
-                if (ofd.ShowDialog() == DialogResult.OK)
+                private void exitToolStripMenuItem_Click(object sender, EventArgs e)
                 {
-                    capture = new Emgu.CV.VideoCapture(ofd.FileName);
+                    if (MessageBox.Show("Are you sure you want to close?", "System message", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+
                 }
-                capture.ImageGrabbed += Capture_ImageGrabbed1;
-                capture.Start();
+                //Picture
+                private void openToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    takeAPicture();
+                }
+                //layers
+                private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (imgInput == null)
+                    {
+                        return;
+                    }
+                    Image<Gray, byte> imgCanny = new Image<Gray, byte>(imgInput.Width, imgInput.Height, new Gray(0));
+                    imgCanny = imgInput.Canny(50, 20);
+                    pictureBox2.Image = imgCanny.Bitmap;
+                }
+
+                private void sobelToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (imgInput == null)
+                    {
+                        return;
+                    }
+                    Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
+                    Image<Gray, float> imgSobel = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
+                    imgSobel = imgGray.Sobel(1, 1, 3);
+                    pictureBox2.Image = imgSobel.Bitmap;
+                }
+
+                private void laplasianToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (imgInput == null)
+                    {
+                        return;
+                    }
+                    Image<Gray, byte> imgGray = imgInput.Convert<Gray, byte>();
+                    Image<Gray, float> imgLaplasian = new Image<Gray, float>(imgInput.Width, imgInput.Height, new Gray(0));
+                    imgLaplasian = imgGray.Laplace(3);
+                    pictureBox2.Image = imgLaplasian.Bitmap;
+                }
+
+                private void videoToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+
+                }
+                //Camera
+                private void startToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (capture == null)
+                    {
+                        capture = new Emgu.CV.VideoCapture(0);
+                    }
+                    capture.ImageGrabbed += Capture_ImageGrabbed;
+                    capture.Start();
+                }
+
+                private void Capture_ImageGrabbed(object sender, EventArgs e)
+                {
+                    try
+                    {
+                        Mat mat = new Mat();
+                        capture.Retrieve(mat);
+                        pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+
+                private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (capture != null)
+                    {
+                        capture.Stop();
+                        capture = null;
+                    }
+                }
+
+                private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (capture != null)
+                    {
+                        capture.Pause();
+                    }
+                }
+                // Video
+                private void startToolStripMenuItem1_Click(object sender, EventArgs e)
+                {
+                    if (capture == null)
+                    {
+                        OpenFileDialog ofd = new OpenFileDialog();
+                        ofd.Filter = "Video Files |*.mp4";
+                        if (ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            capture = new Emgu.CV.VideoCapture(ofd.FileName);
+                        }
+                        capture.ImageGrabbed += Capture_ImageGrabbed1;
+                        capture.Start();
+                    }
+                }
+
+                private void Capture_ImageGrabbed1(object sender, EventArgs e)
+                {
+                    try
+                    {
+                        mat = new Mat();
+                        capture.Retrieve(mat);
+                        pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
+                        Image<Gray, Byte> imgCircle = mat.ToImage<Bgr, byte>().InRange(new Bgr(32, 40, 140), new Bgr(80, 255, 255));
+                        pictureBox2.Image = imgCircle.Bitmap;
+
+                        Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 0), new Bgr(25, 35, 25));
+
+                        imgRange.SmoothGaussian(9);
+
+                        pictureBox3.Image = imgRange.Bitmap;
+
+                        Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                        Thread.Sleep(1);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.StackTrace);
+                    }
+
+                }
+
+                private void stopToolStripMenuItem1_Click(object sender, EventArgs e)
+                {
+                    if (capture != null)
+                    {
+                        capture.Stop();
+                        capture = null;
+                    }
+                }
+
+                private void pauseToolStripMenuItem1_Click(object sender, EventArgs e)
+                {
+                    if (capture != null)
+                    {
+                        capture.Pause();
+                    }
+                }
+
+                private void grayToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    if (capture != null || imgInput != null)
+                    {
+                        imgGray = imgInput.Convert<Gray, byte>();
+                        pictureBox2.Image = imgGray.Bitmap;
+                    }
+
+                }
+
+                private void iccToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    imgYcc = imgInput.Convert<Ycc, byte>();
+                    pictureBox2.Image = imgYcc.Bitmap;
+                }
+
+                //coordinates
+                private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
+                {
+                    Bitmap bitmap = new Bitmap(pictureBox1.Image);
+                    Color pixelColor = bitmap.GetPixel(e.X, e.Y);
+                    MessageBox.Show(pixelColor.ToString());
+                }
+
+                private string TrackBarSetting(TrackBar trackBar)
+                {
+                    trackBar.Maximum = 255;         // max value
+                    trackBar.Minimum = 0;           // min value
+                    trackBar.TickFrequency = 10;    // distance between tick-mark
+                    trackBar.LargeChange = 5;       // when clicked on a side of a slider move by X
+                    trackBar.SmallChange = 1;       // move using keyboard arrows
+
+                    return trackBar.Value.ToString();
+
+                }
+                // colors:
+                //low red
+                private void trackBar1_Scroll(object sender, EventArgs e)
+                {
+                    label1.Text = TrackBarSetting(trackBar1);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //low green
+                private void trackBar2_Scroll(object sender, EventArgs e)
+                {
+                    label2.Text = TrackBarSetting(trackBar2);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //low blue
+                private void trackBar3_Scroll(object sender, EventArgs e)
+                {
+                    label3.Text = TrackBarSetting(trackBar3);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //high red
+                private void trackBar4_Scroll(object sender, EventArgs e)
+                {
+                    label4.Text = TrackBarSetting(trackBar4);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //high green
+                private void trackBar5_Scroll(object sender, EventArgs e)
+                {
+                    label5.Text = TrackBarSetting(trackBar5);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //high red
+                private void trackBar6_Scroll(object sender, EventArgs e)
+                {
+                    label6.Text = TrackBarSetting(trackBar6);
+                    redToolStripMenuItem_Click(sender, e);
+                }
+
+                //ColorFilter
+                private void redToolStripMenuItem_Click(object sender, EventArgs e)
+                {
+                    lowBlue = Convert.ToInt32(label3.Text);
+                    highBlue = Convert.ToInt32(label6.Text);
+                    lowGreen = Convert.ToInt32(label2.Text);
+                    highGreen = Convert.ToInt32(label5.Text);
+                    lowRed = Convert.ToInt32(label1.Text);
+                    highRed = Convert.ToInt32(label4.Text);
+
+
+                    if (imgInput != null)
+                    {
+                        Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                        imgRange.SmoothGaussian(9);
+
+                        pictureBox3.Image = imgRange.Bitmap;
+                    }
+                    else if (capture != null)
+                    {
+                        // capture.ImageGrabbed += Capture_ImageGrabbed2;
+
+
+                    }
+
+                    else return;
+                }
+
+                private void Capture_ImageGrabbed2(object sender, EventArgs e)
+                {
+                    try
+                    {
+                        //Mat mat2 = new Mat();
+                        //capture.Retrieve(mat2);
+                        Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                        imgRange.SmoothGaussian(9);
+
+                        pictureBox3.Image = imgRange.Bitmap;
+
+                        Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                        Thread.Sleep(1);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.StackTrace);
+                    }
+
+                }
             }
         }
-
-        private void Capture_ImageGrabbed1(object sender, EventArgs e)
-        {
-            try
-            {
-                mat = new Mat();
-                capture.Retrieve(mat);
-                pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
-                Image<Gray, Byte> imgCircle = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
-                pictureBox2.Image = imgCircle.Bitmap;
-
-                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
-
-                imgRange.SmoothGaussian(9);
-
-                pictureBox3.Image = imgRange.Bitmap;
-
-                Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
-                Thread.Sleep(1);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-
-        }
-
-        private void stopToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (capture != null)
-            {
-                capture.Stop();
-                capture = null;
-            }
-        }
-
-        private void pauseToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (capture != null)
-            {
-                capture.Pause();
-            }
-        }
-
-        private void grayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (capture != null || imgInput != null)
-            {
-                imgGray = imgInput.Convert<Gray, byte>();
-                pictureBox2.Image = imgGray.Bitmap;
-            }
-
-        }
-
-        private void iccToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            imgYcc = imgInput.Convert<Ycc, byte>();
-            pictureBox2.Image = imgYcc.Bitmap;
-        }
-
-        //coordinates
-        private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
-        {
-            Bitmap bitmap = new Bitmap(pictureBox1.Image);
-            Color pixelColor = bitmap.GetPixel(e.X, e.Y);
-            MessageBox.Show(pixelColor.ToString());
-        }
-
-        private string TrackBarSetting(TrackBar trackBar)
-        {
-            trackBar.Maximum = 255;         // max value
-            trackBar.Minimum = 0;           // min value
-            trackBar.TickFrequency = 10;    // distance between tick-mark
-            trackBar.LargeChange = 5;       // when clicked on a side of a slider move by X
-            trackBar.SmallChange = 1;       // move using keyboard arrows
-
-            return trackBar.Value.ToString();
-
-        }
-        // colors:
-        //low red
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            label1.Text = TrackBarSetting(trackBar1);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //low green
-        private void trackBar2_Scroll(object sender, EventArgs e)
-        {
-            label2.Text = TrackBarSetting(trackBar2);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //low blue
-        private void trackBar3_Scroll(object sender, EventArgs e)
-        {
-            label3.Text = TrackBarSetting(trackBar3);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //high red
-        private void trackBar4_Scroll(object sender, EventArgs e)
-        {
-            label4.Text = TrackBarSetting(trackBar4);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //high green
-        private void trackBar5_Scroll(object sender, EventArgs e)
-        {
-            label5.Text = TrackBarSetting(trackBar5);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //high red
-        private void trackBar6_Scroll(object sender, EventArgs e)
-        {
-            label6.Text = TrackBarSetting(trackBar6);
-            redToolStripMenuItem_Click(sender, e);
-        }
-
-        //ColorFilter
-        private void redToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            lowBlue = Convert.ToInt32(label3.Text);
-            highBlue = Convert.ToInt32(label6.Text);
-            lowGreen = Convert.ToInt32(label2.Text);
-            highGreen = Convert.ToInt32(label5.Text);
-            lowRed = Convert.ToInt32(label1.Text);
-            highRed = Convert.ToInt32(label4.Text);
-
-
-            if (imgInput != null)
-            {
-                Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
-
-                imgRange.SmoothGaussian(9);
-
-                pictureBox3.Image = imgRange.Bitmap;
-            }
-            else if (capture != null)
-            {
-               // capture.ImageGrabbed += Capture_ImageGrabbed2;
-
-
-            }
-
-            else return;
-        }
-
-        private void Capture_ImageGrabbed2(object sender, EventArgs e)
-        {
-            try
-            {
-                //Mat mat2 = new Mat();
-                //capture.Retrieve(mat2);
-                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
-
-                imgRange.SmoothGaussian(9);
-
-                pictureBox3.Image = imgRange.Bitmap;
-
-                Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
-                Thread.Sleep(1);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-
-        }
-    }
-}
