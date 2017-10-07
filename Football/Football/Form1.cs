@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 using Emgu;
 using Emgu.CV;
 using Emgu.CV.Structure;
@@ -21,7 +22,7 @@ namespace Football
     public partial class Form1 : Form
     {
         VideoCapture capture;
-        Image<Bgr, byte> imgInput = null;
+        Image<Bgr, byte> imgInput;
         Image<Gray, byte> imgGray;
         Image<Ycc, byte> imgYcc;
         Image<Gray, byte> imgSmoothed;
@@ -35,13 +36,48 @@ namespace Football
         int maxRadius = 400;
         CircleF[] circles;
         Gray grayThresLinkings = new Gray(60);
+        Mat mat;
+        int lowBlue;
+        int highBlue;
+        int lowGreen;
+        int highGreen;
+        int lowRed;
+        int highRed;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void takeAPicture(Image<Bgr, byte> imgInput )
+
+        /* private void Modei()
+         {
+
+             using (Image<Hsv, byte> hsv = imgInput.Convert<Hsv, byte>())
+             {
+                 // 2. Obtain the 3 channels (hue, saturation and value) that compose the HSV image
+                 Image<Gray, byte>[] channels = hsv.Split();
+
+                 try
+                 {
+                     // 3. Remove all pixels from the hue channel that are not in the range [40, 60]
+                     CvInvoke.cvInRangeS(channels[0], new Gray(40).MCvScalar, new Gray(60).MCvScalar, channels[0]);
+
+
+                     // 4. Display the result
+                     pictureBox1.Image = channels[0];
+                 }
+                 finally
+                 {
+                     channels[1].Dispose();
+                     channels[2].Dispose();
+                 }
+             }
+
+         }*/
+
+
+        private void takeAPicture()
         {
             try
             {
@@ -51,11 +87,11 @@ namespace Football
                     //searching for cirxle shapes
                     imgInput = new Image<Bgr, byte>(ofd.FileName);
                     pictureBox1.Image = imgInput.Bitmap;
-                    imgSmoothed = imgInput.InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
+                    imgSmoothed = imgInput.InRange(new Bgr(40, 45, 140), new Bgr(62, 110, 255));
                     imgSmoothed = imgSmoothed.PyrDown().PyrUp();
                     imgSmoothed._SmoothGaussian(3);
                     imgSmoothed = imgSmoothed.Convert<Gray, byte>();
-                    //pictureBox3.Image = imgSmoothed.Bitmap;
+                    pictureBox3.Image = imgSmoothed.Bitmap;
 
                     imgCircles = imgInput.CopyBlank();
                     imgLines = imgInput.CopyBlank();
@@ -65,7 +101,7 @@ namespace Football
 
                     foreach (CircleF circle in circles)
                     {
-                        imgCircles.Draw(circle, new Bgr(Color.Red), 2);
+                        imgCircles.Draw(circle, new Bgr(Color.Red), 20);
                     }
                     pictureBox2.Image = imgCircles.Bitmap;
                 }
@@ -84,12 +120,12 @@ namespace Football
             }
 
         }
-//Picture
+        //Picture
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            takeAPicture( imgInput );
+            takeAPicture();
         }
-//layers
+        //layers
         private void cannyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (imgInput == null)
@@ -129,7 +165,7 @@ namespace Football
         {
 
         }
-//Camera
+        //Camera
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (capture == null)
@@ -171,7 +207,7 @@ namespace Football
                 capture.Pause();
             }
         }
-// Video
+        // Video
         private void startToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (capture == null)
@@ -191,12 +227,32 @@ namespace Football
         {
             try
             {
-                Mat mat = new Mat();
+                mat = new Mat();
                 capture.Retrieve(mat);
                 pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
-                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
-                pictureBox2.Image = imgRange.Bitmap;
-                // Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(40, 45, 140), new Bgr(62, 110, 255));
+                imgRange.SmoothGaussian(9);
+
+                pictureBox3.Image = imgRange.Bitmap;
+
+
+                /*
+                imgCircles = imgInput.CopyBlank();
+                imgLines = imgInput.CopyBlank();
+
+                minDistanceBtwCircles = imgSmoothed.Height / 4;
+                circles = imgSmoothed.HoughCircles(cannyThreshold, grayCircle, lAccumRes, minDistanceBtwCircles, minRadius, maxRadius)[0];
+
+                foreach (CircleF circle in circles)
+                {
+                    imgCircles.Draw(circle, new Bgr(Color.Red), 20);
+                }
+
+                pictureBox2.Image = imgCircles.Bitmap;*/
+
+
+
+            Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
                 Thread.Sleep(1);
 
             }
@@ -239,7 +295,7 @@ namespace Football
             imgYcc = imgInput.Convert<Ycc, byte>();
             pictureBox2.Image = imgYcc.Bitmap;
         }
-        
+
         //coordinates
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -256,7 +312,7 @@ namespace Football
             trackBar.LargeChange = 5;       // when clicked on a side of a slider move by X
             trackBar.SmallChange = 1;       // move using keyboard arrows
 
-             return trackBar.Value.ToString();
+            return trackBar.Value.ToString();
 
         }
         // colors:
@@ -305,23 +361,51 @@ namespace Football
         //ColorFilter
         private void redToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int lowBlue = Convert.ToInt32(label3.Text);
-            int highBlue = Convert.ToInt32(label6.Text);
-            int lowGreen = Convert.ToInt32(label2.Text);
-            int highGreen = Convert.ToInt32(label5.Text);
-            int lowRed = Convert.ToInt32(label1.Text);
-            int highRed = Convert.ToInt32(label4.Text); 
+            lowBlue = Convert.ToInt32(label3.Text);
+            highBlue = Convert.ToInt32(label6.Text);
+            lowGreen = Convert.ToInt32(label2.Text);
+            highGreen = Convert.ToInt32(label5.Text);
+            lowRed = Convert.ToInt32(label1.Text);
+            highRed = Convert.ToInt32(label4.Text);
 
 
-            if (imgInput == null) return;
-            //Image<Gray, Byte> imgRange = new Image<Bgr, byte>(imgInput.Width, imgInput.Height, new Bgr(0,0,0)); 
+            if (imgInput != null)
+            {
+                Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
 
-            //Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(0, 0, 187), new Bgr(100, 255, 255));
-            Image<Gray, Byte> imgRange = imgInput.InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+                imgRange.SmoothGaussian(9);
 
-            imgRange.SmoothGaussian(9);
+                pictureBox3.Image = imgRange.Bitmap;
+            }
+            else if (capture != null)
+            {
+                // capture.ImageGrabbed += Capture_ImageGrabbed2;
 
-            pictureBox2.Image = imgRange.Bitmap;
+
+            }
+
+            else return;
+        }
+
+        private void Capture_ImageGrabbed2(object sender, EventArgs e)
+        {
+            try
+            {
+                //Mat mat2 = new Mat();
+                //capture.Retrieve(mat2);
+                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                imgRange.SmoothGaussian(9);
+
+                pictureBox3.Image = imgRange.Bitmap;
+
+                Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                Thread.Sleep(1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
 
         }
     }

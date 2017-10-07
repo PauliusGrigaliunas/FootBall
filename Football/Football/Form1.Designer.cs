@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,6 +71,7 @@
             this.iccToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).BeginInit();
@@ -87,6 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
+            this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -110,8 +113,18 @@
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1329, 711);
+            this.panel1.Size = new System.Drawing.Size(1276, 1342);
             this.panel1.TabIndex = 2;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(652, 167);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(320, 240);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 26;
+            this.pictureBox3.TabStop = false;
             // 
             // label6
             // 
@@ -176,7 +189,7 @@
             // trackBar6
             // 
             this.trackBar6.Location = new System.Drawing.Point(587, 89);
-            this.trackBar6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar6.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar6.Name = "trackBar6";
             this.trackBar6.Size = new System.Drawing.Size(139, 56);
             this.trackBar6.TabIndex = 19;
@@ -185,7 +198,7 @@
             // trackBar5
             // 
             this.trackBar5.Location = new System.Drawing.Point(364, 89);
-            this.trackBar5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar5.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar5.Name = "trackBar5";
             this.trackBar5.Size = new System.Drawing.Size(139, 56);
             this.trackBar5.TabIndex = 18;
@@ -194,7 +207,7 @@
             // trackBar4
             // 
             this.trackBar4.Location = new System.Drawing.Point(155, 89);
-            this.trackBar4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar4.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(139, 56);
             this.trackBar4.TabIndex = 17;
@@ -203,7 +216,7 @@
             // trackBar3
             // 
             this.trackBar3.Location = new System.Drawing.Point(587, 44);
-            this.trackBar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(139, 56);
             this.trackBar3.TabIndex = 16;
@@ -212,7 +225,7 @@
             // trackBar2
             // 
             this.trackBar2.Location = new System.Drawing.Point(364, 44);
-            this.trackBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(139, 56);
             this.trackBar2.TabIndex = 15;
@@ -221,7 +234,7 @@
             // trackBar1
             // 
             this.trackBar1.Location = new System.Drawing.Point(153, 44);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(139, 56);
             this.trackBar1.TabIndex = 14;
@@ -291,20 +304,20 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(672, 167);
+            this.pictureBox2.Location = new System.Drawing.Point(326, 167);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(640, 480);
+            this.pictureBox2.Size = new System.Drawing.Size(320, 240);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(15, 167);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 167);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(640, 480);
+            this.pictureBox1.Size = new System.Drawing.Size(320, 240);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -320,7 +333,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1328, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(990, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -479,7 +492,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1328, 736);
+            this.ClientSize = new System.Drawing.Size(990, 467);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -487,6 +500,7 @@
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar4)).EndInit();
@@ -545,6 +559,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 
