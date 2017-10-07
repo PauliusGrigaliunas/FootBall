@@ -201,9 +201,16 @@ namespace Football
                 mat = new Mat();
                 capture.Retrieve(mat);
                 pictureBox1.Image = mat.ToImage<Bgr, byte>().Bitmap;
-                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
-                pictureBox2.Image = imgRange.Bitmap;
-                // Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                Image<Gray, Byte> imgCircle = mat.ToImage<Bgr, byte>().InRange(new Bgr(0, 0, 140), new Bgr(80, 255, 255));
+                pictureBox2.Image = imgCircle.Bitmap;
+
+                Image<Gray, Byte> imgRange = mat.ToImage<Bgr, byte>().InRange(new Bgr(lowBlue, lowGreen, lowRed), new Bgr(highBlue, highGreen, highRed));
+
+                imgRange.SmoothGaussian(9);
+
+                pictureBox3.Image = imgRange.Bitmap;
+
+                Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
                 Thread.Sleep(1);
 
             }
@@ -330,7 +337,7 @@ namespace Football
             }
             else if (capture != null)
             {
-                capture.ImageGrabbed += Capture_ImageGrabbed2;
+               // capture.ImageGrabbed += Capture_ImageGrabbed2;
 
 
             }
@@ -349,6 +356,9 @@ namespace Football
                 imgRange.SmoothGaussian(9);
 
                 pictureBox3.Image = imgRange.Bitmap;
+
+                Thread.Sleep((int)capture.GetCaptureProperty(Emgu.CV.CvEnum.CapProp.Fps));
+                Thread.Sleep(1);
             }
             catch (Exception ex)
             {
