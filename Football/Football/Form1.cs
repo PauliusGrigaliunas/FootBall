@@ -16,7 +16,7 @@ using System.Threading;
 using Emgu.CV.UI;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Cuda;
-
+using System.Data.SqlClient;
 namespace Football
 {
 
@@ -24,6 +24,8 @@ namespace Football
     {
         bool isBTeamScored = false;
         bool isATeamScored = false;
+        int teamAScores;
+        int teamBScores;
         private Stopwatch stopwatch = new Stopwatch();
         int _xBallPosition { get; set; }
         int _timeElapsed = 0;
@@ -31,6 +33,14 @@ namespace Football
         Image<Bgr, byte> imgInput = null;
         Image<Bgr, byte> imgOriginal { get; set; }
         Image<Gray, byte> imgFiltered { get; set; }
+
+        Teams team = new Teams();
+        SqlCommand cmd;
+        SqlDataAdapter sa;
+        DataTable dt = new DataTable();
+ 
+        String name1;
+        String name2;
         System.Windows.Forms.Timer _timer;
 
         public Form1()
@@ -38,6 +48,17 @@ namespace Football
             InitializeComponent();
         }
 
+        public int TeamAScores { get => teamAScores; set => teamAScores = value; }
+        public int TeamBScores { get => teamBScores; set => teamBScores = value; }
+        
+        public void setName1(String name)
+        {
+            this.name1 = name;
+        }
+        public void setName2(String name)
+        {
+            this.name2 = name;
+        }
 
         private void Video()
         {
@@ -155,7 +176,7 @@ namespace Football
                 bTeamLabel.Text = temp.ToString();
                 stopwatch.Reset();
                 isBTeamScored = false;
-            }
+            }       
             else if (_timeElapsed >= 3 && isATeamScored == true)
             {
                 temp = int.Parse(aTeamLabel.Text);
@@ -164,6 +185,7 @@ namespace Football
                 stopwatch.Reset();
                 isATeamScored = false;
             }
+            
         }
         //start stopwatch
         private void StartStopwatch(int x)
@@ -408,6 +430,62 @@ namespace Football
             bTeamLabel.Text = "0";
         }
 
+        private void scoreLabel_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.TeamBScores = int.Parse(bTeamLabel.Text);
+            this.TeamAScores = int.Parse(aTeamLabel.Text);
+            
+            int victA=0;
+            int goalA=0;
+            int victB=0;
+            int goalB=0;
+            
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Emilija.DELL-EMILIJOS\Documents\GitHub\FootBall\Football\Football\database121.mdf;Integrated Security=True");
+            con.Open();
+
+            cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "SELECT * FROM teamTable";
+            cmd.ExecuteNonQuery();
+            sa = new SqlDataAdapter(cmd);
+            sa.Fill(dt);
+            //koia info lentelej
+            if(name1=="a")
+            {
+                MessageBox.Show("it is a");
+            }
+            victA = team.getVictories(dt, name1); 
+            goalA = team.getGoals(dt, name1);
+            victB = team.getVictories(dt, name2);
+            goalB = team.getGoals(dt, name2);
+
+            goalA = goalA + TeamAScores;
+            goalB = goalB + TeamBScores;
+            if(teamAScores>TeamBScores)
+            {
+                victA = victA + 1;
+            }
+            else if(teamAScores < TeamBScores)
+            {
+                victB = victB + 1;
+            }
+            con.Close();
+
+            team.insertToTable(name1, victA, goalA);
+            team.insertToTable(name2, victB, goalB);
+         
+            MessageBox.Show("Saved");
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
