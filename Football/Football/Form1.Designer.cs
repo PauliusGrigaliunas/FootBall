@@ -88,8 +88,8 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.button1);
@@ -126,15 +126,16 @@
             this.panel1.Location = new System.Drawing.Point(0, 20);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1007, 767);
+            this.panel1.Size = new System.Drawing.Size(997, 683);
             this.panel1.TabIndex = 2;
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(159, 479);
+            this.btnStop.Location = new System.Drawing.Point(170, 479);
             this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(72, 28);
+            this.btnStop.Size = new System.Drawing.Size(75, 41);
+
             this.btnStop.TabIndex = 35;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -145,7 +146,8 @@
             this.btnPause.Location = new System.Drawing.Point(91, 479);
             this.btnPause.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(64, 27);
+            this.btnPause.Size = new System.Drawing.Size(75, 41);
+
             this.btnPause.TabIndex = 34;
             this.btnPause.Text = "Pause";
             this.btnPause.UseVisualStyleBackColor = true;
@@ -156,7 +158,7 @@
             this.btnPlay.Location = new System.Drawing.Point(11, 479);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(76, 27);
+            this.btnPlay.Size = new System.Drawing.Size(75, 41);
             this.btnPlay.TabIndex = 33;
             this.btnPlay.Text = "Play";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -165,7 +167,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(492, 584);
+            this.label11.Location = new System.Drawing.Point(380, 539);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(10, 13);
             this.label11.TabIndex = 32;
@@ -174,7 +176,7 @@
             // bTeamLabel
             // 
             this.bTeamLabel.AutoSize = true;
-            this.bTeamLabel.Location = new System.Drawing.Point(536, 584);
+            this.bTeamLabel.Location = new System.Drawing.Point(420, 539);
             this.bTeamLabel.Name = "bTeamLabel";
             this.bTeamLabel.Size = new System.Drawing.Size(66, 13);
             this.bTeamLabel.TabIndex = 31;
@@ -183,7 +185,7 @@
             // aTeamLabel
             // 
             this.aTeamLabel.AutoSize = true;
-            this.aTeamLabel.Location = new System.Drawing.Point(380, 584);
+            this.aTeamLabel.Location = new System.Drawing.Point(327, 537);
             this.aTeamLabel.Name = "aTeamLabel";
             this.aTeamLabel.Size = new System.Drawing.Size(66, 13);
             this.aTeamLabel.TabIndex = 30;
@@ -192,7 +194,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(526, 555);
+            this.label8.Location = new System.Drawing.Point(399, 507);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 13);
             this.label8.TabIndex = 29;
@@ -202,7 +204,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(364, 555);
+            this.label7.Location = new System.Drawing.Point(305, 507);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 13);
             this.label7.TabIndex = 28;
@@ -212,12 +214,14 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.scoreLabel.Location = new System.Drawing.Point(466, 499);
+
+            this.scoreLabel.Location = new System.Drawing.Point(12, 532);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(61, 20);
+            this.scoreLabel.Size = new System.Drawing.Size(265, 20);
             this.scoreLabel.TabIndex = 27;
-            this.scoreLabel.Text = "Score:";
-            this.scoreLabel.Click += new System.EventHandler(this.scoreLabel_Click);
+            this.scoreLabel.Text = "Kiek kuri komanda imuse goal\'u:";
+            //this.scoreLabel.Click += new System.EventHandler(this.scoreLabel_Click);
+
             // 
             // textXYradius
             // 
@@ -557,7 +561,6 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
