@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Football
 {
@@ -15,13 +16,7 @@ namespace Football
     {
         String name1;
         String name2;
-        SqlCommand cmd;
-        SqlDataAdapter sa;
-        DataTable dt = new DataTable();
-        Teams team = new Teams();
-        Connector connector = new Connector();
-
-
+       
         public MainMenu()
         {
             InitializeComponent();
@@ -35,17 +30,36 @@ namespace Football
             Form1 form = new Form1();
 
             Teams team = new Teams();
-            if(team.NameCheckIfExsist(Name1)!=true)
+            if((Name1!=null)&&(Name2!=null))
             {
-              team.AddToTable(Name1, 0, 0);
+                if ((IfMatch(Name1)) && (IfMatch(Name2)))
+                {
+                    if (team.NameCheckIfExsist(Name1) != true)
+                    {
+                        team.AddToTable(Name1, 0, 0);
+                    }
+
+                    if (team.NameCheckIfExsist(Name2) != true)
+                    {
+                        team.AddToTable(Name2, 0, 0);
+                    }
+                    form.setName1(Name1);
+                    form.setName2(Name2);
+                    form.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Team names must be at least 4 charachters long ");
+
+                }
             }
-            if (team.NameCheckIfExsist(Name2) != true)
+            else
             {
-                team.AddToTable(Name2, 0, 0);
+                MessageBox.Show("Insert team names ");
             }
-            form.setName1(Name1);
-            form.setName2(Name2);
-            form.Show();
+        
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -61,6 +75,27 @@ namespace Football
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private bool IfMatch(String data)
+        {
+            bool mtch = false;
+            String pattern1 = @"([a-zA-Z]{4,50})";
+            Match match = Regex.Match(data, pattern1);
+        
+            
+            if (match.Success)
+            {
+                mtch = true;
+            }
+
+
+            return mtch;
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
