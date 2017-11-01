@@ -104,11 +104,11 @@ namespace Football
 
                 if (_tempX >= 0)
                 {
-                    ballGoingRight = true;    // kamuolys juda link B vartu
+                    ballGoingRight = true;    
                 }
                 else
                 {
-                    ballGoingRight = false;   // kamuolys juda link A vartu
+                    ballGoingRight = false; 
                 }
             }
             else

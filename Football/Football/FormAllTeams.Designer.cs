@@ -47,20 +47,24 @@
             // dataAllTeamsGrid
             // 
             this.dataAllTeamsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataAllTeamsGrid.Location = new System.Drawing.Point(2, 57);
+            this.dataAllTeamsGrid.Location = new System.Drawing.Point(3, 70);
+            this.dataAllTeamsGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataAllTeamsGrid.Name = "dataAllTeamsGrid";
-            this.dataAllTeamsGrid.Size = new System.Drawing.Size(503, 386);
+            this.dataAllTeamsGrid.Size = new System.Drawing.Size(671, 475);
             this.dataAllTeamsGrid.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(510, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(680, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // filterToolStripMenuItem
             // 
@@ -70,45 +74,46 @@
             this.victoriesGoals0ToolStripMenuItem,
             this.allToolStripMenuItem});
             this.filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            this.filterToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.filterToolStripMenuItem.Size = new System.Drawing.Size(54, 24);
             this.filterToolStripMenuItem.Text = "Filter";
             // 
             // victoriesToolStripMenuItem
             // 
             this.victoriesToolStripMenuItem.Name = "victoriesToolStripMenuItem";
-            this.victoriesToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.victoriesToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.victoriesToolStripMenuItem.Text = "Victories";
             this.victoriesToolStripMenuItem.Click += new System.EventHandler(this.VictoriesToolStripMenuItem_Click);
             // 
             // goalsToolStripMenuItem
             // 
             this.goalsToolStripMenuItem.Name = "goalsToolStripMenuItem";
-            this.goalsToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.goalsToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.goalsToolStripMenuItem.Text = "Goals";
             this.goalsToolStripMenuItem.Click += new System.EventHandler(this.GoalsToolStripMenuItem_Click);
             // 
             // victoriesGoals0ToolStripMenuItem
             // 
             this.victoriesGoals0ToolStripMenuItem.Name = "victoriesGoals0ToolStripMenuItem";
-            this.victoriesGoals0ToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.victoriesGoals0ToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.victoriesGoals0ToolStripMenuItem.Text = "Victories and Goals>0";
             this.victoriesGoals0ToolStripMenuItem.Click += new System.EventHandler(this.VictoriesGoals0ToolStripMenuItem_Click);
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // FormAllTeams
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 478);
+            this.ClientSize = new System.Drawing.Size(680, 588);
             this.Controls.Add(this.dataAllTeamsGrid);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormAllTeams";
             this.Text = "FormAllTeams";
             this.Load += new System.EventHandler(this.FormAllTeams_Load);

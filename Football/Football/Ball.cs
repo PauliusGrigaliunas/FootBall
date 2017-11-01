@@ -24,8 +24,7 @@ namespace Football
         //objects
         public GoalsChecker Gcheck { get; set; }
 
-        //variables
-        //public int XBallPosition { get; set; }      
+        //variables    
         public int Index { get; set; }
         public List<int> xCoordList = new List<int>();   // "List<T> is a generic collection"
         private int _ix2, _z;
@@ -56,6 +55,9 @@ namespace Football
                     imgCircles.Draw(circle, new Bgr(Color.Red), 3);
                 }
 
+                xCoordList = xCoordList.Skip(Index - 4).ToList();
+                // ar čia tas pats?
+
                 if (Index >= 5)   // sarase saugomos paskutines 4 pozicijos, kad taupyt RAM
                 {
                     _ix2 = Index - 4;
@@ -69,8 +71,7 @@ namespace Football
                 Display(xCoordList);
             }
             catch (Exception)
-            {
-
+            {      
                 return;
             }
             

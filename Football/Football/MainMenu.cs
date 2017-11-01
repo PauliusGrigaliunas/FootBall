@@ -68,7 +68,7 @@ namespace Football
         {
             bool mtch = false;
 
-            String pattern1 = @"([a-zA-Z0-9]{4,50})";  //gali buti skaiciai arba raides, bet 4 simboliai butinai
+            String pattern1 = @"(^[a-zA-Z0-9]{4,}$)";  //gali buti skaiciai arba raides, bet 4 simboliai butinai
          
             if(data != null)
 

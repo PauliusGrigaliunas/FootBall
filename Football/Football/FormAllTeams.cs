@@ -23,10 +23,12 @@ namespace Football
         {
            
             FootballEntities context = new FootballEntities();
+            var team = context.teamTables.OrderByDescending(x => x.Victories)
+                .Select(x => new { x.Name, x.Victories, x.Goals });
 
-              var team = from i in context.teamTables
+            /*var team = from i in context.teamTables
                          orderby i.Victories descending
-                         select new { i.Name, i.Victories, i.Goals };
+                         select new { i.Name, i.Victories, i.Goals };*/
 
             dataAllTeamsGrid.DataSource = team.ToList(); 
         }
@@ -79,7 +81,10 @@ namespace Football
             FillData();
         }
 
-       
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 
 }
