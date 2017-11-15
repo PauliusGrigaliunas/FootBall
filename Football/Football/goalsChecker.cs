@@ -39,7 +39,7 @@ namespace Football
             TimeSpan ts = _stopwatch.Elapsed;
             _timeElapsed = ts.Seconds;
             //if (_timeElapsed >= 3 && VideoScreen.isATeamScored && !ballGoingRight)
-            if (_timeElapsed >= 3 && VideoScreen.isATeamScored && !Ball.BallPosition.goingRight)
+            if (_timeElapsed >= 3 && VideoScreen.isATeamScored && !Ball.BallPosition.GoingRight)
             {
                 temp = int.Parse(text);
                 temp = temp + 1;
@@ -56,7 +56,7 @@ namespace Football
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
             _timeElapsed = ts.Seconds;
-            if (_timeElapsed >= 3 && VideoScreen.isBTeamScored && Ball.BallPosition.goingRight)
+            if (_timeElapsed >= 3 && VideoScreen.isBTeamScored && Ball.BallPosition.GoingRight)
             {
                 temp = int.Parse(text);
                 temp = temp + 1;
@@ -102,11 +102,11 @@ namespace Football
 
                 if (_tempX >= 0)
                 {
-                    Ball.BallPosition.goingRight = true;  // o -> B
+                    Ball.BallPosition.GoingRight = true;  // o -> B
                 }
                 else
                 {
-                    Ball.BallPosition.goingRight = false; // o -> A
+                    Ball.BallPosition.GoingRight = false; // o -> A
                 }
             }
             else { /* else detect more balls to work with and do ^*/ }

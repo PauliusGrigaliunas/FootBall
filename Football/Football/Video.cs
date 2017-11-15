@@ -34,10 +34,6 @@ namespace Football
         private int _i = 0;
         public List<int> _xCoordList = new List<int>();
 
-        public Video()
-        {
-
-        }
         public Video( VideoScreen hm )
         {
             this._home = hm;

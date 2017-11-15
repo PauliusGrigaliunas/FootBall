@@ -11,27 +11,10 @@ namespace Football
     {
         public int Number { get; set; }
         public string Name { get; set; }
+        public Ball.ColourName ColourName { get; set; }
         public Hsv Low { get; set; }
         public Hsv High { get; set; }
 
-        /*
-        public int LowH { get; set; }
-        public int LowS { get; set; }
-        public int LowV { get; set; }
-        public int HighH { get; set; }
-        public int HighS { get; set; }
-        public int HighV { get; set; }
-
-
-        public void CheckHSV() {
-            LowH = (int)Low.Hue;
-            LowS = (int)Low.Satuation;
-            LowV = (int)Low.Value;
-            HighH = (int)High.Hue;
-            HighS = (int)High.Satuation;
-            HighV = (int)High.Value;
-
-        }*/
 
     }
 

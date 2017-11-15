@@ -32,7 +32,7 @@ namespace Football
         {
             public static int X { get; set; }
             public static int Y { get; set; }
-            public static bool goingRight { get; set; }
+            public static bool GoingRight { get; set; }
         }
 
 
@@ -46,8 +46,23 @@ namespace Football
         public Image<Gray, byte> ImgFiltered { get; set; }
         public Colour[] colour;
 
+
         public Ball() {
             BallColorQuery();
+        }
+
+        public enum ColourName { Default,  Orange }//dar pilnai neįgyvendintas
+
+        public Colour Col(ColourName colourName) {
+            switch (colourName)
+            {
+                case ColourName.Default:
+                    return colour[0];
+                case ColourName.Orange:
+                    return colour[1];
+                default:
+                    return colour[0];
+            }
         }
 
         private void BallColorQuery()
@@ -57,6 +72,7 @@ namespace Football
                 {
                     Number = 0,
                     Name = "Default",
+                    ColourName = ColourName.Default,
                     Low = new Hsv(0, 0, 0),
                     High = new Hsv(10, 10, 10),
                 },
@@ -65,25 +81,23 @@ namespace Football
                 {
                     Number = 1,
                     Name = "Orange",
+                    ColourName = ColourName.Orange,
                     Low = new Hsv(0, 140, 150),
                     High = new Hsv(180, 255, 255),
                 }
             };
-
-
         }
 
-
-        public void BallDetection(Video _video, GoalsChecker goalscheck, string colourName = "Default", int colorNumber = 0)
+        internal void Detection(Video _video, ColourName coloursName = ColourName.Default, string colourName = "Default", int colourNumber = 0 )
         {
             Colour _colour;
             //! pritaikyti protingai galime Enum
             if (colourName != "Default")
-            {
                 _colour = colour.First(x => x.Name == colourName);
-            }
+            else if(colourNumber != 0)
+                _colour = colour.First(x => x.Number == colourNumber);
             else
-                _colour = colour.First(x => x.Number == colorNumber);
+                _colour = colour.First(x => x.ColourName == coloursName);
 
             Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();     //copy parameters of original frame image
 
@@ -104,7 +118,7 @@ namespace Football
             return imgGray.HoughCircles(grayCircle, cannyThreshold, lAccumResolution, minDistanceBtwCircles, minRadius, maxRadius)[0];
         }
 
-        public void BallPositionDraw(Image<Bgr, byte> imgCircles)
+        private void BallPositionDraw(Image<Bgr, byte> imgCircles)
         {
             try
             {
