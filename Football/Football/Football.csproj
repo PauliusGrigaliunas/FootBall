@@ -148,7 +148,6 @@
     <Compile Include="Tournament.Designer.cs">
       <DependentUpon>Tournament.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImgFilter.cs" />
     <Compile Include="VideoScreen.cs">
       <SubType>Form</SubType>
     </Compile>
