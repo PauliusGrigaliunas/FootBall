@@ -27,5 +27,11 @@ namespace WebFootball.Controllers
             };
             return View(teams);
         }
+
+        public ActionResult Tournament()
+        {
+
+            return View();
+        }
     }
 }

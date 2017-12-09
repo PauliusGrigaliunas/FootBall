@@ -197,13 +197,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Index.cshtml" />
     <Content Include="Views\Teams\View.cshtml" />
     <Content Include="Views\Teams\First.cshtml" />
     <Content Include="Views\Teams\Second.cshtml" />
-
     <Content Include="Views\WebCamera\WebCamera.cshtml" />
-
+    <Content Include="Views\Teams\Tournament.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
