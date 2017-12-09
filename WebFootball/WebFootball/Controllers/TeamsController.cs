@@ -16,7 +16,16 @@ namespace WebFootball.Controllers
             {
                 Name = "AAAA"
             };
-            return View();
+            return View(teams);
+        }
+
+        public ActionResult Second()
+        {
+            var teams = new Teams()
+            {
+                Name = "BBBB"
+            };
+            return View(teams);
         }
     }
 }
