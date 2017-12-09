@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace WebFootball.Controllers
 {
-    public class MasterController : Controller
+    public class WebCameraController : Controller
     {
-        // GET: Master
-        public ActionResult Index()
+        // GET: WebCamera
+        public ActionResult WebCamera()
         {
             return View();
         }

@@ -6,11 +6,11 @@
 <head runat="server">
     <title></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src='<%=ResolveUrl("~/Webcam_Plugin/jquery.webcam.js") %>' type="text/javascript"></script>
+    <script src='<%=ResolveUrl("~/Webcam_Plugin/jquery.Webcam.js") %>' type="text/javascript"></script>
     <script type="text/javascript">
     var pageUrl = '<%=ResolveUrl("~/Default.aspx") %>';
     $(function () {
-    jQuery("#webcam").webcam({
+    jQuery("#Webcam").webcam({
         width: 320,
         height: 240,
         mode: "save",
@@ -44,12 +44,17 @@
     return false;
     }
     </script>
+    <style type="text/css">
+        .auto-style1 {
+            width: 317px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <table>
             <tr>
-                <td>
+                <td class="auto-style1">
                     <u>Live Camera</u>
                 </td>
                 <td>
@@ -59,7 +64,7 @@
                 </td>
             </tr>
             <tr>
-                <td>
+                <td class="auto-style1">
                      <div id="webcam">
                      </div>
                 </td>
