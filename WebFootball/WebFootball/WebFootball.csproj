@@ -143,12 +143,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MasterController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\WebCameraController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Teams.cs" />
+    <Compile Include="Models\WebCamera.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebCamForm.aspx.cs">
       <DependentUpon>WebCamForm.aspx</DependentUpon>
@@ -200,10 +201,10 @@
     <Content Include="Views\Teams\View.cshtml" />
     <Content Include="Views\Teams\First.cshtml" />
     <Content Include="Views\Teams\Second.cshtml" />
+    <Content Include="Views\WebCamera\WebCamera.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Master\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
