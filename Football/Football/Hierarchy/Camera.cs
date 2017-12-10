@@ -13,8 +13,7 @@ namespace Football
 
         public override bool TakeASource()
         {
-            if (Capture != null) { Capture.Dispose(); }
-
+            Capture?.Dispose();
             Capture = new Emgu.CV.VideoCapture(0);
             return Starter();
         }
