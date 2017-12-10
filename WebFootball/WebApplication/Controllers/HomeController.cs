@@ -4,32 +4,33 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebFootball.Controllers
+namespace WebApplication.Controllers
 {
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
+            ViewBag.Title = "Home Page";
+
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Title = "Information Page";
 
             return View();
         }
-
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Home Page";
 
             return View();
         }
-
         public ActionResult Start()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Home Page";
+
             return View();
         }
     }
