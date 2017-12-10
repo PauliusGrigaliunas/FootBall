@@ -26,5 +26,11 @@ namespace WebFootball.Controllers
 
             return View();
         }
+
+        public ActionResult Teams()
+        {
+            ViewBag.Message = "Your contact page.";
+            return View();
+        }
     }
 }
