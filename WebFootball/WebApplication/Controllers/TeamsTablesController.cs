@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication;
 
+
 namespace WebApplication.Controllers
 {
     public class TeamsTablesController : Controller
@@ -17,7 +18,8 @@ namespace WebApplication.Controllers
         // GET: TeamsTables
         public ActionResult Index()
         {
-            return View(db.TeamsTables.ToList());
+           
+            return View(db.TeamsTables.OrderByDescending(i => i.Victories).ToList());
         }
 
         // GET: TeamsTables/Details/5
@@ -36,9 +38,32 @@ namespace WebApplication.Controllers
         }
 
         // GET: TeamsTables/Create
-        public ActionResult Create()
+        public ActionResult Goals()
         {
-            return View();
+            var teams = db.TeamsTables.ToList();
+            var games = db.GameTables.ToList();
+            var team1 = (from i in games
+                         let Name = i.FirstTeam
+                         let Score = i.FirstTeamScore
+                         select new { Name, Score }).ToList();
+
+            var team2 = (from i in games
+                         let Name = i.SecondTeam
+                         let Score = i.SecondTeamScore
+                         select new { Name, Score }).ToList();
+
+            var list2 = team1.Concat(team2).Join(teams,
+                                                  i => i.Name,
+                                                  j => j.Id,
+                                                  (i, j) => new { j.Name, i.Score }).GroupBy(i => i.Name).
+                                                  Select(i => new TeamsTable
+                                                  {
+                                                      Name = i.First().Name,
+                                                      Victories = i.Sum(j => j.Score),
+
+                                                  }).ToList();
+          
+            return View(list2);
         }
 
         // POST: TeamsTables/Create

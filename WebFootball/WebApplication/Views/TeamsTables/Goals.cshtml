@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<WebApplication.TeamsTable>
 
 @{
-    ViewBag.Title = "Index";
-
+    ViewBag.Title = "BestGames";
 }
 
 <style>
     body {
         margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
         text-align: left;
-        color:azure;
+        color: azure;
     }
 
 
@@ -27,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Victories)
+                Goals
             </th>
             <th></th>
         </tr>
@@ -40,14 +39,13 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Victories)
-                </td>            
+                </td>
             </tr>
         }
 
     </table>
     <p style="color:antiquewhite">
-        
-        <a href="http://localhost:60096/GameTables/Index" class="btn btn-primary btn-lg">Best Games &raquo;</a>
-        <a href="http://localhost:60096/TeamsTables/Goals" class="btn btn-primary btn-lg">Goals &raquo;</a>
+
+        <a href="http://localhost:60096/TeamsTables/Index" class="btn btn-primary btn-lg"> &larr;</a>
     </p>
 </div>
