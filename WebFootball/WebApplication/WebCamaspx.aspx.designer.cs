@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebFootball {
+namespace WebApplication {
     
     
     public partial class WebForm1 {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebCamForm.aspx.cs" Inherits="WebFootball.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebCamForm.aspx.cs" Inherits="WebApplication.WebForm1" %>
 
 <!DOCTYPE html>
 
