@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 
-namespace WebFootball
+namespace WebApplication
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
@@ -21,7 +21,7 @@ namespace WebFootball
                     {
                         string hexString = Server.UrlEncode(reader.ReadToEnd());
                         string imageName = DateTime.Now.ToString("dd-MM-yy hh-mm-ss");
-                        string imagePath = $"~/Captures/{imageName}.png";
+                        string imagePath = string.Format("~/Captures/{0}.png", imageName);
                         File.WriteAllBytes(Server.MapPath(imagePath), ConvertHexToBytes(hexString));
                         Session["CapturedImage"] = ResolveUrl(imagePath);
                     }
