@@ -1,7 +1,54 @@
-﻿
+﻿@using System.ServiceModel.Dispatcher
+@using Emgu.CV.Fuzzy
+@using Microsoft.Ajax.Utilities
+
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
+
+<style>
+    body {
+        margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+        text-align: left;
+        color: azure;
+    }
+
+    .jumbotron {
+        background-color: rgba(169, 167, 167, 0.70);
+    }
+</style>
+<body>    
+        <div style="margin: 0 auto; width: 800px; text-align: center">
+            <div style=" border: 4px solid #ccc; padding: 5px">
+                <div id="Camera">
+                </div>
+                <br>
+                <input type="button" value="Capture" />
+            </div>
+        </div>
+</body>
+@section scripts
+{
+    <script src="@Url.Content("~/Scripts/jquery.webcam.js")">
+
+    </script>
+    <script type="text/javascript">
+
+        $("#Camera").webcam({
+            width: 640,
+            height: 480,
+            mode: "save",
+            swffile: "@Url.Content("~/Scripts/jscam.swf")",
+            onTick: function () { },
+            onSave: function () {
+                UploadPic();
+            },
+            debug: function () { },
+            onLoad: function () { }
+
+        });
+
+    </script>
+}  

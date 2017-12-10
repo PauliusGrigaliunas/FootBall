@@ -9,6 +9,7 @@ namespace WebApplication.Controllers
     public class WebCameraController : Controller
     {
         // GET: WebCamera
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
