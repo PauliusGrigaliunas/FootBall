@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebFootball.Models.Team>
+@{
+    ViewBag.Title = "BestTeams";
+}
+
+<head>
+    <style>
+        body {
+            margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+        }
+
+
+        .jumbotron {
+            background-color: rgba(169, 167, 167, 0.70);
+        }
+    </style>
+</head>
+<div class=" jumbotron">
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Victories)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Victories)
+                </td>
+            </tr>
+        }
+    </table>
+</div>

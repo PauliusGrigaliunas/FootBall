@@ -143,13 +143,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TableController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\WebCameraController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Teams.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
+    <Compile Include="Models\TeamsDbContext.cs" />
     <Compile Include="Models\Tournament.cs" />
     <Compile Include="Models\WebCamera.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +208,7 @@
     <Content Include="Views\Teams\Second.cshtml" />
     <Content Include="Views\WebCamera\WebCamera.cshtml" />
     <Content Include="Views\Tournament\OfFour.cshtml" />
+    <Content Include="Views\Table\BestTeams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
