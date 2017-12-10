@@ -1,7 +1,29 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<html>
+<head > 
+    <style>
+        <style > body {
+            margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+        }
+
+
+        .jumbotron {
+            background-color: rgba(169, 167, 167, 0.70);
+        }
+    </style>
+
+    </style>
+</head>
+<body>
+    <div  class="jumbotron" >
+        <h2>@ViewBag.Title.</h2>
+        <h3>@ViewBag.Message</h3>
+
+        <p>Use this area to provide additional information.</p>
+
+    </div>
+</body>
+</html>  
