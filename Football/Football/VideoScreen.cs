@@ -134,7 +134,7 @@ namespace Football
             
             //getting frames        
             mat = _video.Capture.QueryFrame();
-            //if (mat == null) return;
+            if (mat == null) return;
             try
             {
                 _video.ImgOriginal = mat.ToImage<Bgr, byte>().Resize(OriginalPictureBox.Width, OriginalPictureBox.Height, Inter.Linear);
@@ -147,7 +147,7 @@ namespace Football
             catch (NullReferenceException n)
             {
                 MessageBox.Show(n.ToString());
-            }mat = null;
+            }
         }  
 
         //menu strip tool items

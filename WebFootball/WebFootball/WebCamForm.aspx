@@ -45,8 +45,15 @@
     }
     </script>
     <style type="text/css">
-        .auto-style1 {
-            width: 317px;
+        body {
+            
+            background: url("http://foosballtable.reviews/wp-content/uploads/2016/05/best-foosball-tables-compared.jpg");
+            color: white;
+            font-family: Helvetica;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
     </style>
 </head>

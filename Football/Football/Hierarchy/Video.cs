@@ -22,6 +22,9 @@ namespace Football
 
         public override bool TakeASource()
         {
+
+            if (Capture != null) { Capture.Dispose(); } 
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Video Files |*.mp4";
 
