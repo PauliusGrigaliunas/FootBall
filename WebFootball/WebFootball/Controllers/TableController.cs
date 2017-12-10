@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
 using WebFootball.Models;
+using Football;
 
 
 namespace WebFootball.Controllers
@@ -16,12 +17,11 @@ namespace WebFootball.Controllers
        public void getList()
         {
             
-
+           
         }
         public ActionResult BestTeams()
         {
-
-
+           
             var table = new Team
             {
                 Id = 1,
@@ -37,12 +37,15 @@ namespace WebFootball.Controllers
 
             };
             List<Team> list = new List<Team>();
-            list.Add(table);
-            list.Add(table1);
-            ViewBag.Id = list.Select(i => i.Id).ToList();
-            ViewBag.Team1 = list.Select(i => i.Name).ToList();
-            ViewBag.Team1 = list.Select(i => i.Victories).ToList();
-
+            TeamController ctn = new TeamController();
+            var list1 = ctn.Get().ToList();
+      
+            list = list1.Select(i=>new Team {
+                Id = i.Id,
+                Name = i.Name,
+                Victories = (int)i.Victories
+            }).ToList();
+           
 
             return View(list);
         }
