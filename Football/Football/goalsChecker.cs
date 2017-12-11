@@ -33,13 +33,12 @@ namespace Football
             _stopwatch = stopwatch;
         }
 
-        public string CheckForScoreA(string text)  // goal'as Team A  vartuose, A++
+        public string CheckForScoreA(string text) 
         {
             Console.WriteLine(_stopwatch.ToString());
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
             _timeElapsed = ts.Seconds;
-            //if (_timeElapsed >= 3 && VideoScreen.isATeamScored && !ballGoingRight)
             if (_timeElapsed >= 2 && VideoScreen.isATeamScored && !Ball.BallPosition.goingRight)
             {
                 com.StopAllTracks();
@@ -54,7 +53,7 @@ namespace Football
             return text;
         }
 
-        public string CheckForScoreB(string text)  // goal'as Team B vartuose, B++
+        public string CheckForScoreB(string text) 
         {
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
@@ -114,10 +113,9 @@ namespace Football
                     Ball.BallPosition.goingRight = false; // o -> A
                 }
             }
-            else { /* else detect more balls to work with and do ^*/ }
         }
 
-        public void setStopwatch(bool enabled)
+        public void SetStopwatch(bool enabled)
         {
             if (enabled)
                 _stopwatch.Start();
