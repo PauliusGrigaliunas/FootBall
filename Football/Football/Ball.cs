@@ -138,5 +138,23 @@ namespace Football
             chooseColour.colourPalet.Colour[customColorIndex].Low = low;
             chooseColour.colourPalet.Colour[customColorIndex].High = high;
         }
+
+
+        public int GetIndex()
+        {
+            System.Reflection.PropertyInfo pi = Index.GetType().GetProperty("name");
+            int integer = (int)(pi.GetValue(Index, null));
+            return integer;
+        }
+
+        public List<int> GetList()
+        {
+            return xCoordList;
+        }
+
+        public GoalsChecker GetGCH()
+        {
+            return Gcheck;
+        }
     }
 }

@@ -208,8 +208,8 @@ namespace Football
         {
             _video.Stop();
         }
-        // End Menu items------------
 
+        // End Menu items------------
 
         public void BallDetection()
         {
@@ -602,7 +602,6 @@ namespace Football
         }
 
         private void setCustomColor_Click(object sender, EventArgs e)
-
         {
             _video.Pause();
             _gcheck.SetStopwatch(false);
@@ -616,6 +615,5 @@ namespace Football
             _video.StartVideo();
             CCC.Dispose();
         }
-
     }
 }
