@@ -523,7 +523,7 @@ namespace Football
             else
             {
                 _video.Pause();
-                _gcheck.setStopwatch(false);
+                _gcheck.SetStopwatch(false);
                 btnStart.Text = "Start";
                 btnStartLast.Text = "Load last used video";
             }
@@ -541,7 +541,7 @@ namespace Football
             else
             {
                 _video.Pause();
-                _gcheck.setStopwatch(false);
+                _gcheck.SetStopwatch(false);
                 btnStart.Text = "Start";
                 btnStartLast.Text = "Load last used video";
             }
@@ -598,7 +598,7 @@ namespace Football
         private void editScore_Click(object sender, EventArgs e)
         {
             _video.Pause();
-            _gcheck.setStopwatch(false);
+            _gcheck.SetStopwatch(false);
 
             SE = new ScoreEditor(ATeam, BTeam, bTeamLabel.Text, aTeamLabel.Text);
             SE.ShowDialog();
@@ -608,7 +608,7 @@ namespace Football
             bTeamLabel.Text = AP.ToString();
             aTeamLabel.Text = BP.ToString();
 
-            _gcheck.setStopwatch(true);
+            _gcheck.SetStopwatch(true);
             _video.StartVideo();
             SE.Dispose();
         }
@@ -617,14 +617,14 @@ namespace Football
 
         {
             _video.Pause();
-            _gcheck.setStopwatch(false);
+            _gcheck.SetStopwatch(false);
 
             CCC = new CustomColorViewer(_video.ImgOriginal);
             CCC.ShowDialog();
 
             _ball.setCustomColor(CCC.newLow, CCC.newHigh);
 
-            _gcheck.setStopwatch(true);
+            _gcheck.SetStopwatch(true);
             _video.StartVideo();
             CCC.Dispose();
         }
