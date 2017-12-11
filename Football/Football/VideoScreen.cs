@@ -61,7 +61,6 @@ namespace Football
 
         //picture variables
         Image<Gray, byte> _imgFiltered { get; set; }
-        Image<Gray, byte> _ImgZones { get; set; }
 
         //variables
         private int _i = 0;
@@ -130,11 +129,14 @@ namespace Football
             _gcheck = new GoalsChecker(_stopwatch);
             aTeamLabel.Text = _gcheck.CheckForScoreA(aTeamLabel.Text);
             bTeamLabel.Text = _gcheck.CheckForScoreB(bTeamLabel.Text);
-
-            
-            //getting frames        
+       
             mat = _video.Capture.QueryFrame();
-            if (mat == null) return;
+            if (mat == null)
+            {
+                btnStopp_Click(sender, e);
+            return;  
+            }
+
             try
             {
                 _video.ImgOriginal = mat.ToImage<Bgr, byte>().Resize(OriginalPictureBox.Width, OriginalPictureBox.Height, Inter.Linear);
@@ -212,16 +214,15 @@ namespace Football
         public void BallDetection()
         {
             ColourStruct clr = _gates.chooseColour.Controler(GatesColorIndex);
-            _ImgZones = _video.GetFilteredImageZones(clr);
 
             ColourStruct colour = _ball.chooseColour.Controler(comboBox2.SelectedIndex);
-            Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();
+            //Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();
             _ball.ImgFiltered = _video.GetFilteredImage(colour);
             _ball.ImgOriginal = _video.ImgOriginal;
 
             //System.Diagnostics.Debug.WriteLine(_ball.chooseColour.Controler(CustomColorIndex).Low + " <= low  |  high =>" + _ball.chooseColour.Controler(CustomColorIndex).High);
 
-            _ball.BallPositionDraw(imgCircles, _ImgZones, ATeam, BTeam, _gcheck, _xCoordList, _i);
+            _ball.BallPositionDraw(_video.ImgOriginal.CopyBlank(), _video.GetFilteredImageZones(clr), ATeam, BTeam, _gcheck, _xCoordList, _i);
             unifyValues();
             commentatorTextCompatibility();
         }
