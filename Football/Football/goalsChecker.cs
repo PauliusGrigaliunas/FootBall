@@ -39,7 +39,7 @@ namespace Football
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
             _timeElapsed = ts.Seconds;
-            if (_timeElapsed >= 2 && VideoScreen.isATeamScored && !Ball.BallPosition.goingRight)
+            if (_timeElapsed >= 2 && VideoScreen.isATeamScored && !Ball.BallPosition.GoingRight)
             {
                 com.StopAllTracks();
                 com.PlayRandomSound(0, 9);
@@ -58,7 +58,7 @@ namespace Football
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
             _timeElapsed = ts.Seconds;
-            if (_timeElapsed >= 2 && VideoScreen.isBTeamScored && Ball.BallPosition.goingRight)
+            if (_timeElapsed >= 2 && VideoScreen.isBTeamScored && Ball.BallPosition.GoingRight)
             {
                 com.StopAllTracks();
                 com.PlayRandomSound(0, 8);
@@ -106,11 +106,11 @@ namespace Football
 
                 if (_tempX >= 0)
                 {
-                    Ball.BallPosition.goingRight = true;  // o -> B
+                    Ball.BallPosition.GoingRight = true;  // o -> B
                 }
                 else
                 {
-                    Ball.BallPosition.goingRight = false; // o -> A
+                    Ball.BallPosition.GoingRight = false; // o -> A
                 }
             }
         }

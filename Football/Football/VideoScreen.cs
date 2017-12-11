@@ -210,7 +210,7 @@ namespace Football
 
         public void BallDetection()
         {
-            ColourStruct clr = _gates.chooseColour.Controler(GatesColorIndex);
+            ColourStruct clr = _gates.ChooseColour.Controler(GatesColorIndex);
 
             ColourStruct colour = _ball.chooseColour.Controler(comboBox2.SelectedIndex);
             //Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();

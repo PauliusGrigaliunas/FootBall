@@ -20,7 +20,7 @@ namespace Football
         {
             public static int X { get; set; }
             public static int Y { get; set; }
-            public static bool goingRight { get; set; }
+            public static bool GoingRight { get; set; }
         }
 
         //objects
@@ -28,7 +28,7 @@ namespace Football
 
         //variables   
         public int Index { get; set; }
-        public List<int> xCoordList = new List<int>();
+        public List<int> XCoordList = new List<int>();
         public Image<Bgr, byte> ImgOriginal { get; set; }
         public Image<Gray, byte> ImgFiltered { get; set; }
         //public Colour[] Colour { get; set; }
@@ -56,7 +56,7 @@ namespace Football
 
         public void BallPositionDraw(Image<Bgr, byte> imgCircles, Image<Gray, byte> ImgGates, string ATeam, string BTeam, GoalsChecker gch, List<int> list, int counter)
         {
-            Gcheck = gch; xCoordList = list; Index = counter;
+            Gcheck = gch; XCoordList = list; Index = counter;
 
             try
             {
@@ -64,14 +64,14 @@ namespace Football
                 {
                     BallPosition.X = (int)circle.Center.X;
                     Gcheck.StartStopwatch(BallPosition.X, ImgOriginal.Width);
-                    Gcheck.Direction(BallPosition.X, Index, xCoordList); Index++;
+                    Gcheck.Direction(BallPosition.X, Index, XCoordList); Index++;
                     imgCircles.Draw(circle, new Bgr(Color.Red), 3);
                 }
 
 
                 if (Index >= 5)
                 {
-                    xCoordList = xCoordList.Skip(Index - 4).ToList();
+                    XCoordList = XCoordList.Skip(Index - 4).ToList();
                     Index = 4;
                 }
 
@@ -148,7 +148,7 @@ namespace Football
 
         public List<int> GetList()
         {
-            return xCoordList;
+            return XCoordList;
         }
 
         public GoalsChecker GetGCH()

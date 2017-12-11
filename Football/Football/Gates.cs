@@ -10,14 +10,12 @@ using System.Threading;
 using Emgu.CV.UI;
 using System.Drawing;
 using System.Diagnostics;
-using static Football.ColourPalet;
 
 namespace Football
 {
     public class Gates
     {
-        public ColourPalet colourPalet = new ColourPalet();
-        public ChooseColour chooseColour = new ChooseColour();
+        public ChooseColour ChooseColour = new ChooseColour();
 
         public delegate int Distance(int A, int B, Image<Gray, byte> ImgOriginal);
 
@@ -63,16 +61,16 @@ namespace Football
             return X;
         }
 
-        public int FindBGates(Image<Gray, byte> ImgGates)
+        public int FindBGates(Image<Gray, byte> imgGates)
         {
             int i, j, red = 0, green = 0, blue = 0, counter = 0, X = 0;
             Color clr;
-            int width = ImgGates.Width * 3 / 4;
-            int sheight = ImgGates.Height * 2 / 5;
-            int height = ImgGates.Height * 4 / 5;
-            Bitmap bmp = new Bitmap(ImgGates.Bitmap);
+            int width = imgGates.Width * 3 / 4;
+            int sheight = imgGates.Height * 2 / 5;
+            int height = imgGates.Height * 4 / 5;
+            Bitmap bmp = new Bitmap(imgGates.Bitmap);
 
-            for (i = width; i < ImgGates.Width; ++i)
+            for (i = width; i < imgGates.Width; ++i)
             {
                 for (j = sheight; j < height; j++)
                 {
