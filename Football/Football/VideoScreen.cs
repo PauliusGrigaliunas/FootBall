@@ -141,8 +141,6 @@ namespace Football
 
                 OriginalPictureBox.Image = _video.ImgOriginal.Bitmap;
                 BallDetection();
-
-                
             }
             catch (NullReferenceException n)
             {

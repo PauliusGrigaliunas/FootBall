@@ -53,6 +53,7 @@ namespace Football
             return imgGray.HoughCircles(grayCircle, cannyThreshold, lAccumResolution, minDistanceBtwCircles, minRadius, maxRadius)[0];
         }
 
+
         public void BallPositionDraw(Image<Bgr, byte> imgCircles, Image<Gray, byte> ImgGates, string ATeam, string BTeam, GoalsChecker gch, List<int> list, int counter)
         {
             Gcheck = gch; xCoordList = list; Index = counter;
@@ -138,6 +139,7 @@ namespace Football
             chooseColour.colourPalet.Colour[customColorIndex].Low = low;
             chooseColour.colourPalet.Colour[customColorIndex].High = high;
         }
+
 
         public int GetIndex()
         {
