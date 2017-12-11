@@ -12,7 +12,6 @@ namespace Football
 {
     public class Teams
     {
-      
 
         public void AddToTableTeams(String name, int victories)
         {

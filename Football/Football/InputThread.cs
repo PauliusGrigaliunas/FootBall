@@ -9,8 +9,8 @@ namespace Football
 {
     class InputThread
     {
-        private static InputThread instance = null;
-        public Task takeData;
+        private static InputThread _instance;
+        public Task TakeData;
 
         private InputThread() {
             TakeInfoAboutTeams();
@@ -20,23 +20,23 @@ namespace Football
         {
             get
             {
-                if (instance == null)
+                if (_instance == null)
                 {
-                    instance = new InputThread();
+                    _instance = new InputThread();
                 }
-                return instance;
+                return _instance;
             }
         }
 
         private void TakeInfoAboutTeams()
         {
             FormAllTeams teams = new FormAllTeams();
-            takeData = new Task(() => teams.FillData());
-            takeData.Start();
+            TakeData = new Task(() => teams.FillData());
+            TakeData.Start();
         }
 
         public async void Start() {
-            await takeData;
+            await TakeData;
 
         }
     }

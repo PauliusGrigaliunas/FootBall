@@ -21,7 +21,6 @@ namespace Football
         VideoCapture _capture { get; set; }
         private Stopwatch _stopwatch = new Stopwatch();
 
-        int _xBallPosition { get; set; }
         int _timeElapsed { get; set; }
         private int _tempX;
 

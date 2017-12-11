@@ -212,15 +212,16 @@ namespace Football
         {
             ColourStruct clr = _gates.ChooseColour.Controler(GatesColorIndex);
 
-            ColourStruct colour = _ball.chooseColour.Controler(comboBox2.SelectedIndex);
-            //Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();
-            _ball.ImgFiltered = _video.GetFilteredImage(colour);
-            _ball.ImgOriginal = _video.ImgOriginal;
+            ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
+            _ball.ImgFiltered = _video.GetFilteredImage(colour); //?
+            _ball.ImgOriginal = _video.ImgOriginal; //?
 
-            //System.Diagnostics.Debug.WriteLine(_ball.chooseColour.Controler(CustomColorIndex).Low + " <= low  |  high =>" + _ball.chooseColour.Controler(CustomColorIndex).High);
+            _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i);
+            //unifyValues(); 
+            _gcheck = _ball.GetGCH();
+            _xCoordList = _ball.GetList();
+            _i = _ball.GetIndex();
 
-            _ball.BallPositionDraw(_video.ImgOriginal.CopyBlank(), _video.GetFilteredImageZones(clr), ATeam, BTeam, _gcheck, _xCoordList, _i);
-            unifyValues();
             commentatorTextCompatibility();
         }
 

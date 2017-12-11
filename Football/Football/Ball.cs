@@ -33,13 +33,12 @@ namespace Football
         public Image<Gray, byte> ImgFiltered { get; set; }
         //public Colour[] Colour { get; set; }
         public string PositionComment;
-        delegate int Distance(int A, int B);
         delegate void Print(List<int> list, int AGATES, int BGATES, int ABdistance);
         Gates _gates = new Gates();
 
-        public ColourPalet colourPalet = new ColourPalet();
-        public ChooseColour chooseColour = new ChooseColour();
-        private const int customColorIndex = 2;
+        public ColourPalet ColourPalet = new ColourPalet();
+        public ChooseColour ChooseColour = new ChooseColour();
+        private const int CustomColorIndex = 2;
 
 
         private CircleF[] GetCircles(Image<Gray, byte> imgGray)
@@ -54,9 +53,13 @@ namespace Football
         }
 
 
-        public void BallPositionDraw(Image<Bgr, byte> imgCircles, Image<Gray, byte> ImgGates, string ATeam, string BTeam, GoalsChecker gch, List<int> list, int counter)
+        public void BallPositionDraw(ISource video, string aTeam, string bTeam, GoalsChecker gch, List<int> list, int counter)
         {
             Gcheck = gch; XCoordList = list; Index = counter;
+            Image<Bgr, byte> imgCircles = video.ImgOriginal.CopyBlank();
+
+            ColourStruct clr = _gates.ChooseColour.Controler(3);
+            Image<Gray, byte> imgGates = video.GetFilteredImageZones(clr);
 
             try
             {
@@ -76,13 +79,13 @@ namespace Football
                 }
 
 
-                int AGATES = _gates.FindAGates(ImgGates); // O <--
-                int BGATES = _gates.FindBGates(ImgGates); // --> O
-                int ABdistance = _gates.dist(AGATES, BGATES, ImgFiltered);
+                int AGATES = _gates.FindAGates(imgGates); // O <--
+                int BGATES = _gates.FindBGates(imgGates); // --> O
+                int ABdistance = _gates.Dist(AGATES, BGATES, ImgFiltered);
                 
                 //print(xCoordList, AGATES, BGATES, ABdistance); // Diagnostic info
 
-                PositionComment = getBallStatus(ABdistance, AGATES, ATeam, BTeam); // commentator logics
+                PositionComment = getBallStatus(ABdistance, AGATES, aTeam, bTeam); // commentator logics
             }
             catch (Exception)
             {
@@ -136,8 +139,8 @@ namespace Football
 
         public void setCustomColor(Hsv low, Hsv high)
         {
-            chooseColour.colourPalet.Colour[customColorIndex].Low = low;
-            chooseColour.colourPalet.Colour[customColorIndex].High = high;
+            ChooseColour.colourPalet.Colour[CustomColorIndex].Low = low;
+            ChooseColour.colourPalet.Colour[CustomColorIndex].High = high;
         }
 
 
