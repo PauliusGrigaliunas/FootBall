@@ -223,8 +223,7 @@ namespace Football
 
             //System.Diagnostics.Debug.WriteLine(_ball.chooseColour.Controler(CustomColorIndex).Low + " <= low  |  high =>" + _ball.chooseColour.Controler(CustomColorIndex).High);
 
-            setValues();
-            _ball.BallPositionDraw(imgCircles);
+            _ball.BallPositionDraw(imgCircles, _ImgZones, ATeam, BTeam, _gcheck, _xCoordList, _i);
             unifyValues();
             commentatorTextCompatibility();
         }
@@ -239,7 +238,6 @@ namespace Football
 
         public async void addSoundEffects()
         {
-            
             sound = new Task(() => Comment());
             sound.Start();
             await sound;
@@ -576,16 +574,6 @@ namespace Football
                 temp = 0;
                 bTeamLabel.Text = temp.ToString();
             }
-        }
-
-        private void setValues()
-        {
-            _ball.ImgGates = _ImgZones;
-            _ball.at = ATeam;
-            _ball.bt = BTeam;
-            _ball.Gcheck = _gcheck;
-            _ball.xCoordList = _xCoordList;
-            _ball.Index = _i;
         }
 
         private void unifyValues()

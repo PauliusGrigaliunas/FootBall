@@ -31,10 +31,8 @@ namespace Football
         public List<int> xCoordList = new List<int>();
         public Image<Bgr, byte> ImgOriginal { get; set; }
         public Image<Gray, byte> ImgFiltered { get; set; }
-        public Image<Gray, byte> ImgGates { get; set; }
         //public Colour[] Colour { get; set; }
         public string PositionComment;
-        public string at, bt;
         delegate int Distance(int A, int B);
         delegate void Print(List<int> list, int AGATES, int BGATES, int ABdistance);
         Gates _gates = new Gates();
@@ -55,8 +53,10 @@ namespace Football
             return imgGray.HoughCircles(grayCircle, cannyThreshold, lAccumResolution, minDistanceBtwCircles, minRadius, maxRadius)[0];
         }
 
-        public void BallPositionDraw(Image<Bgr, byte> imgCircles)
+        public void BallPositionDraw(Image<Bgr, byte> imgCircles, Image<Gray, byte> ImgGates, string ATeam, string BTeam, GoalsChecker gch, List<int> list, int counter)
         {
+            Gcheck = gch; xCoordList = list; Index = counter;
+
             try
             {
                 foreach (CircleF circle in GetCircles(ImgFiltered))
@@ -81,7 +81,7 @@ namespace Football
                 
                 //print(xCoordList, AGATES, BGATES, ABdistance); // Diagnostic info
 
-                PositionComment = getBallStatus(ABdistance, AGATES); // commentator logics
+                PositionComment = getBallStatus(ABdistance, AGATES, ATeam, BTeam); // commentator logics
             }
             catch (Exception)
             {
@@ -101,7 +101,7 @@ namespace Football
             Debug.WriteLine(AGATES + "   <--->   " + BGATES + "   dist = " + ABdistance + " ballpos: " + BallPosition.X);
         };
 
-        private string getBallStatus(int dist, int diff)
+        private string getBallStatus(int dist, int diff, string at, string bt)
         {
             if (BallPosition.X <= (dist * 4 / 20 + diff))
             {
