@@ -139,12 +139,9 @@ namespace Football
             chooseColour.colourPalet.Colour[customColorIndex].High = high;
         }
 
-
         public int GetIndex()
         {
-            System.Reflection.PropertyInfo pi = Index.GetType().GetProperty("name");
-            int integer = (int)(pi.GetValue(Index, null));
-            return integer;
+            return Index;
         }
 
         public List<int> GetList()

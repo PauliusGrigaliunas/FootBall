@@ -578,9 +578,9 @@ namespace Football
 
         private void unifyValues()
         {
-            _i = _ball.Index;
-            _xCoordList = _ball.xCoordList;
-            _gcheck = _ball.Gcheck;
+            _i = _ball.GetIndex();
+            _xCoordList = _ball.GetList();
+            _gcheck = _ball.GetGCH();
         }
 
         private void editScore_Click(object sender, EventArgs e)
