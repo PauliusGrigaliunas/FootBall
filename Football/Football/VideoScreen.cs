@@ -59,9 +59,6 @@ namespace Football
         public static bool isATeamScored = false;
         public static bool isBTeamScored = false;
 
-        //picture variables
-        Image<Gray, byte> _imgFiltered { get; set; }
-
         //variables
         private int _i = 0;
         public string ATeam, BTeam;
@@ -503,18 +500,19 @@ namespace Football
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (_video == null || _video.Capture == null)
+
+            if (_video?.Capture == null)
             {
                 _video = switcher.Controler(comboBox1.SelectedIndex);
             }
 
-            if (btnStart.Text == "Start")
+            if (btnStart.Text == @"Start")
             {
                 if (_video.StartVideo())
                 {
                     ButtonEnabler();
-                    btnStart.Text = "Pause";
-                    btnStartLast.Text = "Pause";
+                    btnStart.Text = @"Pause";
+                    btnStartLast.Text = @"Pause";
                 }
             }
             else
