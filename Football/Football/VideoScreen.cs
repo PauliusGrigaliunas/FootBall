@@ -141,8 +141,6 @@ namespace Football
 
                 OriginalPictureBox.Image = _video.ImgOriginal.Bitmap;
                 BallDetection();
-
-                
             }
             catch (NullReferenceException n)
             {
@@ -208,8 +206,8 @@ namespace Football
         {
             _video.Stop();
         }
-        // End Menu items------------
 
+        // End Menu items------------
 
         public void BallDetection()
         {
@@ -223,8 +221,7 @@ namespace Football
 
             //System.Diagnostics.Debug.WriteLine(_ball.chooseColour.Controler(CustomColorIndex).Low + " <= low  |  high =>" + _ball.chooseColour.Controler(CustomColorIndex).High);
 
-            setValues();
-            _ball.BallPositionDraw(imgCircles);
+            _ball.BallPositionDraw(imgCircles, _ImgZones, ATeam, BTeam, _gcheck, _xCoordList, _i);
             unifyValues();
             commentatorTextCompatibility();
         }
@@ -239,7 +236,6 @@ namespace Football
 
         public async void addSoundEffects()
         {
-            
             sound = new Task(() => Comment());
             sound.Start();
             await sound;
@@ -578,21 +574,11 @@ namespace Football
             }
         }
 
-        private void setValues()
-        {
-            _ball.ImgGates = _ImgZones;
-            _ball.at = ATeam;
-            _ball.bt = BTeam;
-            _ball.Gcheck = _gcheck;
-            _ball.xCoordList = _xCoordList;
-            _ball.Index = _i;
-        }
-
         private void unifyValues()
         {
-            _i = _ball.Index;
-            _xCoordList = _ball.xCoordList;
-            _gcheck = _ball.Gcheck;
+            _i = _ball.GetIndex();
+            _xCoordList = _ball.GetList();
+            _gcheck = _ball.GetGCH();
         }
 
         private void editScore_Click(object sender, EventArgs e)
@@ -614,7 +600,6 @@ namespace Football
         }
 
         private void setCustomColor_Click(object sender, EventArgs e)
-
         {
             _video.Pause();
             _gcheck.SetStopwatch(false);
@@ -628,6 +613,5 @@ namespace Football
             _video.StartVideo();
             CCC.Dispose();
         }
-
     }
 }
