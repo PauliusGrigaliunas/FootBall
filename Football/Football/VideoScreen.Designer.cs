@@ -125,7 +125,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 685);
             this.panel1.TabIndex = 2;
-           
+           // this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // setCustomColor
             // 
@@ -425,8 +425,7 @@
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
-            // menuStrip1
-            // 
+            
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
