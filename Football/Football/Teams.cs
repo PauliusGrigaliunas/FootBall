@@ -29,6 +29,7 @@ namespace Football
         }
         public void AddGameToTable(String firstTeam, String secondTeam, DateTime date)
         {
+            DateTime date1=DateTime.Now ;
             using (Football1Entities contex = new Football1Entities())
             {
                 Team team = contex.Teams.FirstOrDefault(r => r.Name == firstTeam);
@@ -37,7 +38,7 @@ namespace Football
                 {
                     FirstTeam = team.Id,
                     SecondTeam = team1.Id,
-                    Date = date,
+                    Date = date
                 };
               
                 contex.Games.Add(game);
