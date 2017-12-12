@@ -53,11 +53,9 @@ namespace Football
         }
 
 
-        public void BallPositionDraw(ISource video, string aTeam, string bTeam, List<int> list, int counter, ColourStruct colour)
+        public void BallPositionDraw(ISource video, string aTeam, string bTeam, ColourStruct colour)
         {
-            XCoordList = list; Index = counter;
             Gcheck = new GoalsChecker(_stopwatch);
-
 
             ImgFiltered = video.GetFilteredImage(colour);
             ImgOriginal = video.ImgOriginal; 

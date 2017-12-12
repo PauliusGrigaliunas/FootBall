@@ -229,12 +229,7 @@ namespace Football
         {
             ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
 
-            _ball.BallPositionDraw(_video , ATeam, BTeam, _xCoordList, _i, colour);
-
-
-            _xCoordList = _ball.XCoordList;
-            _i = _ball.Index;
-            // Tomai truputi pakeičiau... bet kas čia per magija?
+            _ball.BallPositionDraw(_video , ATeam, BTeam, colour);
 
             CommentatorTextCompatibility();
         }
