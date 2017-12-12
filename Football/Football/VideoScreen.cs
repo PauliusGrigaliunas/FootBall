@@ -84,7 +84,7 @@ namespace Football
 
 
         }
-        private void OnTimedEvent(object source, EventArgs e)
+        private void OnTimedEvent(object source, ElapsedEventArgs e) //save score (5s)
         {
             SaveScore();
         }
@@ -457,7 +457,7 @@ namespace Football
             comment.StopAllTracks();
             //db timetick
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 10000;
+            aTimer.Interval = 5000;
             aTimer.Enabled = true;
         }
 
