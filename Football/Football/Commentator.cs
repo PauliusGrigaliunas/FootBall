@@ -13,6 +13,8 @@ namespace Football
         public static bool isMuted = false; 
         public event EventHandler Sounds;
         private SoundPlayer[] sounds;
+        private static int _lastPlayedSongIndex = 10;
+
         public Commentator()
         {
             sounds = new SoundPlayer[23];
@@ -48,8 +50,8 @@ namespace Football
         }
         public void PlayRandomSound( int min, int max )
         {
-            int SoundIndex = GetRandomNumber( min, max );
-            if (!isMuted) sounds[SoundIndex].Play();
+            _lastPlayedSongIndex = GetRandomNumber( min, max );
+            if (!isMuted) sounds[_lastPlayedSongIndex].Play();
         }
         private int GetRandomNumber( int min, int max )
         {
@@ -59,11 +61,19 @@ namespace Football
         }
         public void PlayIndexedSound(int index)
         {
-            if (!isMuted) sounds[index].Play();
+            if (!isMuted)
+            {
+                _lastPlayedSongIndex = index;
+                sounds[index].Play();
+            }
         }
         public void PlayIndexedSoundWithLoop (int index)
         {
-            if (!isMuted) sounds[index].PlayLooping();
+            if (!isMuted)
+            {
+                _lastPlayedSongIndex = index;
+                sounds[index].PlayLooping();
+            }
         }
         public void StopAllTracks()
         {
@@ -74,7 +84,11 @@ namespace Football
         }
         public void Mute()
         {
-            if (isMuted) isMuted = false;
+            if (isMuted)
+            {
+                isMuted = false;
+                PlayIndexedSound(_lastPlayedSongIndex);
+            }
             else
             {
                 isMuted = true;
