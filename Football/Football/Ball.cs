@@ -23,6 +23,11 @@ namespace Football
             public static bool GoingRight { get; set; }
         }
 
+        public Ball()
+        {
+            Gcheck = new GoalsChecker();
+        }
+
         //objects
         public GoalsChecker Gcheck { get; set; }
         public int Index { get; set; }
@@ -31,9 +36,7 @@ namespace Football
         public Image<Bgr, byte> ImgOriginal { get; set; }
         public Image<Gray, byte> ImgFiltered { get; set; }
         public string PositionComment;
-        delegate void Print(List<int> list, int AGATES, int BGATES, int ABdistance);
         Gates _gates = new Gates();
-        private Stopwatch _stopwatch = new Stopwatch();
         public bool AScored = false;
         public bool Bscored = false;
 
@@ -56,7 +59,6 @@ namespace Football
 
         public void BallPositionDraw(ISource video, string aTeam, string bTeam, int SelectedColorIndex)
         {
-            Gcheck = new GoalsChecker(_stopwatch);
             ColourStruct colour = ChooseColour.Controler(SelectedColorIndex);
 
             ImgFiltered = video.GetFilteredImage(colour);
