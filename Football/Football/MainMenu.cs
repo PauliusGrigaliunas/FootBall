@@ -45,8 +45,8 @@ namespace Football
                 if (_nameFirstTeam == _nameSecondTeam)
                     throw new IsEqualException();
 
-                form._nameFirstTeam = _nameFirstTeam;
-                form._nameSecondTeam = _nameSecondTeam;
+                form.ATeam = _nameFirstTeam;
+                form.BTeam = _nameSecondTeam;
                 form.Show();
 
 

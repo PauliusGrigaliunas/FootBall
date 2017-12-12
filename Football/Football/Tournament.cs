@@ -149,8 +149,8 @@ namespace Football
         {
             VideoScreen form = new VideoScreen(name1, name2);
             form.isTournament = true;
-            form._nameFirstTeam = name1;
-            form._nameSecondTeam = name2;
+            form.ATeam = name1;
+            form.BTeam = name2;
             form.ShowDialog();
             _TeamAScores = form._TeamAScores;
             _TeamBScores = form._TeamBScores;

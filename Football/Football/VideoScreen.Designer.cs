@@ -59,8 +59,6 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,6 +125,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 685);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // setCustomColor
             // 
@@ -406,6 +405,7 @@
             this.statisticsToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
+
             this.menuStrip2.Size = new System.Drawing.Size(71, 668);
             this.menuStrip2.TabIndex = 42;
             this.menuStrip2.Text = "menuStrip2";
@@ -413,9 +413,7 @@
             // statisticsToolStripMenuItem
             // 
             this.statisticsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.teamAToolStripMenuItem,
-            this.teamBToolStripMenuItem});
+            this.allToolStripMenuItem});
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
             this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(58, 19);
             this.statisticsToolStripMenuItem.Text = "Statistics";
@@ -660,8 +658,6 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ballColourToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label BallPos;

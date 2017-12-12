@@ -88,23 +88,23 @@
   <ItemGroup>
     <Compile Include="Ball.cs" />
     <Compile Include="ChooseColour.cs" />
-    <Compile Include="Football.Context.cs">
+    <Compile Include="Football1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Football.Context.tt</DependentUpon>
+      <DependentUpon>Football1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Football.cs">
+    <Compile Include="Football1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Football.tt</DependentUpon>
+      <DependentUpon>Football1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Football.Designer.cs">
+    <Compile Include="Football1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Football.edmx</DependentUpon>
+      <DependentUpon>Football1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="GameTable.cs">
-      <DependentUpon>Football.tt</DependentUpon>
+    <Compile Include="Game.cs">
+      <DependentUpon>Football1.tt</DependentUpon>
     </Compile>
     <Compile Include="Gates.cs" />
     <Compile Include="Hierarchy\WebCamera.cs" />
@@ -124,23 +124,18 @@
     <Compile Include="Hierarchy\Camera.cs" />
     <Compile Include="ColourPalet.cs" />
     <Compile Include="Commentator.cs" />
-    <Compile Include="DataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Exception\IsEqualException.cs" />
     <Compile Include="Exception\IsTooShortException.cs" />
     <Compile Include="Hierarchy\ISource.cs" />
     <Compile Include="Hierarchy\Source.cs" />
+    <Compile Include="Team.cs">
+      <DependentUpon>Football1.tt</DependentUpon>
+    </Compile>
     <Compile Include="TeamNames.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TeamNames.Designer.cs">
       <DependentUpon>TeamNames.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TeamsTable.cs">
-      <DependentUpon>Football.tt</DependentUpon>
     </Compile>
     <Compile Include="Tournament.cs">
       <SubType>Form</SubType>
@@ -159,18 +154,6 @@
     </Compile>
     <Compile Include="FormAllTeams.Designer.cs">
       <DependentUpon>FormAllTeams.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormTeamA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTeamA.Designer.cs">
-      <DependentUpon>FormTeamA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormTeamB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormTeamB.Designer.cs">
-      <DependentUpon>FormTeamB.cs</DependentUpon>
     </Compile>
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
@@ -206,12 +189,6 @@
     <EmbeddedResource Include="FormAllTeams.resx">
       <DependentUpon>FormAllTeams.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTeamA.resx">
-      <DependentUpon>FormTeamA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormTeamB.resx">
-      <DependentUpon>FormTeamB.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,23 +202,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <EntityDeploy Include="Football.edmx">
+    <EntityDeploy Include="Football1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Football.Designer.cs</LastGenOutput>
+      <LastGenOutput>Football1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Football.edmx.diagram">
-      <DependentUpon>Football.edmx</DependentUpon>
+    <None Include="Football1.edmx.diagram">
+      <DependentUpon>Football1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -255,7 +221,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="concrt140.dll">
@@ -264,15 +232,15 @@
     <Content Include="cvextern.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Football.Context.tt">
+    <Content Include="Football1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Football.edmx</DependentUpon>
-      <LastGenOutput>Football.Context.cs</LastGenOutput>
+      <DependentUpon>Football1.edmx</DependentUpon>
+      <LastGenOutput>Football1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Football.tt">
+    <Content Include="Football1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Football.edmx</DependentUpon>
-      <LastGenOutput>Football.cs</LastGenOutput>
+      <DependentUpon>Football1.edmx</DependentUpon>
+      <LastGenOutput>Football1.cs</LastGenOutput>
     </Content>
     <Content Include="msvcp140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

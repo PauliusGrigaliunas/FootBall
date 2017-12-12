@@ -13,10 +13,10 @@ namespace Football
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FootballEntities1 : DbContext
+    public partial class Football1Entities : DbContext
     {
-        public FootballEntities1()
-            : base("name=FootballEntities1")
+        public Football1Entities()
+            : base("name=Football1Entities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace Football
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<GameTable> GameTables { get; set; }
-        public virtual DbSet<TeamsTable> TeamsTables { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
     }
 }
