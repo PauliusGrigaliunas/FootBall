@@ -224,9 +224,7 @@ namespace Football
 
         public void BallDetection()
         {
-            ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
-
-            _ball.BallPositionDraw(_video , ATeam, BTeam, colour);
+            _ball.BallPositionDraw(_video , ATeam, BTeam, comboBox2.SelectedIndex);
 
             CommentatorTextCompatibility();
         }
