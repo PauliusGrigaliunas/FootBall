@@ -59,10 +59,6 @@ namespace Football
         public static bool isATeamScored = false;
         public static bool isBTeamScored = false;
 
-        //picture variables
-        Image<Gray, byte> _imgFiltered { get; set; }
-        Image<Gray, byte> _ImgZones { get; set; }
-
         //variables
         private int _i = 0;
        public string ATeam, BTeam;
@@ -147,11 +143,14 @@ namespace Football
             _gcheck = new GoalsChecker(_stopwatch);
             aTeamLabel.Text = _gcheck.CheckForScoreA(aTeamLabel.Text);
             bTeamLabel.Text = _gcheck.CheckForScoreB(bTeamLabel.Text);
-
-            
-            //getting frames        
+       
             mat = _video.Capture.QueryFrame();
-            if (mat == null) return;
+            if (mat == null)
+            {
+                btnStopp_Click(sender, e);
+            return;  
+            }
+
             try
             {
                 _video.ImgOriginal = mat.ToImage<Bgr, byte>().Resize(OriginalPictureBox.Width, OriginalPictureBox.Height, Inter.Linear);
@@ -228,22 +227,22 @@ namespace Football
 
         public void BallDetection()
         {
-            ColourStruct clr = _gates.chooseColour.Controler(GatesColorIndex);
-            _ImgZones = _video.GetFilteredImageZones(clr);
 
-            ColourStruct colour = _ball.chooseColour.Controler(comboBox2.SelectedIndex);
-            Image<Bgr, byte> imgCircles = _video.ImgOriginal.CopyBlank();
-            _ball.ImgFiltered = _video.GetFilteredImage(colour);
-            _ball.ImgOriginal = _video.ImgOriginal;
+            ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
+            _ball.ImgFiltered = _video.GetFilteredImage(colour); //?
+            _ball.ImgOriginal = _video.ImgOriginal; //?
 
-            //System.Diagnostics.Debug.WriteLine(_ball.chooseColour.Controler(CustomColorIndex).Low + " <= low  |  high =>" + _ball.chooseColour.Controler(CustomColorIndex).High);
+            //???
+            _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i);
+            _gcheck = _ball.Gcheck;
+            _xCoordList = _ball.XCoordList;
+            _i = _ball.Index;
+            // Tomai truputi pakeičiau... bet kas čia per magija?
 
-            _ball.BallPositionDraw(imgCircles, _ImgZones, ATeam, BTeam, _gcheck, _xCoordList, _i);
-            unifyValues();
-            commentatorTextCompatibility();
+            CommentatorTextCompatibility();
         }
 
-        private void commentatorTextCompatibility()
+        private void CommentatorTextCompatibility()
         {
             if (_ball.PositionComment != BallPos.Text) isRinged = false;
             BallPos.Text = _ball.PositionComment;
@@ -426,20 +425,20 @@ namespace Football
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-          
 
-            if (_video == null || _video.Capture == null)
+            if (_video?.Capture == null)
+
             {
                 _video = switcher.Controler(comboBox1.SelectedIndex);
             }
 
-            if (btnStart.Text == "Start")
+            if (btnStart.Text == @"Start")
             {
                 if (_video.StartVideo())
                 {
                     ButtonEnabler();
-                    btnStart.Text = "Pause";
-                    btnStartLast.Text = "Pause";
+                    btnStart.Text = @"Pause";
+                    btnStartLast.Text = @"Pause";
                 }
             }
             else
@@ -501,12 +500,6 @@ namespace Football
             }
         }
 
-        private void unifyValues()
-        {
-            _i = _ball.GetIndex();
-            _xCoordList = _ball.GetList();
-            _gcheck = _ball.GetGCH();
-        }
 
         private void editScore_Click(object sender, EventArgs e)
         {
@@ -539,7 +532,7 @@ namespace Football
             CCC = new CustomColorViewer(_video.ImgOriginal);
             CCC.ShowDialog();
 
-            _ball.setCustomColor(CCC.newLow, CCC.newHigh);
+            _ball.SetCustomColor(CCC.newLow, CCC.newHigh);
 
             _gcheck.SetStopwatch(true);
             _video.StartVideo();
