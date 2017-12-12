@@ -31,7 +31,6 @@ namespace Football
         //objects
         Picture _picture = new Picture();
         Ball _ball = new Ball();
-        Gates _gates = new Gates();
         Switch switcher = new Switch();
         ChooseColour chooseColour = new ChooseColour();
         ScoreEditor SE;
@@ -55,8 +54,6 @@ namespace Football
         //variables
         private int _i = 0;
         public string ATeam, BTeam;
-        private int CustomColorIndex = 2;
-        private int GatesColorIndex = 3;
         //
         public List<int> _xCoordList = new List<int>();
 

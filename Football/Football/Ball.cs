@@ -39,6 +39,7 @@ namespace Football
 
         public ChooseColour ChooseColour = new ChooseColour();
         private const int CustomColorIndex = 2;
+        private const int GatesColorIndex = 3;
 
 
         private CircleF[] GetCircles(Image<Gray, byte> imgGray) //šitas testavimui buvo naudojamas
@@ -62,8 +63,8 @@ namespace Football
 
             Image<Bgr, byte> imgCircles = video.ImgOriginal.CopyBlank();
 
-            ColourStruct clr = _gates.ChooseColour.Controler(3);
-            Image<Gray, byte> imgGates = video.GetFilteredImageZones(clr); //čia gal Pauliaus kaltė 
+            ColourStruct clr = _gates.ChooseColour.Controler(GatesColorIndex);
+            Image<Gray, byte> imgGates = video.GetFilteredImageZones(clr);
 
             foreach (CircleF circle in GetCircles(ImgFiltered))
             {
@@ -85,24 +86,10 @@ namespace Football
             int BGATES = _gates.FindBGates(imgGates); // --> O
             int ABdistance = _gates.Dist(AGATES, BGATES, ImgFiltered);
 
-            //print(xCoordList, AGATES, BGATES, ABdistance); // Diagnostic info
-
             PositionComment = GetBallStatus(ABdistance, AGATES, aTeam, bTeam); // commentator logics
-
 
         }
 
-        // wut?
-       /* Print _print = delegate (List<int> list, int agates, int bgates, int aBdistance)
-        {
-            IEnumerator<int> enumerator = list.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                int item = enumerator.Current;
-                Debug.WriteLine(item);
-            }
-            Debug.WriteLine(agates + "   <--->   " + bgates + "   dist = " + aBdistance + " ballpos: " + BallPosition.X);
-        };*/
 
         private string GetBallStatus(int dist, int diff, string at, string bt)
         {
