@@ -10,8 +10,11 @@ namespace Football
 {
     public class Commentator
     {
+        public static bool isMuted = false; 
         public event EventHandler Sounds;
         private SoundPlayer[] sounds;
+        private static int _lastPlayedSongIndex = 10;
+
         public Commentator()
         {
             sounds = new SoundPlayer[23];
@@ -47,8 +50,8 @@ namespace Football
         }
         public void PlayRandomSound( int min, int max )
         {
-            int SoundIndex = GetRandomNumber( min, max );
-            sounds[SoundIndex].Play();
+            _lastPlayedSongIndex = GetRandomNumber( min, max );
+            if (!isMuted) sounds[_lastPlayedSongIndex].Play();
         }
         private int GetRandomNumber( int min, int max )
         {
@@ -58,19 +61,79 @@ namespace Football
         }
         public void PlayIndexedSound(int index)
         {
-            sounds[index].Play();
+            if (!isMuted)
+            {
+                _lastPlayedSongIndex = index;
+                sounds[index].Play();
+            }
         }
         public void PlayIndexedSoundWithLoop (int index)
         {
-            sounds[index].PlayLooping();
+            if (!isMuted)
+            {
+                _lastPlayedSongIndex = index;
+                sounds[index].PlayLooping();
+            }
         }
         public void StopAllTracks()
         {
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 22; i++)
             {
                 sounds[i].Stop();
             }
         }
-
+        public void Mute()
+        {
+            if (isMuted)
+            {
+                isMuted = false;
+                PlayIndexedSound(_lastPlayedSongIndex);
+            }
+            else
+            {
+                isMuted = true;
+                StopAllTracks();
+            }
+        }
+        internal bool CommentPlayGround(string Position, string ATeam, string BTeam, bool isRinged )
+        {
+            if (Position == ATeam + " Team Defenders" || Position == BTeam + " Team Defenders")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(16, 18);
+                    isRinged = true;
+                }
+            }
+            else if (Position == ATeam + " Team Attackers" || Position == BTeam + " Team Attackers")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(14, 16);
+                    isRinged = true;
+                }
+            }
+            else if (Position == ATeam + " Team Middle 5" || Position == BTeam + " Team Middle 5")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(14, 16);
+                    isRinged = true;
+                }
+            }
+            else
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(12, 14);
+                    isRinged = true;
+                }
+            }
+            return isRinged;
+        }
     }
 }

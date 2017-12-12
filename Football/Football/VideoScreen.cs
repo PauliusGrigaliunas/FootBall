@@ -253,53 +253,9 @@ namespace Football
 
         public async void addSoundEffects()
         {
-            sound = new Task(() => Comment());
+            sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
             sound.Start();
             await sound;
-        }
-
-        private void Comment()
-        {
-            if (_ball.PositionComment == ATeam + " Team Defenders" || _ball.PositionComment == BTeam + " Team Defenders")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(16, 18);
-                    isRinged = true;
-                }
-            }
-            else if (_ball.PositionComment == ATeam + " Team Attackers" || _ball.PositionComment == BTeam + " Team Attackers")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(14, 16);
-                    isRinged = true;
-                }
-            }
-            else if (_ball.PositionComment == ATeam + " Team Middle 5" || _ball.PositionComment == BTeam + " Team Middle 5")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(14, 16);
-                    isRinged = true;
-                }
-            }
-            else
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(12, 14);
-                    isRinged = true;
-                }
-            }
         }
         // End Buttons------------
 
@@ -334,6 +290,7 @@ namespace Football
         //+----------------------
         private void Form1_Load(object sender, EventArgs e)
         {
+            Commentator.isMuted = false;
             comment.StopAllTracks();
             aTeamLabel.Text = "0";
             bTeamLabel.Text = "0";
@@ -520,11 +477,10 @@ namespace Football
             SE.Dispose();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void enableSound_CheckedChanged(object sender, EventArgs e)
         {
-
+            comment.Mute();
         }
-
         private void setCustomColor_Click(object sender, EventArgs e)
         {
             _video.Pause();
