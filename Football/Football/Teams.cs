@@ -14,35 +14,34 @@ namespace Football
     {
       
 
-        public void AddToTableTeams(String name, int victories)
+        public void AddTeamToTable(String name)
         {
-            using (FootballEntities1 contex = new FootballEntities1())
+            using (Football1Entities contex = new Football1Entities())
             {
-                TeamsTable team = new TeamsTable()
+                Team team = new Team()
                 {
                     Name = name,
-                    Victories = victories,
-                   
+                 
                 };         
  
-                contex.TeamsTables.Add(team);
+                contex.Teams.Add(team);
                 contex.SaveChanges();
             }
         }
-        public void AddToTableGames(int firstTeam, int secondTeam, int goals1, int goals2)
+        public void AddGameToTable(String firstTeam, String secondTeam, DateTime date)
         {
-            using (FootballEntities1 contex = new FootballEntities1())
+            using (Football1Entities contex = new Football1Entities())
             {
-                GameTable team = new GameTable()
+                Team team = contex.Teams.FirstOrDefault(r => r.Name == firstTeam);
+                Team team1 = contex.Teams.FirstOrDefault(r => r.Name == secondTeam);
+                Game game = new Game()
                 {
-                    FirstTeam = firstTeam,
-                    SecondTeam = secondTeam,
-                    FirstTeamScore = goals1,
-                    SecondTeamScore = goals2,
-
+                    FirstTeam = team.Id,
+                    SecondTeam = team1.Id,
+                    Date = date,
                 };
 
-                contex.GameTables.Add(team);
+                contex.Games.Add(game);
                 contex.SaveChanges();
             }
         }
@@ -52,9 +51,9 @@ namespace Football
             bool exsists = false;
             try
             {
-                using (FootballEntities1 contex = new FootballEntities1())
+                using (Football1Entities contex = new Football1Entities())
                 {
-                    var team = contex.TeamsTables.FirstOrDefault(r => r.Name == data);
+                    var team = contex.Teams.FirstOrDefault(r => r.Name == data);
 
                     if (team.Name == data)
                     {
@@ -75,58 +74,66 @@ namespace Football
        {
             int vict = 0;
 
-            using (FootballEntities1 contex = new FootballEntities1())
+            using (Football1Entities contex = new Football1Entities())
             {
                 
-                var team = contex.TeamsTables.FirstOrDefault(r => r.Name == data);
-                vict = (int)team.Victories;
+                var team = contex.Teams.FirstOrDefault(r => r.Name == data);
+                vict = (int)team.GamesWon;
             }
             return vict;
        }
 
 
-        public void UpdateTableTeams(String data, int victories)
+        public void UpdateTableTeam(String data, int victories, int scores)
         {
            
-            using (FootballEntities1 contex = new FootballEntities1())
+            using (Football1Entities contex = new Football1Entities())
             {
 
-                TeamsTable team = contex.TeamsTables.FirstOrDefault(r => r.Name == data);
-                team.Victories = victories;
-         
+                Team team = contex.Teams.FirstOrDefault(r => r.Name == data);
+                team.GamesPlayed++;
+                team.GamesWon = team.GamesWon + victories;
+                team.TotalGoals = team.TotalGoals + scores;
+
                 contex.SaveChanges();
             }
 
         }
+ 
 
-
-        public void InsertGame(String name1, String name2, int goal1, int goal2)
+        public void UpdateTableGame(String name1, String name2, int goal1, int goal2, bool isFinished)
         {
-            using (FootballEntities1 contex = new FootballEntities1())
+            using (Football1Entities contex = new Football1Entities())
             {
                 int team1;
                 int team2;
 
                 //getting id's of teams
-                var team = contex.TeamsTables.FirstOrDefault(r => r.Name == name1);
+                var team = contex.Teams.FirstOrDefault(r => r.Name == name1);
                 team1 = team.Id;
 
-                team = contex.TeamsTables.FirstOrDefault(r => r.Name == name2);
+                team = contex.Teams.FirstOrDefault(r => r.Name == name2);
                 team2 = team.Id;
 
-
-                AddToTableGames(team1, team2, goal1, goal2);
+                var game = contex.Games.FirstOrDefault(i => i.FirstTeam == team1 && i.SecondTeam == team2);
+                game.FirstTeamScore = goal1;
+                game.SecondTeamScore =  goal2;
+                if(isFinished)
+                {
+                    game.IsFinished = true;
+                }
+             
                 contex.SaveChanges();
             }
 
 
         }
         //database loaded to list
-        public List<TeamsTable> AllDataToList() 
+        public List<Team> AllDataToList() 
         {
-            using (FootballEntities1 context = new FootballEntities1())
+            using (Football1Entities context = new Football1Entities())
             {
-                var teams = from i in context.TeamsTables
+                var teams = from i in context.Teams
                             select i;
                 var list = teams.ToList();
 
@@ -135,23 +142,23 @@ namespace Football
         
         }
 
-        public List<TeamsTable> OrderByVictories()
+        public List<Team> OrderByVictories()
         {
-            using (FootballEntities1 context = new FootballEntities1())
+            using (Football1Entities context = new Football1Entities())
             {
-                var teams = from i in context.TeamsTables
-                            orderby i.Victories descending
+                var teams = from i in context.Teams
+                            orderby i.GamesWon descending
                             select i;
                 var list = teams.ToList();
             
             return list;
             }
         }
-        public List<GameTable> AllGamesToList()
+        public List<Game> AllGamesToList()
         {
-            using (FootballEntities1 context = new FootballEntities1())
+            using (Football1Entities context = new Football1Entities())
             {
-                var teams = from i in context.GameTables
+                var teams = from i in context.Games
                             select i;
                 var list = teams.ToList();
 

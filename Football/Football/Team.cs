@@ -7,27 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication
+namespace Football
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TeamsTable
+    public partial class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TeamsTable()
+        public Team()
         {
-            this.GameTables = new HashSet<GameTable>();
-            this.GameTables1 = new HashSet<GameTable>();
+            this.Games = new HashSet<Game>();
+            this.Games1 = new HashSet<Game>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Victories { get; set; }
+        public int GamesPlayed { get; set; }
+        public int GamesWon { get; set; }
+        public int TotalGoals { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GameTable> GameTables { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GameTable> GameTables1 { get; set; }
+        public virtual ICollection<Game> Games1 { get; set; }
     }
 }

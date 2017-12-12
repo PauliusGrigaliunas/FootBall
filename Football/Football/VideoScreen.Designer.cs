@@ -59,8 +59,6 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,18 +120,18 @@
             this.panel1.Controls.Add(this.scoreLabel);
             this.panel1.Controls.Add(this.OriginalPictureBox);
             this.panel1.Controls.Add(this.menuStrip2);
-            this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Location = new System.Drawing.Point(0, 20);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(653, 843);
+            this.panel1.Size = new System.Drawing.Size(490, 685);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // setCustomColor
             // 
-            this.setCustomColor.Location = new System.Drawing.Point(460, 87);
-            this.setCustomColor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.setCustomColor.Location = new System.Drawing.Point(345, 71);
             this.setCustomColor.Name = "setCustomColor";
-            this.setCustomColor.Size = new System.Drawing.Size(181, 33);
+            this.setCustomColor.Size = new System.Drawing.Size(136, 27);
             this.setCustomColor.TabIndex = 55;
             this.setCustomColor.Text = "Find Color Codes";
             this.setCustomColor.UseVisualStyleBackColor = true;
@@ -142,28 +140,28 @@
             // enableSound
             // 
             this.enableSound.AutoSize = true;
-            this.enableSound.Location = new System.Drawing.Point(186, 128);
-            this.enableSound.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.enableSound.Location = new System.Drawing.Point(140, 104);
+            this.enableSound.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.enableSound.Name = "enableSound";
-            this.enableSound.Size = new System.Drawing.Size(18, 17);
+            this.enableSound.Size = new System.Drawing.Size(15, 14);
             this.enableSound.TabIndex = 54;
             this.enableSound.UseVisualStyleBackColor = true;
             // 
             // enableSoundLabel
             // 
             this.enableSoundLabel.AutoSize = true;
-            this.enableSoundLabel.Location = new System.Drawing.Point(14, 127);
+            this.enableSoundLabel.Location = new System.Drawing.Point(10, 103);
+            this.enableSoundLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.enableSoundLabel.Name = "enableSoundLabel";
-            this.enableSoundLabel.Size = new System.Drawing.Size(155, 17);
+            this.enableSoundLabel.Size = new System.Drawing.Size(118, 13);
             this.enableSoundLabel.TabIndex = 53;
             this.enableSoundLabel.Text = "Disable Sound Effects?";
             // 
             // editScore
             // 
-            this.editScore.Location = new System.Drawing.Point(460, 119);
-            this.editScore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editScore.Location = new System.Drawing.Point(345, 97);
             this.editScore.Name = "editScore";
-            this.editScore.Size = new System.Drawing.Size(181, 33);
+            this.editScore.Size = new System.Drawing.Size(136, 27);
             this.editScore.TabIndex = 52;
             this.editScore.Text = "Edit Score Manually";
             this.editScore.UseVisualStyleBackColor = true;
@@ -175,18 +173,18 @@
             this.comboBox1.Items.AddRange(new object[] {
             "PC Camera",
             "Video"});
-            this.comboBox1.Location = new System.Drawing.Point(11, 524);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Location = new System.Drawing.Point(8, 426);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
             this.comboBox1.TabIndex = 51;
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(389, 546);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReset.Location = new System.Drawing.Point(292, 444);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(116, 66);
+            this.btnReset.Size = new System.Drawing.Size(87, 54);
             this.btnReset.TabIndex = 50;
             this.btnReset.Text = "Reset score";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -194,10 +192,10 @@
             // 
             // btnStopp
             // 
-            this.btnStopp.Location = new System.Drawing.Point(264, 546);
-            this.btnStopp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStopp.Location = new System.Drawing.Point(198, 444);
+            this.btnStopp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStopp.Name = "btnStopp";
-            this.btnStopp.Size = new System.Drawing.Size(119, 66);
+            this.btnStopp.Size = new System.Drawing.Size(89, 54);
             this.btnStopp.TabIndex = 49;
             this.btnStopp.Text = "Stop";
             this.btnStopp.UseVisualStyleBackColor = true;
@@ -205,10 +203,10 @@
             // 
             // btnStartLast
             // 
-            this.btnStartLast.Location = new System.Drawing.Point(139, 546);
-            this.btnStartLast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStartLast.Location = new System.Drawing.Point(104, 444);
+            this.btnStartLast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStartLast.Name = "btnStartLast";
-            this.btnStartLast.Size = new System.Drawing.Size(120, 66);
+            this.btnStartLast.Size = new System.Drawing.Size(90, 54);
             this.btnStartLast.TabIndex = 48;
             this.btnStartLast.Text = "Load last used video";
             this.btnStartLast.UseVisualStyleBackColor = true;
@@ -216,10 +214,10 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(13, 546);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnStart.Location = new System.Drawing.Point(10, 444);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(119, 66);
+            this.btnStart.Size = new System.Drawing.Size(89, 54);
             this.btnStart.TabIndex = 47;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -227,10 +225,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(511, 546);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(383, 444);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 66);
+            this.button2.Size = new System.Drawing.Size(91, 54);
             this.button2.TabIndex = 46;
             this.button2.Text = "Save Score";
             this.button2.UseVisualStyleBackColor = true;
@@ -240,9 +238,10 @@
             // 
             this.BallPos.AutoSize = true;
             this.BallPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BallPos.Location = new System.Drawing.Point(324, 492);
+            this.BallPos.Location = new System.Drawing.Point(243, 400);
+            this.BallPos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.BallPos.Name = "BallPos";
-            this.BallPos.Size = new System.Drawing.Size(104, 29);
+            this.BallPos.Size = new System.Drawing.Size(82, 24);
             this.BallPos.TabIndex = 45;
             this.BallPos.Text = "Nobody.";
             // 
@@ -250,18 +249,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 496);
+            this.label1.Location = new System.Drawing.Point(9, 403);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(275, 25);
+            this.label1.Size = new System.Drawing.Size(220, 20);
             this.label1.TabIndex = 44;
             this.label1.Text = "Who is controlling the ball? -->";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(537, 670);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(403, 544);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 66);
+            this.button1.Size = new System.Drawing.Size(118, 54);
             this.button1.TabIndex = 43;
             this.button1.Text = "Reset Score";
             this.button1.UseVisualStyleBackColor = true;
@@ -271,10 +270,9 @@
             // 
             this.BallImgBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BallImgBox.BackgroundImage")));
             this.BallImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BallImgBox.Location = new System.Drawing.Point(425, 9);
-            this.BallImgBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BallImgBox.Location = new System.Drawing.Point(319, 7);
             this.BallImgBox.Name = "BallImgBox";
-            this.BallImgBox.Size = new System.Drawing.Size(80, 70);
+            this.BallImgBox.Size = new System.Drawing.Size(60, 57);
             this.BallImgBox.TabIndex = 41;
             this.BallImgBox.TabStop = false;
             // 
@@ -282,10 +280,9 @@
             // 
             this.PlayerImgBox.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("PlayerImgBox.BackgroundImage")));
             this.PlayerImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PlayerImgBox.Location = new System.Drawing.Point(136, 9);
-            this.PlayerImgBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PlayerImgBox.Location = new System.Drawing.Point(102, 7);
             this.PlayerImgBox.Name = "PlayerImgBox";
-            this.PlayerImgBox.Size = new System.Drawing.Size(88, 70);
+            this.PlayerImgBox.Size = new System.Drawing.Size(66, 57);
             this.PlayerImgBox.TabIndex = 41;
             this.PlayerImgBox.TabStop = false;
             // 
@@ -293,19 +290,18 @@
             // 
             this.playGroundLabel.AutoSize = true;
             this.playGroundLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playGroundLabel.Location = new System.Drawing.Point(242, 119);
-            this.playGroundLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.playGroundLabel.Location = new System.Drawing.Point(182, 97);
             this.playGroundLabel.Name = "playGroundLabel";
-            this.playGroundLabel.Size = new System.Drawing.Size(125, 25);
+            this.playGroundLabel.Size = new System.Drawing.Size(102, 20);
             this.playGroundLabel.TabIndex = 40;
             this.playGroundLabel.Text = "PlayGround";
             // 
             // saveScoreButton
             // 
-            this.saveScoreButton.Location = new System.Drawing.Point(704, 670);
-            this.saveScoreButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.saveScoreButton.Location = new System.Drawing.Point(528, 544);
+            this.saveScoreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.saveScoreButton.Name = "saveScoreButton";
-            this.saveScoreButton.Size = new System.Drawing.Size(161, 66);
+            this.saveScoreButton.Size = new System.Drawing.Size(121, 54);
             this.saveScoreButton.TabIndex = 36;
             this.saveScoreButton.Text = "Save Score";
             this.saveScoreButton.UseVisualStyleBackColor = true;
@@ -313,20 +309,20 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(357, 670);
-            this.btnStop.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnStop.Location = new System.Drawing.Point(268, 544);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(129, 54);
+            this.btnStop.Size = new System.Drawing.Size(97, 44);
             this.btnStop.TabIndex = 35;
             this.btnStop.Text = "Stop";
             this.btnStop.UseVisualStyleBackColor = true;
             // 
             // btnPlay
             // 
-            this.btnPlay.Location = new System.Drawing.Point(181, 670);
-            this.btnPlay.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnPlay.Location = new System.Drawing.Point(136, 544);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(125, 54);
+            this.btnPlay.Size = new System.Drawing.Size(94, 44);
             this.btnPlay.TabIndex = 33;
             this.btnPlay.Text = "Start";
             this.btnPlay.UseVisualStyleBackColor = true;
@@ -334,10 +330,9 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(317, 86);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(238, 70);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(12, 17);
+            this.label11.Size = new System.Drawing.Size(10, 13);
             this.label11.TabIndex = 32;
             this.label11.Text = ":";
             // 
@@ -345,10 +340,9 @@
             // 
             this.bTeamLabel.AutoSize = true;
             this.bTeamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bTeamLabel.Location = new System.Drawing.Point(255, 82);
-            this.bTeamLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.bTeamLabel.Location = new System.Drawing.Point(191, 67);
             this.bTeamLabel.Name = "bTeamLabel";
-            this.bTeamLabel.Size = new System.Drawing.Size(101, 20);
+            this.bTeamLabel.Size = new System.Drawing.Size(86, 16);
             this.bTeamLabel.TabIndex = 31;
             this.bTeamLabel.Text = "bTeamLabel";
             // 
@@ -356,20 +350,18 @@
             // 
             this.aTeamLabel.AutoSize = true;
             this.aTeamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aTeamLabel.Location = new System.Drawing.Point(351, 82);
-            this.aTeamLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.aTeamLabel.Location = new System.Drawing.Point(263, 67);
             this.aTeamLabel.Name = "aTeamLabel";
-            this.aTeamLabel.Size = new System.Drawing.Size(101, 20);
+            this.aTeamLabel.Size = new System.Drawing.Size(86, 16);
             this.aTeamLabel.TabIndex = 30;
             this.aTeamLabel.Text = "aTeamLabel";
             // 
             // TeamBLabel
             // 
             this.TeamBLabel.AutoSize = true;
-            this.TeamBLabel.Location = new System.Drawing.Point(336, 50);
-            this.TeamBLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TeamBLabel.Location = new System.Drawing.Point(252, 41);
             this.TeamBLabel.Name = "TeamBLabel";
-            this.TeamBLabel.Size = new System.Drawing.Size(61, 17);
+            this.TeamBLabel.Size = new System.Drawing.Size(47, 13);
             this.TeamBLabel.TabIndex = 29;
             this.TeamBLabel.Text = "Team B:";
             // 
@@ -377,10 +369,9 @@
             // 
             this.TeamALabel.AutoSize = true;
             this.TeamALabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TeamALabel.Location = new System.Drawing.Point(244, 50);
-            this.TeamALabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TeamALabel.Location = new System.Drawing.Point(183, 41);
             this.TeamALabel.Name = "TeamALabel";
-            this.TeamALabel.Size = new System.Drawing.Size(61, 17);
+            this.TeamALabel.Size = new System.Drawing.Size(47, 13);
             this.TeamALabel.TabIndex = 28;
             this.TeamALabel.Text = "Team A:";
             // 
@@ -388,19 +379,18 @@
             // 
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.scoreLabel.Location = new System.Drawing.Point(275, 11);
-            this.scoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.scoreLabel.Location = new System.Drawing.Point(206, 9);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(76, 25);
+            this.scoreLabel.Size = new System.Drawing.Size(61, 20);
             this.scoreLabel.TabIndex = 27;
             this.scoreLabel.Text = "Score:";
             // 
             // OriginalPictureBox
             // 
-            this.OriginalPictureBox.Location = new System.Drawing.Point(13, 154);
-            this.OriginalPictureBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.OriginalPictureBox.Location = new System.Drawing.Point(10, 125);
+            this.OriginalPictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.OriginalPictureBox.Name = "OriginalPictureBox";
-            this.OriginalPictureBox.Size = new System.Drawing.Size(628, 320);
+            this.OriginalPictureBox.Size = new System.Drawing.Size(471, 260);
             this.OriginalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.OriginalPictureBox.TabIndex = 0;
             this.OriginalPictureBox.TabStop = false;
@@ -414,41 +404,24 @@
             this.statisticsToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip2.Size = new System.Drawing.Size(87, 822);
+            this.menuStrip2.Size = new System.Drawing.Size(98, 668);
             this.menuStrip2.TabIndex = 42;
             this.menuStrip2.Text = "menuStrip2";
             // 
             // statisticsToolStripMenuItem
             // 
             this.statisticsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allToolStripMenuItem,
-            this.teamAToolStripMenuItem,
-            this.teamBToolStripMenuItem});
+            this.allToolStripMenuItem});
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
             this.statisticsToolStripMenuItem.Text = "Statistics";
             // 
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
-            // 
-            // teamAToolStripMenuItem
-            // 
-            this.teamAToolStripMenuItem.Name = "teamAToolStripMenuItem";
-            this.teamAToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
-            this.teamAToolStripMenuItem.Text = "TeamA";
-            this.teamAToolStripMenuItem.Click += new System.EventHandler(this.teamAToolStripMenuItem_Click);
-            // 
-            // teamBToolStripMenuItem
-            // 
-            this.teamBToolStripMenuItem.Name = "teamBToolStripMenuItem";
-            this.teamBToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
-            this.teamBToolStripMenuItem.Text = "TeamB";
-            this.teamBToolStripMenuItem.Click += new System.EventHandler(this.teamBToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -459,8 +432,8 @@
             this.ballColourToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(653, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(490, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -472,7 +445,7 @@
             this.PictureToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // CameraToolStripMenuItem
@@ -482,27 +455,27 @@
             this.StopCameraToolStripMenuItem,
             this.PauseCameraToolStripMenuItem});
             this.CameraToolStripMenuItem.Name = "CameraToolStripMenuItem";
-            this.CameraToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.CameraToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.CameraToolStripMenuItem.Text = "Camera";
             // 
             // StartCameraToolStripMenuItem
             // 
             this.StartCameraToolStripMenuItem.Name = "StartCameraToolStripMenuItem";
-            this.StartCameraToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.StartCameraToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.StartCameraToolStripMenuItem.Text = "Start";
             this.StartCameraToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
             // 
             // StopCameraToolStripMenuItem
             // 
             this.StopCameraToolStripMenuItem.Name = "StopCameraToolStripMenuItem";
-            this.StopCameraToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.StopCameraToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.StopCameraToolStripMenuItem.Text = "Stop";
             this.StopCameraToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem_Click);
             // 
             // PauseCameraToolStripMenuItem
             // 
             this.PauseCameraToolStripMenuItem.Name = "PauseCameraToolStripMenuItem";
-            this.PauseCameraToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.PauseCameraToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.PauseCameraToolStripMenuItem.Text = "Pause";
             this.PauseCameraToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
@@ -514,48 +487,48 @@
             this.PauseVideoToolStripMenuItem,
             this.lastUsedToolStripMenuItem});
             this.VideoToolStripMenuItem.Name = "VideoToolStripMenuItem";
-            this.VideoToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.VideoToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.VideoToolStripMenuItem.Text = "Video";
             // 
             // StartVideoToolStripMenuItem
             // 
             this.StartVideoToolStripMenuItem.Name = "StartVideoToolStripMenuItem";
-            this.StartVideoToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.StartVideoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.StartVideoToolStripMenuItem.Text = "Start";
             this.StartVideoToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem1_Click);
             // 
             // StopVideoToolStripMenuItem
             // 
             this.StopVideoToolStripMenuItem.Name = "StopVideoToolStripMenuItem";
-            this.StopVideoToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.StopVideoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.StopVideoToolStripMenuItem.Text = "Stop";
             this.StopVideoToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem1_Click);
             // 
             // PauseVideoToolStripMenuItem
             // 
             this.PauseVideoToolStripMenuItem.Name = "PauseVideoToolStripMenuItem";
-            this.PauseVideoToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.PauseVideoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.PauseVideoToolStripMenuItem.Text = "Pause";
             this.PauseVideoToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem1_Click);
             // 
             // lastUsedToolStripMenuItem
             // 
             this.lastUsedToolStripMenuItem.Name = "lastUsedToolStripMenuItem";
-            this.lastUsedToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.lastUsedToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.lastUsedToolStripMenuItem.Text = "Last Used";
             this.lastUsedToolStripMenuItem.Click += new System.EventHandler(this.lastUsedToolStripMenuItem_Click);
             // 
             // PictureToolStripMenuItem
             // 
             this.PictureToolStripMenuItem.Name = "PictureToolStripMenuItem";
-            this.PictureToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.PictureToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.PictureToolStripMenuItem.Text = "Picture";
             this.PictureToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -566,56 +539,56 @@
             this.PauseToolStripMenuItem,
             this.StopToolStripMenuItem});
             this.startPauseStopToolStripMenuItem.Name = "startPauseStopToolStripMenuItem";
-            this.startPauseStopToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.startPauseStopToolStripMenuItem.Size = new System.Drawing.Size(108, 20);
             this.startPauseStopToolStripMenuItem.Text = "Start/Pause/Stop";
             // 
             // StartToolStripMenuItem
             // 
             this.StartToolStripMenuItem.Name = "StartToolStripMenuItem";
-            this.StartToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.StartToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.StartToolStripMenuItem.Text = "Start";
             this.StartToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem2_Click);
             // 
             // PauseToolStripMenuItem
             // 
             this.PauseToolStripMenuItem.Name = "PauseToolStripMenuItem";
-            this.PauseToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.PauseToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.PauseToolStripMenuItem.Text = "Pause";
             this.PauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem2_Click);
             // 
             // StopToolStripMenuItem
             // 
             this.StopToolStripMenuItem.Name = "StopToolStripMenuItem";
-            this.StopToolStripMenuItem.Size = new System.Drawing.Size(121, 26);
+            this.StopToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.StopToolStripMenuItem.Text = "Stop";
             this.StopToolStripMenuItem.Click += new System.EventHandler(this.stopToolStripMenuItem2_Click);
             // 
             // ballColourToolStripMenuItem
             // 
             this.ballColourToolStripMenuItem.Name = "ballColourToolStripMenuItem";
-            this.ballColourToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
+            this.ballColourToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.ballColourToolStripMenuItem.Text = "Ball Colour";
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(307, 0);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox2.Location = new System.Drawing.Point(230, 0);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.Size = new System.Drawing.Size(92, 21);
             this.comboBox2.TabIndex = 52;
             // 
             // VideoScreen
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(653, 650);
+            this.ClientSize = new System.Drawing.Size(490, 528);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "VideoScreen";
             this.Text = "Let\'s play Foosball!!!";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -669,8 +642,6 @@
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamAToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ballColourToolStripMenuItem;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label BallPos;
