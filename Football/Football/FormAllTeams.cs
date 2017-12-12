@@ -82,15 +82,14 @@ namespace Football
         private void goalsToolStripMenuItem_Click(object sender, EventArgs e)
         {           
             var games = team.AllGamesToList().Select(i => new { i.FirstTeam, i.SecondTeam,
-                i.FirstTeamScore,i.SecondTeamScore ,i.Date, i.IsFinished}).ToList();
+                i.FirstTeamScore,i.SecondTeamScore ,i.Date}).ToList();
             var teams = team.AllDataToList().Select(i => new {i.Id, i.Name }).ToList();
 
             var list1 = (from t in teams
                         join g in games
                         on t.Id equals g.FirstTeam into allGames
                         from item in allGames
-                        select new { t.Name , item.FirstTeamScore, item.SecondTeam, item.SecondTeamScore,
-                            item.Date, item.IsFinished }).ToList();
+                        select new { t.Name , item.FirstTeamScore, item.SecondTeam, item.SecondTeamScore,item.Date }).ToList();
 
             var list2 = (from i in list1
                          join t in teams
@@ -99,7 +98,7 @@ namespace Football
                          let Team1 = i.Name
                          let Team2 = item.Name
                          orderby i.FirstTeamScore descending, i.SecondTeamScore descending
-                         select new { Team1, i.FirstTeamScore, Team2, i.SecondTeamScore , i.Date,i.IsFinished}).ToList();
+                         select new { Team1, i.FirstTeamScore, Team2, i.SecondTeamScore , i.Date}).ToList();
            
            dataGridViewAll.DataSource = list2.ToList() ;
             Colour();

@@ -125,7 +125,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 685);
             this.panel1.TabIndex = 2;
-          //  this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // setCustomColor
             // 
@@ -426,7 +426,19 @@
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
             // teamAToolStripMenuItem
-      
+            // 
+            this.teamAToolStripMenuItem.Name = "teamAToolStripMenuItem";
+            this.teamAToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.teamAToolStripMenuItem.Text = "TeamA";
+            this.teamAToolStripMenuItem.Click += new System.EventHandler(this.teamAToolStripMenuItem_Click);
+            // 
+            // teamBToolStripMenuItem
+            // 
+            this.teamBToolStripMenuItem.Name = "teamBToolStripMenuItem";
+            this.teamBToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.teamBToolStripMenuItem.Text = "TeamB";
+            this.teamBToolStripMenuItem.Click += new System.EventHandler(this.teamBToolStripMenuItem_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
