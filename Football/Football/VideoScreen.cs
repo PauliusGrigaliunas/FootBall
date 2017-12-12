@@ -45,8 +45,8 @@ namespace Football
         public bool isTournament = false;
 
         //variables
-        public String _nameFirstTeam { get; set; }
-        public String _nameSecondTeam { get; set; }
+       // public String _nameFirstTeam { get; set; }
+       // public String _nameSecondTeam { get; set; }
 
         public int _TeamAScores { get; set; }
         public int _TeamBScores { get; set; }
@@ -61,7 +61,7 @@ namespace Football
 
         //variables
         private int _i = 0;
-        public string ATeam, BTeam;
+       public string ATeam, BTeam;
         private int CustomColorIndex = 2;
         private int GatesColorIndex = 3;
         //
@@ -83,8 +83,26 @@ namespace Football
 
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
+            SaveTeams();
+           
         }
+        private void SaveTeams()
+        {
+            DateTime date = DateTime.Now;
 
+            Teams team = new Teams();
+            Predicate<String> compare = x => team.NameCheckIfExsist(x) == true;
+            if (!compare(ATeam))
+            {
+                team.AddTeamToTable(ATeam);
+            }
+            if (!compare(BTeam))
+            {
+                team.AddTeamToTable(BTeam);
+            }
+            team.AddGameToTable(ATeam, BTeam, date);
+     
+        }
         private void ButtonDisabler()
         {
             btnStartLast.Enabled = false;
@@ -324,75 +342,7 @@ namespace Football
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _video.Stop();
-            _TeamBScores = int.Parse(aTeamLabel.Text);
-            _TeamAScores = int.Parse(bTeamLabel.Text);
-
-            _VictA = 0;
-            _GoalA = 0;
-            _VictB = 0;
-            _GoalB = 0;
-
-            Teams team = new Teams();
-            Predicate<String> compare = x => team.NameCheckIfExsist(x) == true;
-
-            if (_TeamAScores > _TeamBScores)
-            {
-                _VictA = _VictA + 1;
-                comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Winner: " + _nameFirstTeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
-                if (result == DialogResult.Cancel || result == DialogResult.OK)
-                {
-                    comment.StopAllTracks();
-                }
-            }
-            else if (_TeamAScores < _TeamBScores)
-            {
-                _VictB = _VictB + 1;
-                comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Winner: " + _nameSecondTeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
-                if (result == DialogResult.Cancel || result == DialogResult.OK)
-                {
-                    comment.StopAllTracks();
-                }
-            }
-            else
-            {
-                comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Draw!\nScore: " + _TeamAScores + " : " + _TeamBScores);
-                if (result == DialogResult.Cancel || result == DialogResult.OK)
-                {
-                    comment.StopAllTracks();
-                }
-            }
-            _GoalA = _TeamAScores;
-            _GoalB = _TeamBScores;
-            if (!compare(_nameFirstTeam))
-            {
-                team.AddToTableTeams(_nameFirstTeam, _VictA);
-              
-            }
-            else
-            {
-                _VictA = _VictA + team.GetVictories(_nameFirstTeam);
-                team.UpdateTableTeams(_nameFirstTeam, _VictA);
-     
-            }
-
-            if (!compare(_nameSecondTeam))
-            {
-                team.AddToTableTeams(_nameSecondTeam, _VictB);
-                
-       
-            }
-            else
-            {
-                _VictB = _VictB + team.GetVictories(_nameSecondTeam);
-                team.UpdateTableTeams(_nameSecondTeam, _VictB);
-
-            }
-            team.InsertGame(_nameFirstTeam, _nameSecondTeam, _GoalA, _GoalB);
-            comment.PlayIndexedSound(11);
+            SaveScore();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -406,20 +356,7 @@ namespace Football
             form.Show();
         }
 
-        private void teamAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormTeamA form = new FormTeamA();
-            form.loadInfo(_nameFirstTeam, _VictA, _GoalA, _TeamAScores);
-            form.Show();
-        }
-
-        private void teamBToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormTeamB form = new FormTeamB();
-            form.loadInfo(_nameSecondTeam, _VictB, _GoalB, _TeamBScores);
-            form.Show();
-        }
-
+   
         private void lastUsedToolStripMenuItem_Click(object sender, EventArgs e) // open last used video
         {
             _video.StartLastUsedVideo();
@@ -428,22 +365,35 @@ namespace Football
         private void button2_Click(object sender, EventArgs e) // save score
         {
             _video.Stop();
+            GameFinished();
+
+        }
+
+        private void SaveScore()
+        {
+            _TeamBScores = int.Parse(aTeamLabel.Text);
+            _TeamAScores = int.Parse(bTeamLabel.Text);      
+
+            Teams team = new Teams();
+
+            team.UpdateTableGame(ATeam,BTeam,_TeamAScores,_TeamBScores,false);
+
+          
+        }
+        private void GameFinished()
+        {
             _TeamBScores = int.Parse(aTeamLabel.Text);
             _TeamAScores = int.Parse(bTeamLabel.Text);
 
-            _VictA = 0;
-            _GoalA = 0;
-            _VictB = 0;
-            _GoalB = 0;
-
             Teams team = new Teams();
-            Predicate<String> compare = x => team.NameCheckIfExsist(x) == true;
 
             if (_TeamAScores > _TeamBScores)
             {
-                _VictA = _VictA + 1;
+                team.UpdateTableGame(ATeam, BTeam, _TeamAScores, _TeamBScores, true);
+                team.UpdateTableTeam(ATeam, 1, _TeamAScores);
+                team.UpdateTableTeam(BTeam, 0, _TeamBScores);
                 comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Winner: " + _nameFirstTeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
+                DialogResult result = MessageBox.Show("Winner: " +ATeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
                 if (result == DialogResult.Cancel || result == DialogResult.OK)
                 {
                     comment.StopAllTracks();
@@ -451,9 +401,11 @@ namespace Football
             }
             else if (_TeamAScores < _TeamBScores)
             {
-                _VictB = _VictB + 1;
+                team.UpdateTableGame(ATeam, BTeam, _TeamAScores, _TeamBScores, true);
+                team.UpdateTableTeam(BTeam, 1, _TeamBScores);
+                team.UpdateTableTeam(ATeam, 0, _TeamAScores);
                 comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Winner: " + _nameSecondTeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
+                DialogResult result = MessageBox.Show("Winner: " + BTeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
                 if (result == DialogResult.Cancel || result == DialogResult.OK)
                 {
                     comment.StopAllTracks();
@@ -461,6 +413,7 @@ namespace Football
             }
             else
             {
+                team.UpdateTableGame(ATeam, BTeam, _TeamAScores, _TeamBScores, true);
                 comment.PlayIndexedSound(9);
                 DialogResult result = MessageBox.Show("Draw!\nScore: " + _TeamAScores + " : " + _TeamBScores);
                 if (result == DialogResult.Cancel || result == DialogResult.OK)
@@ -468,34 +421,6 @@ namespace Football
                     comment.StopAllTracks();
                 }
             }
-            _GoalA = _TeamAScores;
-            _GoalB = _TeamBScores;
-            if (!compare(_nameFirstTeam))
-            {
-                team.AddToTableTeams(_nameFirstTeam, _VictA);
-                
-               
-            }
-            else
-            {
-                _VictA = _VictA + team.GetVictories(_nameFirstTeam);
-              
-                team.UpdateTableTeams(_nameFirstTeam, _VictA);
-              
-            }
-
-            if (!compare(_nameSecondTeam))
-            {
-                team.AddToTableTeams(_nameSecondTeam, _VictB);             
-               
-            }
-            else
-            {
-                _VictB = _VictB + team.GetVictories(_nameSecondTeam);        
-                team.UpdateTableTeams(_nameSecondTeam, _VictB);
-                
-            }
-            team.InsertGame(_nameFirstTeam, _nameSecondTeam, _GoalA, _GoalB);
             comment.PlayIndexedSound(11);
         }
 
@@ -503,6 +428,7 @@ namespace Football
         {
 
             if (_video?.Capture == null)
+
             {
                 _video = switcher.Controler(comboBox1.SelectedIndex);
             }
@@ -523,6 +449,7 @@ namespace Football
                 btnStart.Text = "Start";
                 btnStartLast.Text = "Load last used video";
             }
+
             comment.StopAllTracks();
         }
 
@@ -591,6 +518,11 @@ namespace Football
             _gcheck.SetStopwatch(true);
             _video.StartVideo();
             SE.Dispose();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void setCustomColor_Click(object sender, EventArgs e)
