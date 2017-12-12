@@ -146,6 +146,7 @@
             this.enableSound.Size = new System.Drawing.Size(15, 14);
             this.enableSound.TabIndex = 54;
             this.enableSound.UseVisualStyleBackColor = true;
+            this.enableSound.CheckedChanged += new System.EventHandler(this.enableSound_CheckedChanged);
             // 
             // enableSoundLabel
             // 
@@ -404,7 +405,8 @@
             this.statisticsToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(98, 668);
+
+            this.menuStrip2.Size = new System.Drawing.Size(71, 668);
             this.menuStrip2.TabIndex = 42;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -413,7 +415,7 @@
             this.statisticsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allToolStripMenuItem});
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(85, 19);
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(58, 19);
             this.statisticsToolStripMenuItem.Text = "Statistics";
             // 
             // allToolStripMenuItem
@@ -422,6 +424,20 @@
             this.allToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
+            // 
+            // teamAToolStripMenuItem
+            // 
+            this.teamAToolStripMenuItem.Name = "teamAToolStripMenuItem";
+            this.teamAToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.teamAToolStripMenuItem.Text = "TeamA";
+            this.teamAToolStripMenuItem.Click += new System.EventHandler(this.teamAToolStripMenuItem_Click);
+            // 
+            // teamBToolStripMenuItem
+            // 
+            this.teamBToolStripMenuItem.Name = "teamBToolStripMenuItem";
+            this.teamBToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.teamBToolStripMenuItem.Text = "TeamB";
+            this.teamBToolStripMenuItem.Click += new System.EventHandler(this.teamBToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
