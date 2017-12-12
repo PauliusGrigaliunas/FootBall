@@ -98,7 +98,7 @@ namespace Football
                          let Team1 = i.Name
                          let Team2 = item.Name
                          orderby i.FirstTeamScore descending, i.SecondTeamScore descending
-                         select new { Team1, i.FirstTeamScore, Team2, i.SecondTeamScore , i.Date}).ToList();
+                         select new { Team1, i.FirstTeamScore, Team2, i.SecondTeamScore , i.Date.Date, i.Date.Hour}).ToList();
            
            dataGridViewAll.DataSource = list2.ToList() ;
             Colour();

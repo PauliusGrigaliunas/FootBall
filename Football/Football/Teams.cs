@@ -39,7 +39,7 @@ namespace Football
                     SecondTeam = team1.Id,
                     Date = date,
                 };
-
+              
                 contex.Games.Add(game);
                 contex.SaveChanges();
             }

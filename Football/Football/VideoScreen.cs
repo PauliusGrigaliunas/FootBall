@@ -88,7 +88,7 @@ namespace Football
         }
         private void SaveTeams()
         {
-            DateTime date = DateTime.Today;
+            DateTime date = DateTime.Now;
 
             Teams team = new Teams();
             Predicate<String> compare = x => team.NameCheckIfExsist(x) == true;
@@ -101,6 +101,7 @@ namespace Football
                 team.AddTeamToTable(BTeam);
             }
             team.AddGameToTable(ATeam, BTeam, date);
+     
         }
         private void ButtonDisabler()
         {
