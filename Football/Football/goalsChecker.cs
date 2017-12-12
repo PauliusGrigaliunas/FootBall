@@ -18,14 +18,13 @@ namespace Football
     public class GoalsChecker
     {
         Commentator com = new Commentator();
-        VideoCapture _capture { get; set; }
         private Stopwatch _stopwatch = new Stopwatch();
 
-        int _timeElapsed { get; set; }
+        int TimeElapsed { get; set; }
         private int _tempX;
 
-        public string _aText { get; set; }
-        public string _bText { get; set; }
+        public string AText { get; set; }
+        public string BText { get; set; }
 
         public GoalsChecker(Stopwatch stopwatch)
         {
@@ -34,11 +33,11 @@ namespace Football
 
         public string CheckForScoreA(string text) 
         {
-            Console.WriteLine(_stopwatch.ToString());
+            //Console.WriteLine(_stopwatch.ToString());
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
-            _timeElapsed = ts.Seconds;
-            if (_timeElapsed >= 2 && VideoScreen.isATeamScored && !Ball.BallPosition.GoingRight)
+            TimeElapsed = ts.Seconds;
+            if (TimeElapsed >= 2 && VideoScreen.isATeamScored && !Ball.BallPosition.GoingRight)
             {
                 com.StopAllTracks();
                 com.PlayRandomSound(0, 9);
@@ -56,8 +55,8 @@ namespace Football
         {
             int temp;
             TimeSpan ts = _stopwatch.Elapsed;
-            _timeElapsed = ts.Seconds;
-            if (_timeElapsed >= 2 && VideoScreen.isBTeamScored && Ball.BallPosition.GoingRight)
+            TimeElapsed = ts.Seconds;
+            if (TimeElapsed >= 2 && VideoScreen.isBTeamScored && Ball.BallPosition.GoingRight)
             {
                 com.StopAllTracks();
                 com.PlayRandomSound(0, 8);

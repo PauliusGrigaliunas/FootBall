@@ -210,17 +210,17 @@ namespace Football
 
         public void BallDetection()
         {
-            ColourStruct clr = _gates.ChooseColour.Controler(GatesColorIndex);
 
             ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
             _ball.ImgFiltered = _video.GetFilteredImage(colour); //?
             _ball.ImgOriginal = _video.ImgOriginal; //?
 
+            //???
             _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i);
-            //unifyValues(); 
-            _gcheck = _ball.GetGCH();
-            _xCoordList = _ball.GetList();
-            _i = _ball.GetIndex();
+            _gcheck = _ball.Gcheck;
+            _xCoordList = _ball.XCoordList;
+            _i = _ball.Index;
+            // Tomai truputi pakeičiau... bet kas čia per magija?
 
             commentatorTextCompatibility();
         }
@@ -574,12 +574,6 @@ namespace Football
             }
         }
 
-        private void unifyValues()
-        {
-            _i = _ball.GetIndex();
-            _xCoordList = _ball.GetList();
-            _gcheck = _ball.GetGCH();
-        }
 
         private void editScore_Click(object sender, EventArgs e)
         {
@@ -607,7 +601,7 @@ namespace Football
             CCC = new CustomColorViewer(_video.ImgOriginal);
             CCC.ShowDialog();
 
-            _ball.setCustomColor(CCC.newLow, CCC.newHigh);
+            _ball.SetCustomColor(CCC.newLow, CCC.newHigh);
 
             _gcheck.SetStopwatch(true);
             _video.StartVideo();

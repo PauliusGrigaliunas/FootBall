@@ -25,23 +25,20 @@ namespace Football
 
         //objects
         public GoalsChecker Gcheck { get; set; }
-
-        //variables   
         public int Index { get; set; }
         public List<int> XCoordList = new List<int>();
+
         public Image<Bgr, byte> ImgOriginal { get; set; }
         public Image<Gray, byte> ImgFiltered { get; set; }
-        //public Colour[] Colour { get; set; }
         public string PositionComment;
         delegate void Print(List<int> list, int AGATES, int BGATES, int ABdistance);
         Gates _gates = new Gates();
 
-        public ColourPalet ColourPalet = new ColourPalet();
         public ChooseColour ChooseColour = new ChooseColour();
         private const int CustomColorIndex = 2;
 
 
-        private CircleF[] GetCircles(Image<Gray, byte> imgGray)
+        private CircleF[] GetCircles(Image<Gray, byte> imgGray) //šitas testavimui buvo naudojamas
         {
             Gray grayCircle = new Gray(12);
             Gray cannyThreshold = new Gray(26);
@@ -59,42 +56,37 @@ namespace Football
             Image<Bgr, byte> imgCircles = video.ImgOriginal.CopyBlank();
 
             ColourStruct clr = _gates.ChooseColour.Controler(3);
-            Image<Gray, byte> imgGates = video.GetFilteredImageZones(clr);
+            Image<Gray, byte> imgGates = video.GetFilteredImageZones(clr); //čia gal Pauliaus kaltė 
 
-            try
+            foreach (CircleF circle in GetCircles(ImgFiltered))
             {
-                foreach (CircleF circle in GetCircles(ImgFiltered))
-                {
-                    BallPosition.X = (int)circle.Center.X;
-                    Gcheck.StartStopwatch(BallPosition.X, ImgOriginal.Width);
-                    Gcheck.Direction(BallPosition.X, Index, XCoordList); Index++;
-                    imgCircles.Draw(circle, new Bgr(Color.Red), 3);
-                }
-
-
-                if (Index >= 5)
-                {
-                    XCoordList = XCoordList.Skip(Index - 4).ToList();
-                    Index = 4;
-                }
-
-
-                int AGATES = _gates.FindAGates(imgGates); // O <--
-                int BGATES = _gates.FindBGates(imgGates); // --> O
-                int ABdistance = _gates.Dist(AGATES, BGATES, ImgFiltered);
-                
-                //print(xCoordList, AGATES, BGATES, ABdistance); // Diagnostic info
-
-                PositionComment = getBallStatus(ABdistance, AGATES, aTeam, bTeam); // commentator logics
+                BallPosition.X = (int)circle.Center.X;
+                Gcheck.StartStopwatch(BallPosition.X, ImgOriginal.Width);
+                Gcheck.Direction(BallPosition.X, Index, XCoordList); Index++;
+                imgCircles.Draw(circle, new Bgr(Color.Red), 3); //čia piešimui
             }
-            catch (Exception)
+
+
+            if (Index >= 5)
             {
-                return;
+                XCoordList = XCoordList.Skip(Index - 4).ToList();
+                Index = 4;
             }
+
+
+            int AGATES = _gates.FindAGates(imgGates); // O <--
+            int BGATES = _gates.FindBGates(imgGates); // --> O
+            int ABdistance = _gates.Dist(AGATES, BGATES, ImgFiltered);
+
+            //print(xCoordList, AGATES, BGATES, ABdistance); // Diagnostic info
+
+            PositionComment = GetBallStatus(ABdistance, AGATES, aTeam, bTeam); // commentator logics
+
+
         }
 
-
-        Print print = delegate (List<int> list, int AGATES, int BGATES, int ABdistance)  
+        // wut?
+        Print _print = delegate (List<int> list, int agates, int bgates, int aBdistance)
         {
             IEnumerator<int> enumerator = list.GetEnumerator();
             while (enumerator.MoveNext())
@@ -102,10 +94,10 @@ namespace Football
                 int item = enumerator.Current;
                 Debug.WriteLine(item);
             }
-            Debug.WriteLine(AGATES + "   <--->   " + BGATES + "   dist = " + ABdistance + " ballpos: " + BallPosition.X);
+            Debug.WriteLine(agates + "   <--->   " + bgates + "   dist = " + aBdistance + " ballpos: " + BallPosition.X);
         };
 
-        private string getBallStatus(int dist, int diff, string at, string bt)
+        private string GetBallStatus(int dist, int diff, string at, string bt)
         {
             if (BallPosition.X <= (dist * 4 / 20 + diff))
             {
@@ -137,26 +129,10 @@ namespace Football
             }
         }
 
-        public void setCustomColor(Hsv low, Hsv high)
+        public void SetCustomColor(Hsv low, Hsv high)
         {
             ChooseColour.colourPalet.Colour[CustomColorIndex].Low = low;
             ChooseColour.colourPalet.Colour[CustomColorIndex].High = high;
-        }
-
-
-        public int GetIndex()
-        {
-            return Index;
-        }
-
-        public List<int> GetList()
-        {
-            return XCoordList;
-        }
-
-        public GoalsChecker GetGCH()
-        {
-            return Gcheck;
         }
     }
 }
