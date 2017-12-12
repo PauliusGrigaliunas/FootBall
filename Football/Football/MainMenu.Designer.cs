@@ -44,6 +44,7 @@
             this.pictureBoxArrowLeft = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.MuteCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBallRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBallLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxArrowRight)).BeginInit();
@@ -198,12 +199,24 @@
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
             // 
+            // MuteCheckBox
+            // 
+            this.MuteCheckBox.AutoSize = true;
+            this.MuteCheckBox.Location = new System.Drawing.Point(276, 243);
+            this.MuteCheckBox.Name = "MuteCheckBox";
+            this.MuteCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.MuteCheckBox.TabIndex = 12;
+            this.MuteCheckBox.Text = "Off Soundtrack";
+            this.MuteCheckBox.UseVisualStyleBackColor = true;
+            this.MuteCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(381, 450);
+            this.Controls.Add(this.MuteCheckBox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -252,5 +265,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox MuteCheckBox;
     }
 }

@@ -247,8 +247,7 @@ namespace Football
                 if (isRinged == false)
                 {
                     comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(16, 18);
+                    comment.PlayRandomSound(16, 18);
                     isRinged = true;
                 }
             }
@@ -257,8 +256,7 @@ namespace Football
                 if (isRinged == false)
                 {
                     comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(14, 16);
+                    comment.PlayRandomSound(14, 16);
                     isRinged = true;
                 }
             }
@@ -267,8 +265,7 @@ namespace Football
                 if (isRinged == false)
                 {
                     comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(14, 16);
+                    comment.PlayRandomSound(14, 16);
                     isRinged = true;
                 }
             }
@@ -277,8 +274,7 @@ namespace Football
                 if (isRinged == false)
                 {
                     comment.StopAllTracks();
-                    if (!enableSound.Checked)
-                        comment.PlayRandomSound(12, 14);
+                    comment.PlayRandomSound(12, 14);
                     isRinged = true;
                 }
             }
@@ -316,6 +312,7 @@ namespace Football
         //+----------------------
         private void Form1_Load(object sender, EventArgs e)
         {
+            Commentator.isMuted = false;
             comment.StopAllTracks();
             aTeamLabel.Text = "0";
             bTeamLabel.Text = "0";
@@ -591,6 +588,11 @@ namespace Football
             _gcheck.SetStopwatch(true);
             _video.StartVideo();
             SE.Dispose();
+        }
+
+        private void enableSound_CheckedChanged(object sender, EventArgs e)
+        {
+            comment.Mute();
         }
 
         private void setCustomColor_Click(object sender, EventArgs e)

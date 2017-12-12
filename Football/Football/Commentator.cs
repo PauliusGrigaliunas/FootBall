@@ -10,6 +10,7 @@ namespace Football
 {
     public class Commentator
     {
+        public static bool isMuted = false; 
         public event EventHandler Sounds;
         private SoundPlayer[] sounds;
         public Commentator()
@@ -48,7 +49,7 @@ namespace Football
         public void PlayRandomSound( int min, int max )
         {
             int SoundIndex = GetRandomNumber( min, max );
-            sounds[SoundIndex].Play();
+            if (!isMuted) sounds[SoundIndex].Play();
         }
         private int GetRandomNumber( int min, int max )
         {
@@ -58,19 +59,27 @@ namespace Football
         }
         public void PlayIndexedSound(int index)
         {
-            sounds[index].Play();
+            if (!isMuted) sounds[index].Play();
         }
         public void PlayIndexedSoundWithLoop (int index)
         {
-            sounds[index].PlayLooping();
+            if (!isMuted) sounds[index].PlayLooping();
         }
         public void StopAllTracks()
         {
-            for (int i = 0; i <= 10; i++)
+            for (int i = 0; i <= 22; i++)
             {
                 sounds[i].Stop();
             }
         }
-
+        public void Mute()
+        {
+            if (isMuted) isMuted = false;
+            else
+            {
+                isMuted = true;
+                StopAllTracks();
+            }
+        }
     }
 }
