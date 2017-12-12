@@ -232,11 +232,9 @@ namespace Football
         {
 
             ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
-            _ball.ImgFiltered = _video.GetFilteredImage(colour); //?
-            _ball.ImgOriginal = _video.ImgOriginal; //?
 
             //???
-            _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i);
+            _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i, colour);
             _gcheck = _ball.Gcheck;
             _xCoordList = _ball.XCoordList;
             _i = _ball.Index;
