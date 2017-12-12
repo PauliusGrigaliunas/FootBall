@@ -9,10 +9,8 @@ namespace Football
         VideoCapture Capture { get; set; }
         Image<Bgr, byte> ImgOriginal { get; set; }
         Image<Gray, byte> ImgFiltered { get; set; }
-        //static VideoScreen _home;
         bool TakeASource();
         bool StartVideo();
-        //bool StartCamera();
         void Pause();
         void Stop();        
         bool StartLastUsedVideo();

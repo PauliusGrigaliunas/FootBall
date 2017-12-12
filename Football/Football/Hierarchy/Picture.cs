@@ -21,18 +21,13 @@ namespace Football
         private Image<Bgr, byte> _imgInput;
 
         //properties
-        public Image<Bgr, byte> GetImage
-        {
-            get
-            {
-                return _imgInput;
-            }
-        }
+        public Image<Bgr, byte> GetImage => _imgInput;
+
         //***
         public bool TakeASource()
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            ofd.Filter = @"Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 _imgInput = new Image<Bgr, byte>(ofd.FileName);

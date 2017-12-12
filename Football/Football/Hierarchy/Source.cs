@@ -129,7 +129,7 @@ namespace Football
                 _timer.Tick -= new EventHandler(_home.TimeTick);
                 _timer.Stop();
                 _timer = null;
-                Capture.Dispose();
+                Capture = null;
             }
         }
     }
