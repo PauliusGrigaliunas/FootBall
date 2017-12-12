@@ -235,49 +235,9 @@ namespace Football
 
         public async void addSoundEffects()
         {
-            sound = new Task(() => Comment());
+            sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
             sound.Start();
             await sound;
-        }
-
-        private void Comment()
-        {
-            if (_ball.PositionComment == ATeam + " Team Defenders" || _ball.PositionComment == BTeam + " Team Defenders")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    comment.PlayRandomSound(16, 18);
-                    isRinged = true;
-                }
-            }
-            else if (_ball.PositionComment == ATeam + " Team Attackers" || _ball.PositionComment == BTeam + " Team Attackers")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    comment.PlayRandomSound(14, 16);
-                    isRinged = true;
-                }
-            }
-            else if (_ball.PositionComment == ATeam + " Team Middle 5" || _ball.PositionComment == BTeam + " Team Middle 5")
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    comment.PlayRandomSound(14, 16);
-                    isRinged = true;
-                }
-            }
-            else
-            {
-                if (isRinged == false)
-                {
-                    comment.StopAllTracks();
-                    comment.PlayRandomSound(12, 14);
-                    isRinged = true;
-                }
-            }
         }
         // End Buttons------------
 

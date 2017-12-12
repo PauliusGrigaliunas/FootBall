@@ -81,5 +81,45 @@ namespace Football
                 StopAllTracks();
             }
         }
+        internal bool CommentPlayGround(string Position, string ATeam, string BTeam, bool isRinged )
+        {
+            if (Position == ATeam + " Team Defenders" || Position == BTeam + " Team Defenders")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(16, 18);
+                    isRinged = true;
+                }
+            }
+            else if (Position == ATeam + " Team Attackers" || Position == BTeam + " Team Attackers")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(14, 16);
+                    isRinged = true;
+                }
+            }
+            else if (Position == ATeam + " Team Middle 5" || Position == BTeam + " Team Middle 5")
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(14, 16);
+                    isRinged = true;
+                }
+            }
+            else
+            {
+                if (isRinged == false)
+                {
+                    StopAllTracks();
+                    PlayRandomSound(12, 14);
+                    isRinged = true;
+                }
+            }
+            return isRinged;
+        }
     }
 }
