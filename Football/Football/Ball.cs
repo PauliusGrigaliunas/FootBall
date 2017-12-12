@@ -33,6 +33,9 @@ namespace Football
         public string PositionComment;
         delegate void Print(List<int> list, int AGATES, int BGATES, int ABdistance);
         Gates _gates = new Gates();
+        private Stopwatch _stopwatch = new Stopwatch();
+        public bool AScored = false;
+        public bool Bscored = false;
 
         public ChooseColour ChooseColour = new ChooseColour();
         private const int CustomColorIndex = 2;
@@ -50,9 +53,11 @@ namespace Football
         }
 
 
-        public void BallPositionDraw(ISource video, string aTeam, string bTeam, GoalsChecker gch, List<int> list, int counter, ColourStruct colour)
+        public void BallPositionDraw(ISource video, string aTeam, string bTeam, List<int> list, int counter, ColourStruct colour)
         {
-            Gcheck = gch; XCoordList = list; Index = counter;
+            XCoordList = list; Index = counter;
+            Gcheck = new GoalsChecker(_stopwatch);
+
 
             ImgFiltered = video.GetFilteredImage(colour);
             ImgOriginal = video.ImgOriginal; 

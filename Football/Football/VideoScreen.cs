@@ -38,9 +38,7 @@ namespace Football
         CustomColorViewer CCC;
         ISource _video;
 
-        GoalsChecker _gcheck;
         private Mat mat;
-        private Stopwatch _stopwatch = new Stopwatch();
         Commentator comment = new Commentator();
         System.Timers.Timer aTimer = new System.Timers.Timer();
         
@@ -143,10 +141,6 @@ namespace Football
 
         public void TimeTick(object sender, EventArgs e)
         {
-            _gcheck = new GoalsChecker(_stopwatch);
-            aTeamLabel.Text = _gcheck.CheckForScoreA(aTeamLabel.Text);
-            bTeamLabel.Text = _gcheck.CheckForScoreB(bTeamLabel.Text);
-       
             mat = _video.Capture.QueryFrame();
             if (mat == null)
             {
@@ -160,6 +154,9 @@ namespace Football
 
                 OriginalPictureBox.Image = _video.ImgOriginal.Bitmap;
                 BallDetection();
+
+                aTeamLabel.Text = _ball.Gcheck.CheckForScoreA(aTeamLabel.Text);
+                bTeamLabel.Text = _ball.Gcheck.CheckForScoreB(bTeamLabel.Text);
             }
             catch (NullReferenceException n)
             {
@@ -230,12 +227,11 @@ namespace Football
 
         public void BallDetection()
         {
-
             ColourStruct colour = _ball.ChooseColour.Controler(comboBox2.SelectedIndex);
 
-            //???
-            _ball.BallPositionDraw(_video , ATeam, BTeam, _gcheck, _xCoordList, _i, colour);
-            _gcheck = _ball.Gcheck;
+            _ball.BallPositionDraw(_video , ATeam, BTeam, _xCoordList, _i, colour);
+
+
             _xCoordList = _ball.XCoordList;
             _i = _ball.Index;
             // Tomai truputi pakeičiau... bet kas čia per magija?
@@ -404,7 +400,7 @@ namespace Football
             else
             {
                 _video.Pause();
-                _gcheck.SetStopwatch(false);
+                _ball.Gcheck.SetStopwatch(false);
                 btnStart.Text = "Start";
                 btnStartLast.Text = "Load last used video";
             }
@@ -427,7 +423,7 @@ namespace Football
             else
             {
                 _video.Pause();
-                _gcheck.SetStopwatch(false);
+                _ball.Gcheck.SetStopwatch(false);
                 btnStart.Text = "Start";
                 btnStartLast.Text = "Load last used video";
             }
@@ -468,7 +464,7 @@ namespace Football
         private void editScore_Click(object sender, EventArgs e)
         {
             _video.Pause();
-            _gcheck.SetStopwatch(false);
+            _ball.Gcheck.SetStopwatch(false);
 
             SE = new ScoreEditor(ATeam, BTeam, bTeamLabel.Text, aTeamLabel.Text);
             SE.ShowDialog();
@@ -478,7 +474,7 @@ namespace Football
             bTeamLabel.Text = AP.ToString();
             aTeamLabel.Text = BP.ToString();
 
-            _gcheck.SetStopwatch(true);
+            _ball.Gcheck.SetStopwatch(true);
             _video.StartVideo();
             SE.Dispose();
         }
@@ -490,14 +486,14 @@ namespace Football
         private void setCustomColor_Click(object sender, EventArgs e)
         {
             _video.Pause();
-            _gcheck.SetStopwatch(false);
+            _ball.Gcheck.SetStopwatch(false);
 
             CCC = new CustomColorViewer(_video.ImgOriginal);
             CCC.ShowDialog();
 
             _ball.SetCustomColor(CCC.newLow, CCC.newHigh);
 
-            _gcheck.SetStopwatch(true);
+            _ball.Gcheck.SetStopwatch(true);
             _video.StartVideo();
             CCC.Dispose();
         }
