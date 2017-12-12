@@ -26,9 +26,9 @@ namespace Football
         public string AText { get; set; }
         public string BText { get; set; }
 
-        public GoalsChecker(Stopwatch stopwatch)
+        public GoalsChecker()
         {
-            _stopwatch = stopwatch;
+           // _stopwatch = stopwatch;
         }
 
         public string CheckForScoreA(string text) 

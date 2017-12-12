@@ -15,8 +15,6 @@ namespace Football
 {
     public class Gates
     {
-         ISource _video;
-
         public ChooseColour ChooseColour = new ChooseColour();
 
         public delegate int Distance(int A, int B, Image<Gray, byte> ImgOriginal);
