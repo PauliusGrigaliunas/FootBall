@@ -26,8 +26,10 @@ namespace Football
                 contex.Teams.Add(team);
                 contex.SaveChanges();
             }
+
+
         }
-        public void AddGameToTable(String firstTeam, String secondTeam, DateTime date)
+        public void AddGameToTable(String firstTeam, String secondTeam, DateTime date, bool isFinished)
         {
             DateTime date1=DateTime.Now ;
             using (Football1Entities contex = new Football1Entities())
@@ -38,8 +40,11 @@ namespace Football
                 {
                     FirstTeam = team.Id,
                     SecondTeam = team1.Id,
-                    Date = date
+                    Date = date,
+                    IsFinished=isFinished
+                    
                 };
+                
               
                 contex.Games.Add(game);
                 contex.SaveChanges();
@@ -118,16 +123,14 @@ namespace Football
                 var game = contex.Games.FirstOrDefault(i => i.FirstTeam == team1 && i.SecondTeam == team2);
                 game.FirstTeamScore = goal1;
                 game.SecondTeamScore =  goal2;
-                if(isFinished)
-                {
-                    game.IsFinished = true;
-                }
+                 game.IsFinished = isFinished;
+                
              
                 contex.SaveChanges();
             }
 
-
         }
+
         //database loaded to list
         public List<Team> AllDataToList() 
         {

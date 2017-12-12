@@ -79,12 +79,10 @@ namespace Football
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
             SaveTeams();
-
-            
-
+       
 
         }
-        private void OnTimedEvent(object source, EventArgs e)
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             SaveScore();
         }
@@ -102,7 +100,8 @@ namespace Football
             {
                 team.AddTeamToTable(BTeam);
             }
-            team.AddGameToTable(ATeam, BTeam, date);
+            team.AddGameToTable(ATeam, BTeam, date, false);
+          
      
         }
         private void ButtonDisabler()
@@ -306,7 +305,7 @@ namespace Football
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+           
             Application.Exit();
         }
 
@@ -414,8 +413,10 @@ namespace Football
             comment.StopAllTracks();
             //db timetick
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 10000;
+            aTimer.Interval = 5000;
             aTimer.Enabled = true;
+            Teams team = new Teams();
+          
         }
 
         private void btnStartLast_Click(object sender, EventArgs e)
