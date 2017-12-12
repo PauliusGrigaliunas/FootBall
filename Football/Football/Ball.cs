@@ -86,7 +86,7 @@ namespace Football
         }
 
         // wut?
-        Print _print = delegate (List<int> list, int agates, int bgates, int aBdistance)
+       /* Print _print = delegate (List<int> list, int agates, int bgates, int aBdistance)
         {
             IEnumerator<int> enumerator = list.GetEnumerator();
             while (enumerator.MoveNext())
@@ -95,7 +95,7 @@ namespace Football
                 Debug.WriteLine(item);
             }
             Debug.WriteLine(agates + "   <--->   " + bgates + "   dist = " + aBdistance + " ballpos: " + BallPosition.X);
-        };
+        };*/
 
         private string GetBallStatus(int dist, int diff, string at, string bt)
         {

@@ -222,10 +222,10 @@ namespace Football
             _i = _ball.Index;
             // Tomai truputi pakeičiau... bet kas čia per magija?
 
-            commentatorTextCompatibility();
+            CommentatorTextCompatibility();
         }
 
-        private void commentatorTextCompatibility()
+        private void CommentatorTextCompatibility()
         {
             if (_ball.PositionComment != BallPos.Text) isRinged = false;
             BallPos.Text = _ball.PositionComment;
