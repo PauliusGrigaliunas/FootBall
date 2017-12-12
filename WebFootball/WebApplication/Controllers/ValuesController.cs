@@ -5,12 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Razor.Generator;
+using Football;
 
 namespace WebApplication.Controllers
 {
     public class ValuesController : ApiController
     {
-        private static List<string> Abc = new List<string>()
+        /*private static List<string> Abc = new List<string>()
         {
             "value0",
             "value1",
@@ -18,37 +19,43 @@ namespace WebApplication.Controllers
             "value3",
             "value4",
             "value5"
-        };
-        //public string[] Abc { get; set; } = new string[] {  };
+        };*/
 
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<Game> Get()
         {
-            return Abc;
+             using (Football1Entities context = new Football1Entities())
+            {
+             return context.Games.ToList();   
+            }
+            
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public Game Get(int id)
         {
-            return Abc[id];
+            using (Football1Entities context = new Football1Entities())
+            {
+                return context.Games.FirstOrDefault(c => c.Id == id);
+            }
         }
 
         // POST api/values
         public void Post([FromBody]string value)
         {
-            Abc.Add(value);
+            //Abc.Add(value);
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody] string value)
         {
-            Abc[id] = value;
+           // Abc[id] = value;
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
-            Abc.RemoveAt(id);
+            //Abc.RemoveAt(id);
         }
     }
 }
