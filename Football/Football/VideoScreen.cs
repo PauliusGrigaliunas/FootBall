@@ -18,6 +18,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Cuda;
 using System.Data.SqlClient;
 using static Football.ColourPalet;
+using System.Timers;
 
 namespace Football
 {
@@ -41,27 +42,21 @@ namespace Football
         private Mat mat;
         private Stopwatch _stopwatch = new Stopwatch();
         Commentator comment = new Commentator();
-
+        System.Timers.Timer aTimer = new System.Timers.Timer();
+        
+      
         public bool isTournament = false;
-
-        //variables
-       // public String _nameFirstTeam { get; set; }
-       // public String _nameSecondTeam { get; set; }
-
+        
         public int _TeamAScores { get; set; }
         public int _TeamBScores { get; set; }
-        public int _VictA { get; set; }
-        public int _GoalA { get; set; }
-        public int _VictB { get; set; }
-        public int _GoalB { get; set; }
-        public bool isRinged = false;
-
         public static bool isATeamScored = false;
         public static bool isBTeamScored = false;
 
+        public bool isRinged = false;
+
         //variables
         private int _i = 0;
-       public string ATeam, BTeam;
+        public string ATeam, BTeam;
         private int CustomColorIndex = 2;
         private int GatesColorIndex = 3;
         //
@@ -84,7 +79,14 @@ namespace Football
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
             SaveTeams();
-           
+
+            
+
+
+        }
+        private void OnTimedEvent(object source, EventArgs e)
+        {
+            SaveScore();
         }
         private void SaveTeams()
         {
@@ -304,6 +306,7 @@ namespace Football
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             Application.Exit();
         }
 
@@ -323,6 +326,7 @@ namespace Football
         {
             _video.Stop();
             GameFinished();
+            aTimer.Enabled = false;
 
         }
 
@@ -408,6 +412,10 @@ namespace Football
             }
 
             comment.StopAllTracks();
+            //db timetick
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 10000;
+            aTimer.Enabled = true;
         }
 
         private void btnStartLast_Click(object sender, EventArgs e)
