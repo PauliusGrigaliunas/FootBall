@@ -40,7 +40,6 @@ namespace Football
         private Mat mat;
         Commentator comment = new Commentator();
         System.Timers.Timer aTimer = new System.Timers.Timer();
-        
       
         public bool isTournament = false;
         
@@ -86,7 +85,6 @@ namespace Football
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
             SaveTeams();
-
         }
         private void OnTimedEvent(object source, EventArgs e)
         {
@@ -168,7 +166,6 @@ namespace Football
 
                 AddSoundEffects();
 
-
                 aTeamLabel.Text = _ball.Gcheck.CheckForScoreA(aTeamLabel.Text);
                 bTeamLabel.Text = _ball.Gcheck.CheckForScoreB(bTeamLabel.Text);
             }
@@ -245,7 +242,6 @@ namespace Football
         }
 
         // End Menu items------------
-
 
         // End Buttons------------
 
@@ -326,8 +322,6 @@ namespace Football
             Teams team = new Teams();
 
             team.UpdateTableGame(ATeam,BTeam,_TeamAScores,_TeamBScores,false);
-
-          
         }
         private void GameFinished()
         {
