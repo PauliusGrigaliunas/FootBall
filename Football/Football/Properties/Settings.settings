@@ -49,5 +49,23 @@
     <Setting Name="Score" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Score</Value>
     </Setting>
+    <Setting Name="Tournament" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Tournament mode</Value>
+    </Setting>
+    <Setting Name="CreateTeams" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Name your teams:</Value>
+    </Setting>
+    <Setting Name="Team1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Team 1 :</Value>
+    </Setting>
+    <Setting Name="Team2" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Team 2 :</Value>
+    </Setting>
+    <Setting Name="Team3" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Team 3 :</Value>
+    </Setting>
+    <Setting Name="Team4" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Team 4 :</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

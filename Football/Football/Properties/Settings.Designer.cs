@@ -153,5 +153,59 @@ namespace Football.Properties {
                 return ((string)(this["Score"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Tournament mode")]
+        public string Tournament {
+            get {
+                return ((string)(this["Tournament"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Name your teams:")]
+        public string CreateTeams {
+            get {
+                return ((string)(this["CreateTeams"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Team 1 :")]
+        public string Team1 {
+            get {
+                return ((string)(this["Team1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Team 2 :")]
+        public string Team2 {
+            get {
+                return ((string)(this["Team2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Team 3 :")]
+        public string Team3 {
+            get {
+                return ((string)(this["Team3"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Team 4 :")]
+        public string Team4 {
+            get {
+                return ((string)(this["Team4"]));
+            }
+        }
     }
 }

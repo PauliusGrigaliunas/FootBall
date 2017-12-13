@@ -26,6 +26,14 @@ namespace Football
         {
             InitializeComponent();
             //InputThread inputThread = InputThread.Instance;
+
+            button1.Text = Properties.Settings.Default.Start;
+            button2.Text = Properties.Settings.Default.Statistics;
+            button3.Text = Properties.Settings.Default.Tournament;
+            MuteCheckBox.Text = Properties.Settings.Default.SoundDisable;
+            label4.Text = Properties.Settings.Default.CreateTeams;
+            label2.Text = Properties.Settings.Default.Team1;
+            label3.Text = Properties.Settings.Default.Team2;
         }
 
         private void button1_Click(object sender, EventArgs e)
