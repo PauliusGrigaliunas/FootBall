@@ -150,7 +150,15 @@ namespace Football
                 _video.ImgOriginal = mat.ToImage<Bgr, byte>().Resize(OriginalPictureBox.Width, OriginalPictureBox.Height, Inter.Linear);
 
                 OriginalPictureBox.Image = _video.ImgOriginal.Bitmap;
-                BallDetection();
+
+                //BallDetection();
+
+                _ball.BallPositionDraw(_video, ATeam, BTeam, comboBox2.SelectedIndex);
+                if (_ball.PositionComment != BallPos.Text) isRinged = false;
+                BallPos.Text = _ball.PositionComment;
+
+                AddSoundEffects();
+
 
                 aTeamLabel.Text = _ball.Gcheck.CheckForScoreA(aTeamLabel.Text);
                 bTeamLabel.Text = _ball.Gcheck.CheckForScoreB(bTeamLabel.Text);
@@ -159,7 +167,14 @@ namespace Football
             {
                 MessageBox.Show(n.ToString());
             }
-        }  
+        }
+
+        public async void AddSoundEffects()
+        {
+            sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
+            sound.Start();
+            await sound;
+        }
 
         //menu strip tool items
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,27 +237,7 @@ namespace Football
 
         // End Menu items------------
 
-        public void BallDetection()
-        {
-            _ball.BallPositionDraw(_video , ATeam, BTeam, comboBox2.SelectedIndex);
 
-            CommentatorTextCompatibility();
-        }
-
-        private void CommentatorTextCompatibility()
-        {
-            if (_ball.PositionComment != BallPos.Text) isRinged = false;
-            BallPos.Text = _ball.PositionComment;
-
-            addSoundEffects();
-        }
-
-        public async void addSoundEffects()
-        {
-            sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
-            sound.Start();
-            await sound;
-        }
         // End Buttons------------
 
         //closing form

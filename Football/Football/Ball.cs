@@ -60,9 +60,8 @@ namespace Football
         public void BallPositionDraw(ISource video, string aTeam, string bTeam, int SelectedColorIndex)
         {
             ColourStruct colour = ChooseColour.Controler(SelectedColorIndex);
-
             ImgFiltered = video.GetFilteredImage(colour);
-            ImgOriginal = video.ImgOriginal; 
+
 
             Image<Bgr, byte> imgCircles = video.ImgOriginal.CopyBlank();
 
@@ -72,7 +71,7 @@ namespace Football
             foreach (CircleF circle in GetCircles(ImgFiltered))
             {
                 BallPosition.X = (int)circle.Center.X;
-                Gcheck.StartStopwatch(BallPosition.X, ImgOriginal.Width);
+                Gcheck.StartStopwatch(BallPosition.X, video.ImgOriginal.Width);
                 Gcheck.Direction(BallPosition.X, Index, XCoordList); Index++;
                 imgCircles.Draw(circle, new Bgr(Color.Red), 3); //čia piešimui
             }
