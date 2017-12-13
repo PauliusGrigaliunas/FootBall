@@ -13,5 +13,29 @@
     <Setting Name="lastfilepath" Type="System.String" Scope="User">
       <Value Profile="(Default)">Here is stored the path to the lastest user's used video file</Value>
     </Setting>
+    <Setting Name="Start" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Start</Value>
+    </Setting>
+    <Setting Name="StartLast" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Start Last Used Video</Value>
+    </Setting>
+    <Setting Name="Stop" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Stop Media Playback</Value>
+    </Setting>
+    <Setting Name="Reset" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Reset Score</Value>
+    </Setting>
+    <Setting Name="Save" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Save Score</Value>
+    </Setting>
+    <Setting Name="Edit" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Edit Score Manually</Value>
+    </Setting>
+    <Setting Name="Find" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Find Color Codes</Value>
+    </Setting>
+    <Setting Name="SoundDisable" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Disable Sound Effects?</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
