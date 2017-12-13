@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="Checker\Ball.cs" />
     <Compile Include="Colour\ChooseColour.cs" />
+    <Compile Include="ConnectToNet.cs" />
     <Compile Include="Football1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
