@@ -117,5 +117,41 @@ namespace Football.Properties {
                 return ((string)(this["SoundDisable"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pause")]
+        public string Pause {
+            get {
+                return ((string)(this["Pause"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PlayGround")]
+        public string GameName {
+            get {
+                return ((string)(this["GameName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Statistics")]
+        public string Statistics {
+            get {
+                return ((string)(this["Statistics"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Score")]
+        public string Score {
+            get {
+                return ((string)(this["Score"]));
+            }
+        }
     }
 }
