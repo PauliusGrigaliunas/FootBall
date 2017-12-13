@@ -88,7 +88,7 @@ namespace Football
             this.TeamAScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TeamAScore.Location = new System.Drawing.Point(114, 71);
             this.TeamAScore.Name = "TeamAScore";
-            this.TeamAScore.Size = new System.Drawing.Size(41, 39);
+            this.TeamAScore.Size = new System.Drawing.Size(40, 38);
             this.TeamAScore.TabIndex = 5;
             this.TeamAScore.Text = "X";
             this.TeamAScore.Click += new System.EventHandler(this.TeamAScore_Click);
@@ -99,7 +99,7 @@ namespace Football
             this.TeamBScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TeamBScore.Location = new System.Drawing.Point(216, 71);
             this.TeamBScore.Name = "TeamBScore";
-            this.TeamBScore.Size = new System.Drawing.Size(41, 39);
+            this.TeamBScore.Size = new System.Drawing.Size(40, 38);
             this.TeamBScore.TabIndex = 6;
             this.TeamBScore.Text = "X";
             this.TeamBScore.Click += new System.EventHandler(this.TeamBScore_Click);
@@ -110,7 +110,7 @@ namespace Football
             this.colon.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colon.Location = new System.Drawing.Point(173, 71);
             this.colon.Name = "colon";
-            this.colon.Size = new System.Drawing.Size(27, 39);
+            this.colon.Size = new System.Drawing.Size(27, 38);
             this.colon.TabIndex = 7;
             this.colon.Text = ":";
             // 
@@ -160,10 +160,10 @@ namespace Football
             // 
             // Close
             // 
-            this.Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Close.Location = new System.Drawing.Point(154, 149);
+            this.Close.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Close.Location = new System.Drawing.Point(112, 149);
             this.Close.Name = "Close";
-            this.Close.Size = new System.Drawing.Size(75, 42);
+            this.Close.Size = new System.Drawing.Size(144, 42);
             this.Close.TabIndex = 12;
             this.Close.Text = "OK";
             this.Close.UseVisualStyleBackColor = true;
@@ -204,6 +204,8 @@ namespace Football
 
             TeamAScore.Text = aScore;
             TeamBScore.Text = bScore;
+
+            Close.Text = Properties.Settings.Default.Save;
         }
 
         private void TeamA_Click(object sender, EventArgs e)
