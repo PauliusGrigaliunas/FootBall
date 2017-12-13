@@ -67,5 +67,29 @@
     <Setting Name="Team4" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Team 4 :</Value>
     </Setting>
+    <Setting Name="Versus" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">VS</Value>
+    </Setting>
+    <Setting Name="First" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1st  place</Value>
+    </Setting>
+    <Setting Name="Second" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">2nd place</Value>
+    </Setting>
+    <Setting Name="Third" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">3rd place</Value>
+    </Setting>
+    <Setting Name="Fourth" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">4th place</Value>
+    </Setting>
+    <Setting Name="PlayingFor1st" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">For the first place:</Value>
+    </Setting>
+    <Setting Name="Playingfor3rd" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">For the third place:</Value>
+    </Setting>
+    <Setting Name="AppName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Let's play foosball!</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

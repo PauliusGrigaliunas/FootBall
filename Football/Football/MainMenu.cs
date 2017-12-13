@@ -34,6 +34,7 @@ namespace Football
             label4.Text = Properties.Settings.Default.CreateTeams;
             label2.Text = Properties.Settings.Default.Team1;
             label3.Text = Properties.Settings.Default.Team2;
+            label1.Text = Properties.Settings.Default.AppName;
         }
 
         private void button1_Click(object sender, EventArgs e)
