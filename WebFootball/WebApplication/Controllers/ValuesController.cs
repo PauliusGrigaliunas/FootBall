@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Razor.Generator;
 using Football;
+using WebApplication.Helpers;
+
 
 namespace WebApplication.Controllers
 {
@@ -19,15 +21,18 @@ namespace WebApplication.Controllers
             "value3",
             "value4",
             "value5"
-        };*/
-
+        };
+        
+        EFProvider provider = new EFProvider();
         // GET api/values
+
         public List<Game> Get()
         {
              using (Football1Entities context = new Football1Entities())
             {
              return context.Games.ToList();   
             }
+             
             
         }
 
@@ -56,6 +61,6 @@ namespace WebApplication.Controllers
         public void Delete(int id)
         {
             //Abc.RemoveAt(id);
-        }
+        }*/
     }
 }

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<WebApplication.Team>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head runat="server">
+
+
+    <style>
+        body {
+            margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+            text-align: left;
+        }
+
+
+        .jumbotron {
+            background-color: rgba(169, 167, 167, 0.70);
+        }
+    </style>
+</head>
+<body>
+ 
+    <div class="jumbotron">
+        <h1>Teams</h1>
+        <table class="table" data-sort-order="desc">
+            <thead>
+                    <tr>
+                        <th >
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th  >
+                            @Html.DisplayNameFor(model => model.GamesPlayed)
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.GamesWon)
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.TotalGoals)
+                        </th>
+                        <th></th>
+                    </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GamesPlayed)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GamesWon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalGoals)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+
+                </table>
+     
+                <p><a href="http://localhost:60096/Games/Index" class="btn btn-primary btn-lg"> &larr;</a></p>
+    </div>
+    </body>

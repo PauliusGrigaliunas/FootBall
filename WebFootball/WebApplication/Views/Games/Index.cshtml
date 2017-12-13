@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebApplication.Game>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head runat="server">
+
+    <title>Time Entry</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="bootstrap.min.css" />
+
+    <script src="bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap-theme.min.css" />
+    <style>
+        body {
+            margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
+            text-align: left;
+        }
+
+
+        .jumbotron {
+            background-color: rgba(169, 167, 167, 0.70);
+        }
+    </style>
+</head>
+    
+
+    <div class="jumbotron">
+
+        <h2>Games</h2>
+        <div class="table-responsive">
+            <table class=table table-striped ">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Team.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstTeamScore)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Team1.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SecondTeamScore)
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+            {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Team.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstTeamScore)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Team1.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SecondTeamScore)
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+            <p><a href="http://localhost:60096/Teams/Index" class="btn btn-primary btn-lg">Teams &raquo;</a></p>
+        </div>
+        </div>
