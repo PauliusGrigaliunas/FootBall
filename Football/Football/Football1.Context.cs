@@ -25,7 +25,7 @@ namespace Football
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Game> Games { get; set; }
     }
 }

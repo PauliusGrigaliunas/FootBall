@@ -98,8 +98,9 @@ namespace Football
                 team.AddTeamToTable(BTeam);
             }
             team.AddGameToTable(ATeam, BTeam, date,false);
-     
+          
         }
+        
         private void ButtonDisabler()
         {
             btnStartLast.Enabled = false;
@@ -470,6 +471,12 @@ namespace Football
         {
             comment.Mute();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void setCustomColor_Click(object sender, EventArgs e)
         {
             _video.Pause();
