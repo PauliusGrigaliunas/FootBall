@@ -5,16 +5,13 @@
 }
 <head runat="server">
 
-    <title>Time Entry</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="bootstrap.min.css" />
-
-    <script src="bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="bootstrap-theme.min.css" />
     <style>
         body {
             margin-top: 50px; /* 50px is the height of the navbar - change this if the navbarn height changes */
@@ -29,52 +26,121 @@
 </head>
     
 
-    <div class="jumbotron">
-
+    <div class="jumbotron" style="color:aliceblue">
         <h2>Games</h2>
+        <input style="align-items:inherit" class="form-control" id="myInput" type="text" placeholder="Search.."> </h3>
+
         <div class="table-responsive">
-            <table class=table table-striped >
-                <tr>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Team.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstTeamScore)
-                    </th>
-
-                    <th>
-                        @Html.DisplayNameFor(model => model.Team1.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.SecondTeamScore)
-                    </th>
-                  
-                </tr>
-
-                @foreach (var item in Model)
-            {
+            <table class ="table" id="myTable" >
+                <thread>
                     <tr>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Team.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FirstTeamScore)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Team1.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SecondTeamScore)
-                        </td>
-                      
+                        <th >
+                            @Html.DisplayNameFor(model => model.Team.Name) 
+                        </th>
+                        <th onclick="sortTable(1)">
+                            @Html.DisplayNameFor(model => model.FirstTeamScore) &dArr;
+                        </th>
+                        <th >
+                            @Html.DisplayNameFor(model => model.Team1.Name)
+                        </th>
+                        <th onclick="sortTable(3)">
+                            @Html.DisplayNameFor(model => model.SecondTeamScore) &dArr;
+                        </th>
 
                     </tr>
-                }
+                </thread>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
 
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Team.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstTeamScore)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Team1.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SecondTeamScore)
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
             </table>
+            <script>
+                    $(document).ready(function () {
+                        $("#myInput").on("keyup", function () {
+                            var value = $(this).val().toLowerCase();
+                            $("#myTable tr").filter(function () {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+            </script>
+            <script>
+                    function sortTable(n) {
+                        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                        table = document.getElementById("myTable");
+                        switching = true;
+                        //Set the sorting direction to ascending:
+                        dir = "asc";
+                        /*Make a loop that will continue until
+                        no switching has been done:*/
+                        while (switching) {
+                            //start by saying: no switching is done:
+                            switching = false;
+                            rows = table.getElementsByTagName("TR");
+                            /*Loop through all table rows (except the
+                            first, which contains table headers):*/
+                            for (i = 1; i < (rows.length - 1); i++) {
+                                //start by saying there should be no switching:
+                                shouldSwitch = false;
+                                /*Get the two elements you want to compare,
+                                one from current row and one from the next:*/
+                                x = rows[i].getElementsByTagName("TD")[n];
+                                y = rows[i + 1].getElementsByTagName("TD")[n];
+                                /*check if the two rows should switch place,
+                                based on the direction, asc or desc:*/
+                                if (dir == "asc") {
+                                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                        //if so, mark as a switch and break the loop:
+                                        shouldSwitch = true;
+                                        break;
+                                    }
+                                } else if (dir == "desc") {
+                                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                        //if so, mark as a switch and break the loop:
+                                        shouldSwitch = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (shouldSwitch) {
+                                /*If a switch has been marked, make the switch
+                                and mark that a switch has been done:*/
+                                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                                switching = true;
+                                //Each time a switch is done, increase this count by 1:
+                                switchcount++;
+                            } else {
+                                /*If no switching has been done AND the direction is "asc",
+                                set the direction to "desc" and run the while loop again.*/
+                                if (switchcount == 0 && dir == "asc") {
+                                    dir = "desc";
+                                    switching = true;
+                                }
+                            }
+                        }
+                    }
+            </script>
+
+
             <p><a href="http://localhost:60096/Teams/Index" class="btn btn-primary btn-lg">Teams &raquo;</a></p>
         </div>
         </div>
