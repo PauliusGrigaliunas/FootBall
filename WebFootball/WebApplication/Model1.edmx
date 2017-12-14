@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FootballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FootballModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Game">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,7 +14,7 @@
           <Property Name="SecondTeam" Type="int" Nullable="false" />
           <Property Name="FirstTeamScore" Type="int" Nullable="false" />
           <Property Name="SecondTeamScore" Type="int" Nullable="false" />
-          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="IsFinished" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
@@ -63,25 +63,10 @@
             <End Role="Game" EntitySet="Game" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FootballModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Game">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstTeam" Type="Int32" Nullable="false" />
-          <Property Name="SecondTeam" Type="Int32" Nullable="false" />
-          <Property Name="FirstTeamScore" Type="Int32" Nullable="false" />
-          <Property Name="SecondTeamScore" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IsFinished" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Game_Team" FromRole="Game" ToRole="Team" />
-          <NavigationProperty Name="Team1" Relationship="Self.FK1_Game_Team" FromRole="Game" ToRole="Team" />
-        </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="Id" />
@@ -91,12 +76,38 @@
           <Property Name="GamesPlayed" Type="Int32" Nullable="false" />
           <Property Name="GamesWon" Type="Int32" Nullable="false" />
           <Property Name="TotalGoals" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Games" Relationship="Self.FK_Game_Team" FromRole="Team" ToRole="Game" />
-          <NavigationProperty Name="Games1" Relationship="Self.FK1_Game_Team" FromRole="Team" ToRole="Game" />
+          <NavigationProperty Name="Games" Relationship="FootballModel.FK_Game_Team" FromRole="Team" ToRole="Game" />
+          <NavigationProperty Name="Games1" Relationship="FootballModel.FK1_Game_Team" FromRole="Team" ToRole="Game" />
+          </EntityType>
+        <EntityContainer Name="FootballEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Games" EntityType="FootballModel.Game" />
+          <AssociationSet Name="FK_Game_Team" Association="FootballModel.FK_Game_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          <AssociationSet Name="FK1_Game_Team" Association="FootballModel.FK1_Game_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Game" EntitySet="Games" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstTeam" Type="Int32" Nullable="false" />
+          <Property Name="SecondTeam" Type="Int32" Nullable="false" />
+          <Property Name="FirstTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="SecondTeamScore" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsFinished" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="FootballModel.FK_Game_Team" FromRole="Game" ToRole="Team" />
+          <NavigationProperty Name="Team1" Relationship="FootballModel.FK1_Game_Team" FromRole="Game" ToRole="Team" />
         </EntityType>
         <Association Name="FK_Game_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
-          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <End Type="FootballModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="FootballModel.Game" Role="Game" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Team">
               <PropertyRef Name="Id" />
@@ -107,8 +118,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK1_Game_Team">
-          <End Role="Team" Type="Self.Team" Multiplicity="1" />
-          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <End Type="FootballModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="FootballModel.Game" Role="Game" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Team">
               <PropertyRef Name="Id" />
@@ -118,37 +129,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FootballEntities3" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Games" EntityType="Self.Game" />
-          <EntitySet Name="Teams" EntityType="Self.Team" />
-          <AssociationSet Name="FK_Game_Team" Association="Self.FK_Game_Team">
-            <End Role="Team" EntitySet="Teams" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-          <AssociationSet Name="FK1_Game_Team" Association="Self.FK1_Game_Team">
-            <End Role="Team" EntitySet="Teams" />
-            <End Role="Game" EntitySet="Games" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FootballModelStoreContainer" CdmEntityContainer="FootballEntities3">
-          <EntitySetMapping Name="Games">
-            <EntityTypeMapping TypeName="FootballModel.Game">
-              <MappingFragment StoreEntitySet="Game">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstTeam" ColumnName="FirstTeam" />
-                <ScalarProperty Name="SecondTeam" ColumnName="SecondTeam" />
-                <ScalarProperty Name="FirstTeamScore" ColumnName="FirstTeamScore" />
-                <ScalarProperty Name="SecondTeamScore" ColumnName="SecondTeamScore" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="IsFinished" ColumnName="IsFinished" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="FootballModel.Team">
               <MappingFragment StoreEntitySet="Team">
@@ -157,6 +143,19 @@
                 <ScalarProperty Name="GamesPlayed" ColumnName="GamesPlayed" />
                 <ScalarProperty Name="GamesWon" ColumnName="GamesWon" />
                 <ScalarProperty Name="TotalGoals" ColumnName="TotalGoals" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="FootballModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="IsFinished" ColumnName="IsFinished" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="SecondTeamScore" ColumnName="SecondTeamScore" />
+                <ScalarProperty Name="FirstTeamScore" ColumnName="FirstTeamScore" />
+                <ScalarProperty Name="SecondTeam" ColumnName="SecondTeam" />
+                <ScalarProperty Name="FirstTeam" ColumnName="FirstTeam" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

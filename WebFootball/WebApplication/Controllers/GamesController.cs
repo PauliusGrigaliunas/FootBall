@@ -18,22 +18,24 @@ namespace WebApplication.Controllers
         public ActionResult Index()
         {
             var games = db.Games.Include(g => g.Team).Include(g => g.Team1);
-            return View(games.ToList());
+            return View(games.OrderByDescending(i=>i.FirstTeamScore).
+                OrderByDescending(i=>i.SecondTeamScore).ToList());
         }
 
         // GET: Games/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Game game = db.Games.Find(id);
-            if (game == null)
-            {
-                return HttpNotFound();
-            }
-            return View(game);
+            var games = db.Games.Include(g => g.Team).Include(g => g.Team1);
+
+
+            return View(games.OrderByDescending(i => i.Id).ToList());
+        }
+        public ActionResult GetTeam()
+        {
+            var games = db.Games.Include(g => g.Team).Include(g => g.Team1);
+
+
+            return View(games.OrderByDescending(i => i.Id).Last());
         }
 
         // GET: Games/Create

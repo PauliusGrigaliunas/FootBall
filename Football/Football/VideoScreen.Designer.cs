@@ -121,11 +121,11 @@
             this.panel1.Controls.Add(this.OriginalPictureBox);
             this.panel1.Controls.Add(this.menuStrip2);
             this.panel1.Location = new System.Drawing.Point(0, 20);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(490, 685);
             this.panel1.TabIndex = 2;
-           // this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // setCustomColor
             // 
@@ -141,7 +141,7 @@
             // 
             this.enableSound.AutoSize = true;
             this.enableSound.Location = new System.Drawing.Point(140, 104);
-            this.enableSound.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.enableSound.Margin = new System.Windows.Forms.Padding(2);
             this.enableSound.Name = "enableSound";
             this.enableSound.Size = new System.Drawing.Size(15, 14);
             this.enableSound.TabIndex = 54;
@@ -175,7 +175,7 @@
             "PC Camera",
             "Video"});
             this.comboBox1.Location = new System.Drawing.Point(8, 426);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(92, 21);
             this.comboBox1.TabIndex = 51;
@@ -183,7 +183,7 @@
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(292, 444);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(87, 54);
             this.btnReset.TabIndex = 50;
@@ -194,7 +194,7 @@
             // btnStopp
             // 
             this.btnStopp.Location = new System.Drawing.Point(198, 444);
-            this.btnStopp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStopp.Margin = new System.Windows.Forms.Padding(2);
             this.btnStopp.Name = "btnStopp";
             this.btnStopp.Size = new System.Drawing.Size(89, 54);
             this.btnStopp.TabIndex = 49;
@@ -205,7 +205,7 @@
             // btnStartLast
             // 
             this.btnStartLast.Location = new System.Drawing.Point(104, 444);
-            this.btnStartLast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStartLast.Margin = new System.Windows.Forms.Padding(2);
             this.btnStartLast.Name = "btnStartLast";
             this.btnStartLast.Size = new System.Drawing.Size(90, 54);
             this.btnStartLast.TabIndex = 48;
@@ -216,7 +216,7 @@
             // btnStart
             // 
             this.btnStart.Location = new System.Drawing.Point(10, 444);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(89, 54);
             this.btnStart.TabIndex = 47;
@@ -227,7 +227,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(383, 444);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(91, 54);
             this.button2.TabIndex = 46;
@@ -300,7 +300,7 @@
             // saveScoreButton
             // 
             this.saveScoreButton.Location = new System.Drawing.Point(528, 544);
-            this.saveScoreButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveScoreButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveScoreButton.Name = "saveScoreButton";
             this.saveScoreButton.Size = new System.Drawing.Size(121, 54);
             this.saveScoreButton.TabIndex = 36;
@@ -389,7 +389,7 @@
             // OriginalPictureBox
             // 
             this.OriginalPictureBox.Location = new System.Drawing.Point(10, 125);
-            this.OriginalPictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.OriginalPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.OriginalPictureBox.Name = "OriginalPictureBox";
             this.OriginalPictureBox.Size = new System.Drawing.Size(471, 260);
             this.OriginalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -405,7 +405,6 @@
             this.statisticsToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-
             this.menuStrip2.Size = new System.Drawing.Size(71, 668);
             this.menuStrip2.TabIndex = 42;
             this.menuStrip2.Text = "menuStrip2";
@@ -421,11 +420,12 @@
             // allToolStripMenuItem
             // 
             this.allToolStripMenuItem.Name = "allToolStripMenuItem";
-            this.allToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(88, 22);
             this.allToolStripMenuItem.Text = "All";
             this.allToolStripMenuItem.Click += new System.EventHandler(this.allToolStripMenuItem_Click);
             // 
-            
+            // menuStrip1
+            // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -574,7 +574,7 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(230, 0);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(92, 21);
             this.comboBox2.TabIndex = 52;
@@ -589,7 +589,7 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "VideoScreen";
             this.Text = "Let\'s play Foosball!!!";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
