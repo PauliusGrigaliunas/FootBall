@@ -34,6 +34,17 @@ namespace Football
             _name4 = name4;
            
             InitializeComponent();
+
+            label5.Text = Properties.Settings.Default.Playingfor3rd;
+            label6.Text = Properties.Settings.Default.PlayingFor1st;
+            label7.Text = Properties.Settings.Default.First;
+            label8.Text = Properties.Settings.Default.Second;
+            label9.Text = Properties.Settings.Default.Third;
+            label10.Text = Properties.Settings.Default.Fourth;
+            button1vs2.Text = Properties.Settings.Default.Versus;
+            button3vs4.Text = Properties.Settings.Default.Versus;
+            buttonloser34.Text = Properties.Settings.Default.Versus;
+            buttonw1vsw2.Text = Properties.Settings.Default.Versus;
         }
         private void Form1_Load(object sender, EventArgs e)
         {

@@ -40,7 +40,6 @@ namespace Football
         private Mat mat;
         Commentator comment = new Commentator();
         System.Timers.Timer aTimer = new System.Timers.Timer();
-        
       
         public bool isTournament = false;
         
@@ -66,6 +65,18 @@ namespace Football
             comboBox1.DataSource = Enum.GetValues(typeof(Switch.Sources)); // inisialijuojam source pagal pasirinkimą!
             comboBox2.DataSource = Enum.GetValues(typeof(ChooseColour.Choices));// pnš į praeitą.
 
+            enableSoundLabel.Text = Properties.Settings.Default.SoundDisable;
+            setCustomColor.Text = Properties.Settings.Default.Find;
+            editScore.Text = Properties.Settings.Default.Edit;
+            btnStart.Text = Properties.Settings.Default.Start;
+            btnStartLast.Text = Properties.Settings.Default.StartLast;
+            btnStopp.Text = Properties.Settings.Default.Stop;
+            btnReset.Text = Properties.Settings.Default.Reset;
+            button2.Text = Properties.Settings.Default.Save;
+            playGroundLabel.Text = Properties.Settings.Default.GameName;
+            statisticsToolStripMenuItem.Text = Properties.Settings.Default.Statistics;
+            scoreLabel.Text = Properties.Settings.Default.Score;
+
             ButtonDisabler();
 
             TeamALabel.Text = teamA;
@@ -74,10 +85,6 @@ namespace Football
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
             SaveTeams();
-
-            
-
-
         }
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
@@ -160,7 +167,6 @@ namespace Football
 
                 AddSoundEffects();
 
-
                 aTeamLabel.Text = _ball.Gcheck.CheckForScoreA(aTeamLabel.Text);
                 bTeamLabel.Text = _ball.Gcheck.CheckForScoreB(bTeamLabel.Text);
             }
@@ -237,7 +243,6 @@ namespace Football
         }
 
         // End Menu items------------
-
 
         // End Buttons------------
 
@@ -320,8 +325,6 @@ namespace Football
             Teams team = new Teams();
 
             team.UpdateTableGame(ATeam,BTeam,_TeamAScores,_TeamBScores,false);
-
-          
         }
         private void GameFinished()
         {
@@ -376,21 +379,21 @@ namespace Football
                 _video = switcher.Controler(comboBox1.SelectedIndex);
             }
 
-            if (btnStart.Text == @"Start")
+            if (btnStart.Text == Properties.Settings.Default.Start)
             {
                 if (_video.StartVideo())
                 {
                     ButtonEnabler();
-                    btnStart.Text = @"Pause";
-                    btnStartLast.Text = @"Pause";
+                    btnStart.Text = Properties.Settings.Default.Pause;
+                    btnStartLast.Text = Properties.Settings.Default.Pause;
                 }
             }
             else
             {
                 _video.Pause();
                 _ball.Gcheck.SetStopwatch(false);
-                btnStart.Text = "Start";
-                btnStartLast.Text = "Load last used video";
+                btnStart.Text = Properties.Settings.Default.Start;
+                btnStartLast.Text = Properties.Settings.Default.StartLast;
             }
 
             comment.StopAllTracks();
@@ -402,18 +405,18 @@ namespace Football
 
         private void btnStartLast_Click(object sender, EventArgs e)
         {
-            if (btnStartLast.Text == "Load last used video")
+            if (btnStartLast.Text == Properties.Settings.Default.StartLast)
             {
                 _video.StartLastUsedVideo();
-                btnStart.Text = "Pause";
-                btnStartLast.Text = "Pause";
+                btnStart.Text = Properties.Settings.Default.Pause;
+                btnStartLast.Text = Properties.Settings.Default.Pause;
             }
             else
             {
                 _video.Pause();
                 _ball.Gcheck.SetStopwatch(false);
-                btnStart.Text = "Start";
-                btnStartLast.Text = "Load last used video";
+                btnStart.Text = Properties.Settings.Default.Start;
+                btnStartLast.Text = Properties.Settings.Default.StartLast;
             }
             comment.StopAllTracks();
         }
@@ -421,8 +424,8 @@ namespace Football
         private void btnStopp_Click(object sender, EventArgs e)
         {
             _video.Stop();
-            btnStart.Text = "Start";
-            btnStartLast.Text = "Load last used video";
+            btnStart.Text = Properties.Settings.Default.Start;
+            btnStartLast.Text = Properties.Settings.Default.StartLast;
         }
 
         private void btnReset_Click(object sender, EventArgs e)

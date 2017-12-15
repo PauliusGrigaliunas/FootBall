@@ -86,8 +86,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ball.cs" />
-    <Compile Include="ChooseColour.cs" />
+    <Compile Include="Checker\Ball.cs" />
+    <Compile Include="Colour\ChooseColour.cs" />
+    <Compile Include="ConnectToNet.cs" />
     <Compile Include="Football1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -106,7 +107,7 @@
     <Compile Include="Game.cs">
       <DependentUpon>Football1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Gates.cs" />
+    <Compile Include="Checker\Gates.cs" />
     <Compile Include="Hierarchy\WebCamera.cs" />
     <Compile Include="Path.cs">
       <SubType>Form</SubType>
@@ -122,8 +123,8 @@
     </Compile>
     <Compile Include="Settings\Switch.cs" />
     <Compile Include="Hierarchy\Camera.cs" />
-    <Compile Include="ColourPalet.cs" />
-    <Compile Include="Commentator.cs" />
+    <Compile Include="Colour\ColourPalet.cs" />
+    <Compile Include="Checker\Commentator.cs" />
     <Compile Include="Exception\IsEqualException.cs" />
     <Compile Include="Exception\IsTooShortException.cs" />
     <Compile Include="Hierarchy\ISource.cs" />
@@ -164,8 +165,8 @@
     <Compile Include="Hierarchy\Picture.cs" />
     <Compile Include="StartThread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GoalsChecker.cs" />
-    <Compile Include="Teams.cs" />
+    <Compile Include="Checker\GoalsChecker.cs" />
+    <Compile Include="Teams\Teams.cs" />
     <Compile Include="Hierarchy\Video.cs" />
     <EmbeddedResource Include="CustomColorViewer.resx">
       <DependentUpon>CustomColorViewer.cs</DependentUpon>
@@ -182,7 +183,7 @@
     <EmbeddedResource Include="Tournament.resx">
       <DependentUpon>Tournament.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="InputThread.cs" />
+    <Compile Include="Teams\InputThread.cs" />
     <EmbeddedResource Include="VideoScreen.resx">
       <DependentUpon>VideoScreen.cs</DependentUpon>
     </EmbeddedResource>

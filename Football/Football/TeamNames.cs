@@ -22,6 +22,11 @@ namespace Football
         public TeamNames()
         {
             InitializeComponent();
+
+            label1.Text = Properties.Settings.Default.Team1;
+            label2.Text = Properties.Settings.Default.Team2;
+            label3.Text = Properties.Settings.Default.Team3;
+            label4.Text = Properties.Settings.Default.Team4;
         }
 
         private void label1_Click(object sender, EventArgs e)
