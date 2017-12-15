@@ -396,7 +396,7 @@ namespace Football
             comment.StopAllTracks();
             //db timetick
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 5000;
+            aTimer.Interval = 1000;
             aTimer.Enabled = true;
         }
 
