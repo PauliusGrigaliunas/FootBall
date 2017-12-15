@@ -249,7 +249,7 @@ namespace Football
         //closing form
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_video != null) _video.Pause();
+            if (_video != null) { _video.Pause();  if (int.Parse(aTeamLabel.Text) != 0 && int.Parse(bTeamLabel.Text) != 0) GameFinished(); }
             if (!isTournament) Application.Exit();
         }
 
@@ -313,8 +313,6 @@ namespace Football
             _video.Stop();
             GameFinished();
             aTimer.Enabled = false;
-            
-
         }
 
         private void SaveScore()
@@ -474,12 +472,6 @@ namespace Football
         {
             comment.Mute();
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void setCustomColor_Click(object sender, EventArgs e)
         {
             _video.Pause();
