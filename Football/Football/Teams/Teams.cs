@@ -106,15 +106,12 @@ namespace Football
         {
             using (Football1Entities contex = new Football1Entities())
             {
-                int team1;
-                int team2;
-
                 //getting id's of teams
                 var team = contex.Teams.FirstOrDefault(r => r.Name == name1);
-                team1 = team.Id;
+                var team1 = team.Id;
 
                 team = contex.Teams.FirstOrDefault(r => r.Name == name2);
-                team2 = team.Id;
+                var team2 = team.Id;
 
                 var game = contex.Games.FirstOrDefault(i => i.FirstTeam == team1 && i.SecondTeam == team2);
                 game.FirstTeamScore = goal1;
