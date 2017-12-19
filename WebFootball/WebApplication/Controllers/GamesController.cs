@@ -27,7 +27,7 @@ namespace WebApplication.Controllers
         {
             var games = db.Games.Include(g => g.Team).Include(g => g.Team1);
 
-
+            //Response.AddHeader("Refresh", "5");
             return View(games.OrderByDescending(i => i.Id).ToList());
         }
         public ActionResult GetTeam()
