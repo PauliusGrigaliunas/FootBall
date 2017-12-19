@@ -41,7 +41,7 @@ namespace Football
         {
             VideoScreen form = new VideoScreen(_nameFirstTeam, _nameSecondTeam);
 
-             //new Teams();
+            Teams team = new Teams();
 
             try
             {
