@@ -27,13 +27,13 @@
 
 
 <body>
-    <div class="jumbotron" style="color:#ffffff">
+    <div class="jumbotron" style="color:#ffffff" id="auto">
 
         <h2 style="text-align:center" >Now</h2>
 
-        <h1 style="text-align:center" id="autoNames"> @Model.FirstOrDefault().Team.Name - @Model.FirstOrDefault().Team1.Name</h1>
+        <h1 style="text-align:center"> @Model.FirstOrDefault().Team.Name - @Model.FirstOrDefault().Team1.Name</h1>
 
-        <h1 style="text-align:center" id="autoScore">@Model.FirstOrDefault().FirstTeamScore : @Model.FirstOrDefault().SecondTeamScore</h1>
+        <h1 style="text-align:center">@Model.FirstOrDefault().FirstTeamScore : @Model.FirstOrDefault().SecondTeamScore</h1>
         <br />
         <h2 style="text-align:center" >Recently</h2>
 
@@ -92,13 +92,13 @@
 </table>
             <script type="text/javascript">
                 $(document).ready(function () {
-                    $('#autoNames #autoScore').load();
+                    $('#auto').load();
                     refresh();
                 });
 
                     function refresh() {
                         setTimeout(function () {
-                            $('#autoNames #autoScore').load();
+                            $('#auto').load();
                             refresh();
                         }, 200);
                     }
