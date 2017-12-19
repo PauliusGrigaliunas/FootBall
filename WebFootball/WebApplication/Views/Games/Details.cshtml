@@ -27,7 +27,7 @@
 </head>
 
 
-<body>
+<body onload="JavaScript:timedRefresh(5000);">
     <div class="jumbotron" style="color:#ffffff">
 
         <h2 style="text-align:center" >Now</h2>
@@ -91,6 +91,13 @@
                     }
                 </tbody>
 </table>
+            <script type="text/javascript">
+                function timedRefresh(timeoutPeriod) {
+                    setTimeout(function () {
+                        location.reload(true);
+                    }, timeoutPeriod);
+                }
+            </script>
             <script>
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
