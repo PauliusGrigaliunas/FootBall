@@ -26,13 +26,11 @@ namespace Football
 
     public partial class VideoScreen : Form
     {
-        Task sound;
 
         //objects
         Picture _picture = new Picture();
         Ball _ball = new Ball();
         Switch switcher = new Switch();
-        ChooseColour chooseColour = new ChooseColour();
         ScoreEditor SE;
         CustomColorViewer CCC;
         ISource _video;
@@ -40,9 +38,9 @@ namespace Football
         private Mat mat;
         Commentator comment = new Commentator();
         System.Timers.Timer aTimer = new System.Timers.Timer();
-      
+
         public bool isTournament = false;
-        
+
         public int _TeamAScores { get; set; }
         public int _TeamBScores { get; set; }
         public static bool isATeamScored = false;
@@ -51,7 +49,6 @@ namespace Football
         public bool isRinged = false;
 
         //variables
-        private int _i = 0;
         public string ATeam, BTeam;
         //
         public List<int> _xCoordList = new List<int>();
@@ -59,6 +56,8 @@ namespace Football
         public VideoScreen(String teamA, String teamB)
         {
             InitializeComponent();
+
+
 
             Source._home = this; // neištrint
             _video = new Video(); // tik dėl stop pause mygtukų
@@ -84,7 +83,16 @@ namespace Football
 
             ATeam = TeamALabel.Text;
             BTeam = TeamBLabel.Text;
-            SaveTeams();
+
+            if (ConnectToNet.CheckForInternetConnection())
+            {
+                SaveTeams(); 
+            }
+            else {
+                MessageBox.Show(@"offline mode");
+                button2.Enabled = false;
+                statisticsToolStripMenuItem.Enabled = false;             
+            }
         }
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
@@ -104,16 +112,16 @@ namespace Football
             {
                 team.AddTeamToTable(BTeam);
             }
-            team.AddGameToTable(ATeam, BTeam, date,false);
-          
+            team.AddGameToTable(ATeam, BTeam, date, false);
+
         }
-        
+
         private void ButtonDisabler()
         {
             btnStartLast.Enabled = false;
             btnStopp.Enabled = false;
             btnReset.Enabled = false;
-            button2.Enabled = false;
+            //button2.Enabled = false;
             StartToolStripMenuItem.Enabled = false;
             PauseToolStripMenuItem.Enabled = false;
             StopToolStripMenuItem.Enabled = false;
@@ -131,7 +139,7 @@ namespace Football
             btnStartLast.Enabled = true;
             btnStopp.Enabled = true;
             btnReset.Enabled = true;
-            button2.Enabled = true;
+            //button2.Enabled = true;
             StartToolStripMenuItem.Enabled = true;
             PauseToolStripMenuItem.Enabled = true;
             StopToolStripMenuItem.Enabled = true;
@@ -150,7 +158,7 @@ namespace Football
             if (mat == null)
             {
                 btnStopp_Click(sender, e);
-            return;  
+                return;
             }
 
             try
@@ -178,7 +186,7 @@ namespace Football
 
         public async void AddSoundEffects()
         {
-            sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
+            Task sound = new Task(() => isRinged = comment.CommentPlayGround(_ball.PositionComment, ATeam, BTeam, isRinged));
             sound.Start();
             await sound;
         }
@@ -249,7 +257,7 @@ namespace Football
         //closing form
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_video != null) { _video.Pause();  if (int.Parse(aTeamLabel.Text) != 0 && int.Parse(bTeamLabel.Text) != 0) GameFinished(); }
+            if (_video != null) { _video.Pause(); if (int.Parse(aTeamLabel.Text) != 0 && int.Parse(bTeamLabel.Text) != 0) GameFinished(); }
             if (!isTournament) Application.Exit();
         }
 
@@ -296,13 +304,7 @@ namespace Football
             Application.Exit();
         }
 
-        private void allToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormAllTeams form = new FormAllTeams();
-            form.Show();
-        }
 
-   
         private void lastUsedToolStripMenuItem_Click(object sender, EventArgs e) // open last used video
         {
             _video.StartLastUsedVideo();
@@ -318,11 +320,11 @@ namespace Football
         private void SaveScore()
         {
             _TeamBScores = int.Parse(aTeamLabel.Text);
-            _TeamAScores = int.Parse(bTeamLabel.Text);      
+            _TeamAScores = int.Parse(bTeamLabel.Text);
 
             Teams team = new Teams();
 
-            team.UpdateTableGame(ATeam,BTeam,_TeamAScores,_TeamBScores,false);
+            team.UpdateTableGame(ATeam, BTeam, _TeamAScores, _TeamBScores, false);
         }
         private void GameFinished()
         {
@@ -337,7 +339,7 @@ namespace Football
                 team.UpdateTableTeam(ATeam, 1, _TeamAScores);
                 team.UpdateTableTeam(BTeam, 0, _TeamBScores);
                 comment.PlayIndexedSound(9);
-                DialogResult result = MessageBox.Show("Winner: " +ATeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
+                DialogResult result = MessageBox.Show("Winner: " + ATeam + "!\nScore: " + _TeamAScores + " : " + _TeamBScores);
                 if (result == DialogResult.Cancel || result == DialogResult.OK)
                 {
                     comment.StopAllTracks();
@@ -472,6 +474,13 @@ namespace Football
         {
             comment.Mute();
         }
+
+        private void statisticsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAllTeams form = new FormAllTeams();
+            form.Show();
+        }
+
         private void setCustomColor_Click(object sender, EventArgs e)
         {
             _video.Pause();
