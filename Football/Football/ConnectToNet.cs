@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Football
 {
-    class ConnectToNet
+    static class ConnectToNet
     {
 
         public static bool CheckForInternetConnection()
